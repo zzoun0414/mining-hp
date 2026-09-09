@@ -1,0 +1,13 @@
+# ALTAN KHULEG RESOURCES LLC
+#
+# 公開準備中。全 HTML に <meta name="robots" content="noindex,nofollow"> を
+# 設定済みのため、クロールは許可してもインデックスはされません。
+# 本番でインデックスを開始する際は、各 HTML の noindex を外すだけで済みます
+# （このファイルの変更は不要）。
+#
+# ドメイン確定後、下記 Sitemap の URL を bin/set-site-url.sh で一括置換してください。
+
+User-agent: *
+Allow: /
+
+Sitemap: https://PRODUCTION-DOMAIN.example/sitemap.xml
