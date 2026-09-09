@@ -102,6 +102,10 @@ body{
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 h1,h2,h3{margin:0;font-weight:500;line-height:1.35}
+/* 日本語の行末処理: 見出しは行長を均す / 本文は端物(1文字だけ折返し)を抑制 */
+h1,h2,h3{text-wrap:balance}
+p,li,dd,address,figcaption{text-wrap:pretty}
+:lang(ja),[lang="ja"]{line-break:strict;word-break:normal}
 p{margin:0}
 ul,ol{margin:0;padding:0;list-style:none}
 
@@ -273,9 +277,14 @@ ul,ol{margin:0;padding:0;list-style:none}
 .mini-card:hover{background:var(--panel)}
 .mini-card .ic{width:34px;height:34px;fill:none;stroke:var(--gold);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
 .mini-card .idx{font-family:var(--serif-en);font-size:13px;letter-spacing:.2em;color:var(--gold-deep)}
-.mini-card h3{font-family:var(--serif-jp);font-size:1.02rem;color:var(--text-strong);display:flex;flex-wrap:wrap;align-items:center;gap:8px;word-break:keep-all;overflow-wrap:anywhere}
+.mini-card h3{
+  font-family:var(--serif-jp);font-size:1.02rem;color:var(--text-strong);
+  word-break:normal;word-break:auto-phrase;line-break:strict;text-wrap:balance;
+}
+.mini-card h3 .tag{margin-left:6px}
 .mini-card p{font-size:.9rem;color:var(--muted);line-height:1.85}
 .tag{
+  display:inline-block;vertical-align:middle;white-space:nowrap;
   font-family:var(--sans-jp);font-size:10px;letter-spacing:.1em;font-weight:400;
   color:var(--gold-ink);border:1px solid var(--line);border-radius:2px;padding:2px 7px;
 }
@@ -354,7 +363,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 .flow-mark{width:52px;height:52px;border-radius:50%;border:1px solid var(--gold)}
 .flow-step--hub{background:var(--flow-hub-bg);border-color:var(--line)}
 .flow-en{font-family:var(--serif-en);letter-spacing:.14em;font-size:10.5px;color:var(--gold-label)}
-.flow-step h3{font-family:var(--serif-jp);font-size:1rem;color:var(--text-strong);word-break:keep-all}
+.flow-step h3{font-family:var(--serif-jp);font-size:1rem;color:var(--text-strong);word-break:normal;word-break:auto-phrase;line-break:strict;text-wrap:balance}
 .flow-step p{font-size:.8rem;color:var(--muted);line-height:1.7}
 .flow-step:not(:last-child)::after{
   content:"→";position:absolute;right:-11px;top:50%;transform:translateY(-50%);
