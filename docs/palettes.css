@@ -1,0 +1,205 @@
+/* =========================================================
+   ALTAN KHULEG RESOURCES LLC — colour schemes
+   Load AFTER styles.css. Activated by <html data-palette="a|b|c">.
+   Only design tokens are set here; layout lives in styles.css.
+
+   Shared rules for every scheme:
+   - no pure #000 / #fff
+   - gold is reserved for hairlines, small labels and figures
+     (<= ~5% of the surface); never for headings or CTAs
+   - gold hairlines carry a vertical light->dark ramp (--rule-v / --rule-h)
+   - the logo mark keeps its own gold
+   ========================================================= */
+
+/* =========================================================
+   A — 白ベース・商社型   (navy on warm white)
+   bg #FBFAF8 / 面 #E4E0D6 / 主 #12233F / 副 #3A4A63 / 金 #B99B5F
+   ========================================================= */
+html[data-palette="a"]{
+  --bg:#FBFAF8;
+  --bg-2:#F0ECE3;
+  --bg-3:#EBE6DB;
+  --panel:#E4E0D6;
+
+  --ink:#33373D;
+  --ink-soft:#3A4A63;
+  --muted:#6B665B;
+  --text-strong:#12233F;
+
+  --gold:#B99B5F;
+  --gold-light:#CBB07A;
+  --gold-deep:#8C7238;
+  --gold-label:#7C6532;   /* small EN labels, AA on the warm-white bg */
+  --gold-ink:#84693A;     /* figures & emphasis */
+  --line:rgba(185,155,95,.45);
+  --line-soft:rgba(18,35,63,.12);
+  --gold-glow:rgba(185,155,95,.16);
+
+  --brand-color:#12233F;
+  --nav-active:#8C7238;
+  --hero-lede-color:#3A4A63;
+  --statement-color:#12233F;
+  --focus-ring:#12233F;
+
+  --cta-bg:#12233F;
+  --cta-hover-bg:#26374F;
+  --btn-ink:#FBFAF8;
+  --btn-outline-fg:#12233F;
+  --btn-outline-bg:rgba(255,255,255,.45);
+  --btn-outline-hover-bg:rgba(18,35,63,.06);
+
+  --header-grad:linear-gradient(to bottom,rgba(251,250,248,.88),rgba(251,250,248,0));
+  --header-bg-scrolled:rgba(251,250,248,.94);
+  --header-shadow:0 1px 0 rgba(18,35,63,.10),0 14px 34px -20px rgba(18,35,63,.28);
+  --nav-drawer-bg:rgba(247,245,241,.98);
+
+  --hero-overlay:
+    linear-gradient(90deg,var(--bg) 10%,rgba(251,250,248,.76) 46%,rgba(251,250,248,.42) 76%,rgba(251,250,248,.84) 100%),
+    linear-gradient(to top,var(--bg) 2%,transparent 42%);
+  --hero-img-filter:saturate(.5) brightness(1.07) contrast(.97);
+
+  --flow-overlay:linear-gradient(rgba(240,236,227,.9),rgba(240,236,227,.96));
+  --flow-img-opacity:.14;
+  --flow-img-filter:grayscale(.5);
+  --flow-step-bg:rgba(251,250,248,.72);
+  --flow-hub-bg:rgba(185,155,95,.12);
+  --logistics-bg:rgba(251,250,248,.62);
+  --logistics-map-overlay:linear-gradient(135deg,rgba(185,155,95,.18),rgba(18,35,63,.16));
+  --map-filter:grayscale(.4) sepia(.32) saturate(.5) brightness(.98) contrast(1.05);
+  --tone-icon-opacity:.85;
+
+  --person-grad:linear-gradient(180deg,#F0ECE3,#E7E2D5);
+  --leadership-mark-opacity:.06;
+  --contact-grad:linear-gradient(180deg,var(--bg-3),var(--bg));
+  --footer-bg:#EBE6DB;
+  --img-backing:#E4E0D6;
+}
+
+/* =========================================================
+   B — 墨黒・現行改良   (cool charcoal, softened gold)
+   bg #0E1114 / 面 #1A1F25 / 文字 #E8E4DC / 副 #8C8578 / 金 #B49A6A
+   ========================================================= */
+html[data-palette="b"]{
+  --bg:#0E1114;
+  --bg-2:#14181D;
+  --bg-3:#171C22;
+  --panel:#1A1F25;
+
+  --ink:#E8E4DC;
+  --ink-soft:#C3BDB0;
+  --muted:#8C8578;
+  --text-strong:#F3F0EA;
+
+  --gold:#B49A6A;
+  --gold-light:#D6BE8C;
+  --gold-deep:#8A7444;
+  --line:rgba(180,154,106,.26);
+  --line-soft:rgba(232,228,220,.09);
+  --gold-glow:rgba(180,154,106,.13);
+
+  --brand-color:#D6BE8C;
+  --nav-active:#D6BE8C;
+  --hero-lede-color:#CFC8B8;
+  --statement-color:#E8E4DC;
+  --focus-ring:#D6BE8C;
+
+  --cta-bg:#E8E4DC;
+  --cta-hover-bg:#F2EFE9;
+  --btn-ink:#12161A;
+  --btn-outline-fg:#E4DFD4;
+  --btn-outline-bg:rgba(20,24,29,.42);
+  --btn-outline-hover-bg:rgba(180,154,106,.13);
+
+  --header-grad:linear-gradient(to bottom,rgba(14,17,20,.74),rgba(14,17,20,0));
+  --header-bg-scrolled:rgba(14,17,20,.94);
+  --header-shadow:0 1px 0 var(--line),0 18px 40px -24px rgba(0,0,0,.75);
+  --nav-drawer-bg:rgba(12,15,18,.98);
+
+  --hero-overlay:
+    linear-gradient(90deg,var(--bg) 8%,rgba(14,17,20,.6) 46%,rgba(14,17,20,.26) 78%,rgba(14,17,20,.68) 100%),
+    linear-gradient(to top,var(--bg) 2%,transparent 34%);
+  --hero-img-filter:saturate(.82) brightness(.66);
+
+  --flow-overlay:linear-gradient(var(--bg-2),rgba(18,22,28,.86));
+  --flow-img-opacity:.3;
+  --flow-img-filter:grayscale(.35);
+  --flow-step-bg:rgba(14,17,20,.6);
+  --flow-hub-bg:rgba(180,154,106,.09);
+  --logistics-bg:rgba(14,17,20,.5);
+  --logistics-map-overlay:linear-gradient(135deg,rgba(180,154,106,.16),rgba(14,17,20,.34));
+  --map-filter:grayscale(.3) sepia(.36) saturate(.7) brightness(.8) contrast(1.08);
+
+  --person-grad:linear-gradient(180deg,var(--panel),var(--bg-2));
+  --leadership-mark-opacity:.17;
+  --contact-grad:linear-gradient(180deg,var(--bg-3),var(--bg));
+  --footer-bg:#0A0C0F;
+  --img-backing:#0C0E11;
+}
+
+/* =========================================================
+   C — 蛍石ベース   (slate + fluorite violet on cool white)
+   bg #F7F8F7 / 面 #DDE2DE / 主 #1B2A32 / 副 #5B5470 / 金 #A98A4B
+   ========================================================= */
+html[data-palette="c"]{
+  --bg:#F7F8F7;
+  --bg-2:#E9ECE9;
+  --bg-3:#E3E7E3;
+  --panel:#DDE2DE;
+
+  --ink:#2C333A;
+  --ink-soft:#4A4753;
+  --muted:#5F5B68;
+  --text-strong:#1B2A32;
+
+  --gold:#A98A4B;
+  --gold-light:#C1A56B;
+  --gold-deep:#836A38;
+  --gold-label:#75602F;   /* small EN labels, AA on the cool-white bg */
+  --gold-ink:#7C6335;     /* figures & emphasis */
+  --line:rgba(169,138,75,.42);
+  --line-soft:rgba(27,42,50,.12);
+  --gold-glow:rgba(169,138,75,.15);
+
+  --brand-color:#1B2A32;
+  --nav-active:#836A38;
+  --hero-lede-color:#5B5470;
+  --statement-color:#1B2A32;
+  --focus-ring:#1B2A32;
+
+  --cta-bg:#1B2A32;
+  --cta-hover-bg:#2C3E47;
+  --btn-ink:#F7F8F7;
+  --btn-outline-fg:#1B2A32;
+  --btn-outline-bg:rgba(255,255,255,.44);
+  --btn-outline-hover-bg:rgba(27,42,50,.06);
+
+  --header-grad:linear-gradient(to bottom,rgba(247,248,247,.88),rgba(247,248,247,0));
+  --header-bg-scrolled:rgba(247,248,247,.94);
+  --header-shadow:0 1px 0 rgba(27,42,50,.10),0 14px 34px -20px rgba(27,42,50,.24);
+  --nav-drawer-bg:rgba(244,246,244,.98);
+
+  --hero-overlay:
+    linear-gradient(90deg,var(--bg) 10%,rgba(247,248,247,.74) 46%,rgba(247,248,247,.4) 76%,rgba(247,248,247,.82) 100%),
+    linear-gradient(to top,var(--bg) 2%,transparent 42%);
+  --hero-img-filter:saturate(.72) brightness(1.05);
+
+  --flow-overlay:linear-gradient(rgba(233,236,233,.9),rgba(233,236,233,.96));
+  --flow-img-opacity:.13;
+  --flow-img-filter:grayscale(.45);
+  --flow-step-bg:rgba(247,248,247,.72);
+  --flow-hub-bg:rgba(169,138,75,.12);
+  --logistics-bg:rgba(247,248,247,.62);
+  --logistics-map-overlay:linear-gradient(135deg,rgba(169,138,75,.16),rgba(91,84,112,.18));
+  --map-filter:grayscale(.42) sepia(.28) saturate(.5) brightness(.98) contrast(1.05);
+  --tone-icon-opacity:.85;
+
+  --person-grad:linear-gradient(180deg,#E9ECE9,#E0E4E0);
+  --leadership-mark-opacity:.06;
+  --contact-grad:linear-gradient(180deg,var(--bg-3),var(--bg));
+  --footer-bg:#E3E7E3;
+  --img-backing:#DDE2DE;
+}
+/* fluorite-violet accent for the energy tile */
+html[data-palette="c"] .tone-energy{
+  background:radial-gradient(circle at 50% 60%,rgba(91,84,112,.22),transparent 70%),var(--bg-3);
+}
