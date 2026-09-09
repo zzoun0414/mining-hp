@@ -6,6 +6,8 @@
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* --- sticky header state --- */
   var header = document.getElementById('siteHeader');
   var onScroll = function () {
@@ -13,6 +15,28 @@
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* --- hero parallax: background drifts slower than the foreground --- */
+  var hero = document.getElementById('hero');
+  if (hero && !reduceMotion) {
+    var pending = false;
+    var lastP = -1;
+    var applyParallax = function () {
+      pending = false;
+      var h = hero.offsetHeight || window.innerHeight || 1;
+      var p = window.scrollY / h;
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      if (p === lastP) return;        // nothing to do once the hero has left
+      lastP = p;
+      hero.style.setProperty('--hero-p', p.toFixed(4));
+    };
+    var queueParallax = function () {
+      if (!pending) { pending = true; requestAnimationFrame(applyParallax); }
+    };
+    applyParallax();
+    window.addEventListener('scroll', queueParallax, { passive: true });
+    window.addEventListener('resize', function () { lastP = -1; applyParallax(); });
+  }
 
   /* --- mobile nav --- */
   var toggle = document.getElementById('navToggle');
@@ -36,6 +60,22 @@
 
   /* --- scroll reveal --- */
   var reveals = document.querySelectorAll('.reveal');
+
+  /* give grid items a short cascading delay so rows settle in sequence */
+  if (!reduceMotion) {
+    ['.card-grid', '.res-grid', '.people', '.phases', '.flow'].forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (grid) {
+        var i = 0;
+        Array.prototype.forEach.call(grid.children, function (child) {
+          if (child.classList.contains('reveal')) {
+            child.style.setProperty('--rd', (Math.min(i, 5) * 65) + 'ms');
+            i++;
+          }
+        });
+      });
+    });
+  }
+
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {

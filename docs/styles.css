@@ -173,14 +173,21 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* =========================================================
    HERO
    ========================================================= */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;--hero-p:0}
 .hero-bg{
-  position:absolute;inset:0;z-index:0;
+  position:absolute;top:-14vh;bottom:0;left:0;right:0;z-index:0;   /* 上方向へオーバースキャン: 下へずらしても上端が見えない */
   background:var(--hero-overlay),url("assets/img/fluorite-crystal.jpg") center/cover no-repeat;
   filter:var(--hero-img-filter);
-  transform:scale(1.05);
+  /* パララックス: 背景は前景よりゆっくり動き、わずかにズームイン */
+  transform:scale(calc(1.05 + var(--hero-p) * .06)) translate3d(0,calc(var(--hero-p) * 9vh),0);
+  will-change:transform;
 }
-.hero-inner{position:relative;z-index:1;padding-top:var(--header-h)}
+.hero-inner{
+  position:relative;z-index:1;padding-top:var(--header-h);
+  transform:translate3d(0,calc(var(--hero-p) * -5vh),0);
+  opacity:calc(1 - var(--hero-p) * 1.1);
+  will-change:transform,opacity;
+}
 .hero-kicker{
   font-family:var(--serif-en);letter-spacing:.34em;font-size:11px;color:var(--gold-label);
   margin-bottom:24px;
@@ -219,7 +226,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 .btn-solid{background:var(--cta-bg);color:var(--btn-ink);border:1px solid var(--cta-bg)}
 .btn-solid:hover{background:var(--cta-hover-bg);border-color:var(--cta-hover-bg);transform:translateY(-2px)}
 
-.hero-scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:1;width:26px;height:42px;border:1px solid var(--line);border-radius:14px;display:flex;justify-content:center;padding-top:8px}
+.hero-scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:1;width:26px;height:42px;border:1px solid var(--line);border-radius:14px;display:flex;justify-content:center;padding-top:8px;opacity:calc(1 - var(--hero-p) * 2.5)}
 .hero-scroll span{width:2px;height:8px;background:var(--gold);border-radius:2px;animation:scrolldot 1.8s ease-in-out infinite}
 @keyframes scrolldot{0%,100%{opacity:0;transform:translateY(0)}40%{opacity:1}70%{opacity:0;transform:translateY(12px)}}
 
@@ -461,7 +468,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* =========================================================
    REVEAL ANIMATION
    ========================================================= */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal{
+  opacity:0;transform:translateY(32px);
+  transition:opacity .85s cubic-bezier(.2,.7,.2,1),transform .85s cubic-bezier(.2,.7,.2,1);
+  transition-delay:var(--rd,0ms);
+}
 .reveal.is-visible{opacity:1;transform:none}
 .no-js .reveal{opacity:1;transform:none}
 
@@ -525,7 +536,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none;transition:none}
-  .hero-bg{transform:none}
+  .hero-bg,.hero-inner{transform:none}
+  .hero-inner,.hero-scroll{opacity:1}
   .hero-scroll span{animation:none}
   *{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
