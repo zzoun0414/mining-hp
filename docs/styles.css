@@ -503,6 +503,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 @media (max-width:680px){
   :root{--header-h:64px}
+  /* スクロール誘導は狭い画面では CTA と重なるため非表示（下記の低い画面高さでも） */
+  .hero-scroll{display:none}
   .card-grid--5{grid-template-columns:1fr}
   .res-grid{grid-template-columns:1fr}
   .res-card,.res-card--feature{grid-column:span 1}
@@ -518,6 +520,11 @@ ul,ol{margin:0;padding:0;list-style:none}
   .res-spec li span{padding-top:0}
   .sp-br{display:inline}
   .footer-inner{flex-direction:column;align-items:flex-start}
+}
+
+/* 画面が低い（横向きスマホ・小さいウィンドウ）ときもスクロール誘導を隠す */
+@media (max-height:640px){
+  .hero-scroll{display:none}
 }
 
 @media (prefers-reduced-motion:reduce){
