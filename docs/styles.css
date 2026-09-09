@@ -256,12 +256,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 .about-lead p{font-family:var(--serif-jp);font-size:1.05rem;color:var(--ink-soft)}
 .about-lead p+p{margin-top:20px}
 .about-lead strong{color:var(--gold-ink);font-weight:600}
-.about-stats{display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--line);border-image:var(--rule-v) 1}
-.about-stats li{padding:20px 0 20px 26px;display:flex;flex-direction:column;gap:8px}
-.about-stats li+li{border-top:1px solid var(--line-soft)}
-.about-stats .num{font-family:var(--serif-en);font-size:2.4rem;color:var(--gold-ink);line-height:1}
-.about-stats .num small{font-size:.9rem;color:var(--muted);margin-left:4px;letter-spacing:normal}
-.about-stats .lbl{font-size:12px;letter-spacing:.14em;color:var(--muted)}
+.about-facts{display:flex;flex-direction:column;border-left:1px solid var(--line);border-image:var(--rule-v) 1}
+.about-facts>div{padding:16px 0 16px 26px;display:flex;flex-direction:column;gap:5px}
+.about-facts>div+div{border-top:1px solid var(--line-soft)}
+.about-facts dt{font-family:var(--serif-jp);font-size:11px;letter-spacing:.16em;color:var(--gold-label)}
+.about-facts dd{margin:0;font-family:var(--serif-jp);font-size:1rem;color:var(--ink);letter-spacing:.03em}
 
 /* =========================================================
    CARD GRID (business / strengths)
@@ -488,9 +487,8 @@ ul,ol{margin:0;padding:0;list-style:none}
   .nav-cta{margin-top:8px}
   .nav-toggle{display:flex;z-index:110}
   .about-grid{grid-template-columns:1fr;gap:36px}
-  .about-stats{flex-direction:row;flex-wrap:wrap;gap:0 24px;border-left:0;border-top:1px solid var(--line);border-image:none}
-  .about-stats li{flex:1 1 40%;padding:22px 0 0}
-  .about-stats li+li{border-top:0}
+  .about-facts{border-left:0;border-top:1px solid var(--line);border-image:var(--rule-h) 1;padding-top:4px}
+  .about-facts>div{padding-left:0}
   .res-grid{grid-template-columns:repeat(2,1fr)}
   .res-card--feature{flex-direction:column}
   .res-card--feature .res-media{flex:none;aspect-ratio:16/9}
@@ -513,9 +511,6 @@ ul,ol{margin:0;padding:0;list-style:none}
   .flow{grid-template-columns:1fr}
   .flow-step--hub{grid-column:span 1}
   .company-table>div{grid-template-columns:1fr;gap:6px}
-  .about-stats li{flex:1 1 100%;padding:20px 0}
-  .about-stats li+li{border-top:1px solid var(--line-soft)}
-  .about-stats .num{font-size:2rem}
   .res-spec li{grid-template-columns:1fr;gap:2px}
   .res-spec li span{padding-top:0}
   .sp-br{display:inline}
