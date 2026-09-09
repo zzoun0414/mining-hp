@@ -13,5 +13,6 @@ ALTAN KHULEG RESOURCES LLC のコーポレートサイト（静的サイト）�
 - `palette-a.html` — A：白ベース・商社型（ネイビー×ウォームホワイト）
 - `palette-b.html` — B：墨黒・現行改良（クールチャコール）
 - `palette-c.html` — C：蛍石ベース（スレート×フローライト・バイオレット）
+- `compare.html` — 1ページ上で上部ボタン（A/B/C・キー 1/2/3）から配色を切替。選択は localStorage に保持
 
 配色は `styles.css`（トークン定義）＋ `palettes.css`（`html[data-palette]` で切替）で管理。
