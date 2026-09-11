@@ -73,8 +73,8 @@ html[data-palette="a"]{
   --contact-grad:linear-gradient(180deg,var(--bg-3),var(--bg));
   --footer-bg:#EBE6DB;
   --img-backing:#E4E0D6;
-  --ridge-fill:rgba(18,35,63,.10);
-  --ridge-edge-opacity:.4;
+  --ridge-fill:rgba(18,35,63,.09);
+  --ridge-edge-opacity:.5;
 }
 
 /* =========================================================
@@ -136,8 +136,8 @@ html[data-palette="b"]{
   --contact-grad:linear-gradient(180deg,var(--bg-3),var(--bg));
   --footer-bg:#0A0C0F;
   --img-backing:#0C0E11;
-  --ridge-fill:rgba(3,4,5,.55);
-  --ridge-edge-opacity:.5;
+  --ridge-fill:rgba(3,4,5,.46);
+  --ridge-edge-opacity:.65;
 }
 
 /* =========================================================
@@ -202,8 +202,8 @@ html[data-palette="c"]{
   --contact-grad:linear-gradient(180deg,var(--bg-3),var(--bg));
   --footer-bg:#E3E7E3;
   --img-backing:#DDE2DE;
-  --ridge-fill:rgba(27,42,50,.09);
-  --ridge-edge-opacity:.4;
+  --ridge-fill:rgba(27,42,50,.08);
+  --ridge-edge-opacity:.5;
 }
 /* fluorite-violet accent for the energy tile */
 html[data-palette="c"] .tone-energy{

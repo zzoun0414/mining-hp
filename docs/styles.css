@@ -59,8 +59,8 @@
     linear-gradient(90deg,var(--bg) 8%,rgba(11,10,8,.62) 46%,rgba(11,10,8,.28) 78%,rgba(11,10,8,.7) 100%),
     linear-gradient(to top,var(--bg) 2%,transparent 34%);
   --hero-img-filter:saturate(.85) brightness(.62);
-  --ridge-fill:rgba(4,4,3,.6);
-  --ridge-edge-opacity:.6;
+  --ridge-fill:rgba(4,4,3,.5);
+  --ridge-edge-opacity:.7;
 
   /* mine-to-market band */
   --flow-overlay:linear-gradient(var(--bg-2),rgba(16,14,11,.86));
@@ -191,9 +191,13 @@ ul,ol{margin:0;padding:0;list-style:none}
   will-change:transform;
 }
 .hero-ridge .ridge-mass{fill:var(--ridge-fill)}
-.hero-ridge .ridge-edge{fill:none;stroke:var(--gold);stroke-width:1.6;vector-effect:non-scaling-stroke;opacity:var(--ridge-edge-opacity)}
-.hero-ridge--far{opacity:.55;transform:translate3d(0,calc(var(--hero-p) * 3vh),0)}
-.hero-ridge--near{opacity:.9;transform:translate3d(0,calc(var(--hero-p) * 6.5vh),0)}
+.hero-ridge .ridge-edge{
+  fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;opacity:var(--ridge-edge-opacity);
+  filter:drop-shadow(0 0 8px var(--gold)) drop-shadow(0 0 2px var(--gold-light));
+}
+.hero-ridge--far{opacity:.6;transform:translate3d(0,calc(var(--hero-p) * 3vh),0)}
+.hero-ridge--near{opacity:.92;transform:translate3d(0,calc(var(--hero-p) * 6.5vh),0)}
 .hero-inner{
   position:relative;z-index:1;padding-top:var(--header-h);
   transform:translate3d(0,calc(var(--hero-p) * -5vh),0);
