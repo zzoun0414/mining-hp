@@ -38,6 +38,38 @@
     window.addEventListener('resize', function () { lastP = -1; applyParallax(); });
   }
 
+  /* --- gentle parallax drift on photos + the leadership mark --- */
+  if (!reduceMotion) {
+    var driftTargets = [];
+    document.querySelectorAll('.res-media img').forEach(function (img) {
+      driftTargets.push({ box: img.parentElement, el: img, range: 16 });
+    });
+    var mark = document.querySelector('.leadership-bg');
+    if (mark) driftTargets.push({ box: mark.parentElement, el: mark, range: 22 });
+
+    if (driftTargets.length) {
+      var driftPending = false;
+      var applyDrift = function () {
+        driftPending = false;
+        var vh = window.innerHeight || 1;
+        driftTargets.forEach(function (t) {
+          var r = t.box.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > vh) return; // off-screen, skip the work
+          var mid = r.top + r.height / 2;
+          var progress = (vh / 2 - mid) / vh;               // ~ -0.5 .. 0.5 while transiting
+          progress = progress < -0.6 ? -0.6 : progress > 0.6 ? 0.6 : progress;
+          t.el.style.setProperty('--py', (progress * t.range).toFixed(1) + 'px');
+        });
+      };
+      var queueDrift = function () {
+        if (!driftPending) { driftPending = true; requestAnimationFrame(applyDrift); }
+      };
+      applyDrift();
+      window.addEventListener('scroll', queueDrift, { passive: true });
+      window.addEventListener('resize', applyDrift);
+    }
+  }
+
   /* --- mobile nav --- */
   var toggle = document.getElementById('navToggle');
   var nav = document.getElementById('siteNav');
