@@ -1,83 +1,80 @@
 /* =========================================================
    ALTAN KHULEG RESOURCES LLC — styles
-   All colours flow through tokens (see :root). The default
-   values below reproduce the original dark palette exactly;
-   palettes.css overrides the tokens for the A / B / C schemes.
+   Colours flow through tokens (see :root) — 配色A（白ベース・商社型）
+   で確定。A/B/C比較用の palettes.css は廃止済み（git 履歴に残存）。
    ========================================================= */
 
 :root{
   /* base surfaces */
-  --bg:#0b0a08;
-  --bg-2:#100e0b;
-  --bg-3:#161310;
-  --panel:#1a1611;
+  --bg:#FBFAF8;
+  --bg-2:#F0ECE3;
+  --bg-3:#EBE6DB;
+  --panel:#E4E0D6;
 
   /* text */
-  --ink:#ece7dc;
-  --ink-soft:#c8c0ac;
-  --muted:#948c78;
-  --text-strong:#fff;
+  --ink:#33373D;
+  --ink-soft:#3A4A63;
+  --muted:#6B665B;
+  --text-strong:#12233F;
 
-  /* gold family (kept metallic in every palette) */
-  --gold:#c9a24b;            /* strokes, marks, hairlines */
-  --gold-light:#e9d29a;      /* ramp highlight / hover */
-  --gold-deep:#9a7a34;       /* ramp shadow */
-  --gold-label:var(--gold);        /* small EN labels — darkens on light schemes */
-  --gold-ink:var(--gold-light);    /* figures & emphasis — darkens on light schemes */
+  /* gold family (hairlines, small labels, figures only — see brand rules below) */
+  --gold:#B99B5F;             /* strokes, marks, hairlines */
+  --gold-light:#CBB07A;       /* ramp highlight / hover */
+  --gold-deep:#8C7238;        /* ramp shadow */
+  --gold-label:#7C6532;       /* small EN labels — AA on the warm-white bg */
+  --gold-ink:#84693A;         /* figures & emphasis */
 
   /* metallic hairlines: vertical / horizontal brightness ramp */
   --rule-v:linear-gradient(180deg,var(--gold-light) 0%,var(--gold) 45%,var(--gold-deep) 100%);
   --rule-h:linear-gradient(90deg,var(--gold-deep) 0%,var(--gold-light) 50%,var(--gold-deep) 100%);
-  --line:rgba(201,162,75,.24);
-  --line-soft:rgba(236,231,220,.10);
-  --gold-glow:rgba(201,162,75,.14);
-  --tone-icon-opacity:.55;
+  --line:rgba(185,155,95,.45);
+  --line-soft:rgba(18,35,63,.12);
+  --gold-glow:rgba(185,155,95,.16);
+  --tone-icon-opacity:.85;
 
   /* accents / roles */
-  --brand-color:var(--gold-light);
-  --nav-active:var(--gold-light);
-  --hero-lede-color:var(--gold-light);
-  --statement-color:var(--gold-light);
-  --focus-ring:var(--gold-light);
+  --brand-color:#12233F;
+  --nav-active:#8C7238;
+  --hero-lede-color:#3A4A63;
+  --statement-color:#12233F;
+  --focus-ring:#12233F;
 
   /* buttons */
-  --cta-bg:var(--gold);
-  --cta-hover-bg:var(--gold-light);
-  --btn-ink:#1a1408;
-  --btn-outline-fg:var(--gold-light);
-  --btn-outline-bg:rgba(10,9,7,.35);
-  --btn-outline-hover-bg:rgba(201,162,75,.12);
+  --cta-bg:#12233F;
+  --cta-hover-bg:#26374F;
+  --btn-ink:#FBFAF8;
+  --btn-outline-fg:#12233F;
+  --btn-outline-bg:rgba(255,255,255,.45);
+  --btn-outline-hover-bg:rgba(18,35,63,.06);
 
   /* header */
-  --header-grad:linear-gradient(to bottom,rgba(9,8,6,.72),rgba(9,8,6,0));
-  --header-bg-scrolled:rgba(9,8,6,.94);
-  --header-shadow:0 1px 0 var(--line),0 18px 40px -24px rgba(0,0,0,.8);
-  --nav-drawer-bg:rgba(8,7,5,.98);
+  --header-grad:linear-gradient(to bottom,rgba(251,250,248,.88),rgba(251,250,248,0));
+  --header-bg-scrolled:rgba(251,250,248,.94);
+  --header-shadow:0 1px 0 rgba(18,35,63,.10),0 14px 34px -20px rgba(18,35,63,.28);
+  --nav-drawer-bg:rgba(247,245,241,.98);
 
   /* hero */
   --hero-overlay:
-    linear-gradient(90deg,var(--bg) 8%,rgba(11,10,8,.62) 46%,rgba(11,10,8,.28) 78%,rgba(11,10,8,.7) 100%),
-    linear-gradient(to top,var(--bg) 2%,transparent 34%);
-  --hero-img-filter:saturate(.85) brightness(.62);
-  --ridge-fill:rgba(4,4,3,.5);
-  --ridge-edge-opacity:.7;
+    linear-gradient(90deg,var(--bg) 10%,rgba(251,250,248,.76) 46%,rgba(251,250,248,.42) 76%,rgba(251,250,248,.84) 100%),
+    linear-gradient(to top,var(--bg) 2%,transparent 42%);
+  --hero-img-filter:saturate(.5) brightness(1.07) contrast(.97);
 
   /* mine-to-market band */
-  --flow-overlay:linear-gradient(var(--bg-2),rgba(16,14,11,.86));
-  --flow-img-opacity:.28;
-  --flow-img-filter:grayscale(.3);
-  --flow-step-bg:rgba(11,10,8,.6);
-  --flow-hub-bg:rgba(201,162,75,.08);
-  --logistics-bg:rgba(11,10,8,.55);
-  --logistics-map-overlay:linear-gradient(135deg,rgba(201,162,75,.16),rgba(11,10,8,.34));
-  --map-filter:grayscale(.28) sepia(.42) saturate(.72) brightness(.82) contrast(1.08);
+  --flow-overlay:linear-gradient(rgba(240,236,227,.9),rgba(240,236,227,.96));
+  --flow-img-opacity:.14;
+  --flow-img-filter:grayscale(.5);
+  --flow-step-bg:rgba(251,250,248,.72);
+  --flow-hub-bg:rgba(185,155,95,.12);
+  --logistics-bg:rgba(251,250,248,.62);
+  --logistics-map-overlay:linear-gradient(135deg,rgba(185,155,95,.18),rgba(18,35,63,.16));
+  --map-filter:grayscale(.4) sepia(.32) saturate(.5) brightness(.98) contrast(1.05);
 
   /* misc */
-  --person-grad:linear-gradient(180deg,var(--panel),var(--bg-2));
-  --leadership-mark-opacity:.16;
+  --person-grad:linear-gradient(180deg,#F0ECE3,#E7E2D5);
+  --leadership-mark-opacity:.06;
   --contact-grad:linear-gradient(180deg,var(--bg-3),var(--bg));
-  --footer-bg:#070605;
-  --img-backing:#000;
+  --footer-bg:#EBE6DB;
+  --img-backing:#E4E0D6;
 
   --shadow:0 24px 60px -24px rgba(0,0,0,.7);
   --container:1180px;
@@ -184,20 +181,6 @@ ul,ol{margin:0;padding:0;list-style:none}
   transform:scale(calc(1.05 + var(--hero-p) * .06)) translate3d(0,calc(var(--hero-p) * 9vh),0);
   will-change:transform;
 }
-/* 稜線シルエット: 遠近2枚を異なる速度で動かし奥行きを出す（山肌=面、稜線=金の縁光） */
-.hero-ridge{
-  position:absolute;left:0;right:0;bottom:0;width:100%;
-  height:clamp(140px,30vh,300px);z-index:0;overflow:hidden;pointer-events:none;
-  will-change:transform;
-}
-.hero-ridge .ridge-mass{fill:var(--ridge-fill)}
-.hero-ridge .ridge-edge{
-  fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linejoin:round;
-  vector-effect:non-scaling-stroke;opacity:var(--ridge-edge-opacity);
-  filter:drop-shadow(0 0 8px var(--gold)) drop-shadow(0 0 2px var(--gold-light));
-}
-.hero-ridge--far{opacity:.6;transform:translate3d(0,calc(var(--hero-p) * 3vh),0)}
-.hero-ridge--near{opacity:.92;transform:translate3d(0,calc(var(--hero-p) * 6.5vh),0)}
 .hero-inner{
   position:relative;z-index:1;padding-top:var(--header-h);
   transform:translate3d(0,calc(var(--hero-p) * -5vh),0);
@@ -562,6 +545,6 @@ ul,ol{margin:0;padding:0;list-style:none}
   .hero-bg,.hero-inner{transform:none}
   .hero-inner,.hero-scroll{opacity:1}
   .hero-scroll span{animation:none}
-  .hero-ridge--far,.hero-ridge--near,.res-media img,.leadership-bg{transform:none}
+  .res-media img,.leadership-bg{transform:none}
   *{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }

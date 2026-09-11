@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ドメイン確定後、loc の URL を bin/set-site-url.sh で一括置換すること。
-     配色プレビュー(palette-a/b/c.html)と compare.html は noindex のため意図的に除外。 -->
+<!-- ドメイン確定後、loc の URL を bin/set-site-url.sh で一括置換すること。 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://PRODUCTION-DOMAIN.example/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>

@@ -18,7 +18,6 @@ bin/set-site-url.sh https://www.example.com
 | ファイル | 箇所 |
 |---|---|
 | `index.html` | `<link rel="canonical">` / `og:url` / `og:image` / `twitter:image` / JSON-LD (`url`, `logo`, `image`) |
-| `palette-a.html` `palette-b.html` `palette-c.html` `compare.html` | `og:image` / `twitter:image` |
 | `sitemap.xml` | `<loc>` |
 | `robots.txt` | `Sitemap:` |
 
@@ -36,9 +35,6 @@ bin/set-site-url.sh https://www.example.com
 
 が入っており、クロールされてもインデックスされない。
 インデックスを開始するときは **`index.html` のこの 1 行だけを削除**する。
-
-> `palette-a/b/c.html` と `compare.html` は社内レビュー用。noindex は**外さない**
-> （`sitemap.xml` にも意図的に含めていない）。
 
 ---
 
