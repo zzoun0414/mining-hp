@@ -485,6 +485,52 @@ ul,ol{margin:0;padding:0;list-style:none}
 .contact-actions{margin-top:38px;display:flex;flex-direction:column;align-items:center;gap:18px}
 .contact-mail{font-family:var(--serif-en);letter-spacing:.14em;color:var(--ink-soft);font-size:.95rem}
 
+/* --- お問い合わせフォーム --- */
+.contact-form{
+  margin:48px auto 0;max-width:720px;text-align:left;
+  display:grid;grid-template-columns:1fr 1fr;gap:26px 32px;
+}
+.form-row{display:flex;flex-direction:column;gap:8px}
+.form-row--full{grid-column:1/-1}
+.contact-form label{font-family:var(--serif-jp);font-size:.9rem;color:var(--ink-soft);display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.contact-form .req{
+  font-family:var(--sans-jp);font-size:10px;letter-spacing:.05em;color:var(--gold-ink);
+  border:1px solid var(--line);border-radius:2px;padding:1px 6px;line-height:1.5;
+}
+.contact-form input,.contact-form select,.contact-form textarea{
+  width:100%;font-family:var(--serif-jp);font-size:.96rem;color:var(--ink);
+  background:transparent;border:none;border-bottom:1px solid var(--line);
+  padding:9px 2px;outline:none;transition:border-color .25s ease;appearance:none;-webkit-appearance:none;
+}
+.contact-form select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a24b' stroke-width='1.6'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 2px center;background-size:16px;padding-right:26px;
+}
+.contact-form select:invalid{color:var(--muted)}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--gold)}
+.contact-form textarea{resize:vertical;min-height:110px;line-height:1.8}
+.form-consent{padding-top:4px}
+.contact-form .checkbox{display:flex;align-items:flex-start;gap:10px;font-family:var(--serif-jp);font-size:.86rem;color:var(--ink-soft);cursor:pointer}
+.contact-form .checkbox input{width:16px;height:16px;flex:none;margin-top:3px;accent-color:var(--gold)}
+.contact-form .checkbox a{color:var(--gold-ink);border-bottom:1px solid var(--line)}
+.contact-form .checkbox a:hover{border-color:var(--gold)}
+.form-submit{display:flex;flex-direction:row;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px}
+.form-submit button{cursor:pointer}
+.form-note{font-family:var(--sans-jp);font-size:.76rem;color:var(--muted)}
+.form-success{
+  grid-column:1/-1;margin-top:4px;padding:14px 18px;border:1px solid var(--line);
+  background:var(--gold-glow);color:var(--ink);font-family:var(--serif-jp);font-size:.9rem;line-height:1.8;
+}
+.contact-mail-alt{margin-top:32px;text-align:center;font-family:var(--serif-jp);color:var(--ink-soft);font-size:.9rem}
+.contact-mail-alt a{color:var(--gold-ink);border-bottom:1px solid var(--line)}
+.contact-mail-alt a:hover{border-color:var(--gold)}
+.privacy-note{
+  margin:56px auto 0;padding-top:32px;max-width:720px;text-align:left;
+  border-top:1px solid var(--line-soft);
+}
+.privacy-note h3{font-family:var(--serif-jp);font-size:1.05rem;color:var(--text-strong);margin-bottom:12px}
+.privacy-note p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.9rem;line-height:1.9}
+
 /* =========================================================
    COMPANY TABLE
    ========================================================= */
@@ -572,6 +618,8 @@ ul,ol{margin:0;padding:0;list-style:none}
   .res-spec li span{padding-top:0}
   .sp-br{display:inline}
   .footer-inner{flex-direction:column;align-items:flex-start}
+  .contact-form{grid-template-columns:1fr}
+  .form-submit{flex-direction:column;align-items:flex-start}
 }
 
 /* 画面が低い（横向きスマホ・小さいウィンドウ）ときもスクロール誘導を隠す */

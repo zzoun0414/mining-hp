@@ -90,6 +90,22 @@
     if (e.key === 'Escape') closeNav();
   });
 
+  /* --- contact form: デモ動作のみ（バックエンド未接続、実際には送信されない） --- */
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+      var success = document.getElementById('formSuccess');
+      success.hidden = false;
+      success.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      contactForm.reset();
+    });
+  }
+
   /* --- scroll reveal --- */
   var reveals = document.querySelectorAll('.reveal');
 

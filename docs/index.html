@@ -501,16 +501,72 @@
         <h2 class="section-title">モンゴルの資源について、<br>お気軽にご相談ください。</h2>
         <p class="section-note">
           モンゴル産資源のご購入、パートナーシップ・投資に関するご相談など、
-          下記よりお問い合わせください。
+          下記フォームまたはメールにてお問い合わせください。
         </p>
       </div>
+
+      <!-- 要バックエンド選定：現在はダミー送信（送信しても実際には届きません。JS が成功表示のみ行います） -->
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="form-row">
+          <label for="cf-topic">お問い合わせ項目 <span class="req">必須</span></label>
+          <!-- 要社長確認：カテゴリ内容 -->
+          <select id="cf-topic" name="topic" required>
+            <option value="" disabled selected>選択してください</option>
+            <option value="fluorspar">蛍石精鉱のお取引について</option>
+            <option value="partnership">業務提携・出資について</option>
+            <option value="recruit">採用について</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="cf-name">お名前 <span class="req">必須</span></label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="form-row">
+          <label for="cf-email">メールアドレス <span class="req">必須</span></label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-row">
+          <label for="cf-tel">電話番号</label>
+          <input type="tel" id="cf-tel" name="tel" autocomplete="tel">
+        </div>
+        <div class="form-row form-row--full">
+          <label for="cf-company">会社名</label>
+          <input type="text" id="cf-company" name="company" autocomplete="organization">
+        </div>
+        <div class="form-row form-row--full">
+          <label for="cf-message">お問い合わせ内容 <span class="req">必須</span></label>
+          <textarea id="cf-message" name="message" rows="5" required></textarea>
+        </div>
+        <div class="form-row form-row--full form-consent">
+          <label class="checkbox">
+            <input type="checkbox" id="cf-agree" name="agree" required>
+            <span><a href="#privacy">個人情報保護方針</a>に同意の上、送信します。 <span class="req">必須</span></span>
+          </label>
+        </div>
+        <div class="form-row form-row--full form-submit">
+          <button type="submit" class="btn btn-solid">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>
+            送信する
+          </button>
+          <p class="form-note">※ 現在デモ動作中です。実際の送信機能は準備中です。</p>
+        </div>
+        <p class="form-success" id="formSuccess" role="status" hidden>
+          送信しました（デモ）。実際にはまだ送信されていません — お急ぎの場合は下記メールへ直接ご連絡ください。
+        </p>
+      </form>
+
       <!-- 要社長確認：連絡先メールアドレス -->
-      <div class="contact-actions reveal">
-        <a class="btn btn-solid" href="mailto:surita@altankhuleg-r.com">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>
-          INQUIRY ／ メールでお問い合わせ
-        </a>
-        <p class="contact-mail">surita@altankhuleg-r.com</p>
+      <p class="contact-mail-alt">またはメールで直接：<a href="mailto:surita@altankhuleg-r.com">surita@altankhuleg-r.com</a></p>
+
+      <!-- 個人情報保護方針: 暫定文言・要社長確認／要法務確認 -->
+      <div class="privacy-note reveal" id="privacy">
+        <h3>個人情報保護方針（暫定）</h3>
+        <p>
+          当社は、お問い合わせを通じてお預かりする個人情報を、お問い合わせへの回答および
+          関連するご連絡の目的以外には利用いたしません。法令に基づく場合を除き、
+          ご本人の同意なく第三者へ開示・提供することはありません。
+        </p>
       </div>
     </div>
   </section>
