@@ -1,25 +1,30 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-check-cjk.py — 日本語テキストに中国語簡体字の字形が紛れ込んでいないかを検査する。
+check-cjk.py — スクリプト混在（字形取り違え）の機械チェック。
 
-背景:
-  AI 翻訳・生成では、Unicode 上は別のコードポイントを持つ「日本語の正字」と
-  「中国語簡体字」を取り違えることがある（例: 経営 を 经营 と書いてしまう）。
-  見た目が漢字っぽいので校正時に見逃しやすく、ネイティブが見ると一目で分かる
-  ミスになる。このスクリプトはよくある簡体字だけの字形をブラックリスト化し、
-  対象ファイルに出現していないかを機械的にチェックする（完全網羅ではない —
-  最終確認はネイティブ校正に置き換わるものではない）。
+  1) 日本語ページ: 中国語簡体字専用の字形が紛れ込んでいないか
+     （例: 経営 を 经营 と書いてしまう）
+  2) モンゴル語ページ（docs/mn/）: 見た目が似たラテン文字とキリル文字が
+     同じ単語の中で混在していないか
+     （例: жонш の "о" を誤ってラテン文字の "o" で打ってしまう）
+
+  どちらも AI 翻訳・生成にありがちな取り違えで、Unicode 上は別のコード
+  ポイントなのに校正時に見逃しやすい。既知パターンのブラックリスト／
+  ヒューリスティックによる簡易検査であり、完全網羅ではない —
+  最終確認はネイティブ校正に置き換わるものではない。
 
 使い方:
-  bin/check-cjk.py                 # docs/*.html を検査
-  bin/check-cjk.py docs/en/*.html  # 対象ファイルを指定
-  bin/check-cjk.py --list          # チェック対象の字一覧を表示するだけ
+  bin/check-cjk.py                 # docs/*.html + docs/en/*.html + docs/mn/*.html を検査
+  bin/check-cjk.py docs/mn/*.html  # 対象ファイルを指定（パスで自動判別）
+  bin/check-cjk.py --list          # 簡体字チェック対象の字一覧を表示するだけ
 
 終了コード: 見つかった場合は 1、なければ 0（CI/コミット前チェックに使える）。
 """
 import sys
+import re
 import glob
+import os
 
 # 簡体字専用の字形 → 対応する日本語の正字（常用漢字）
 # 「国/点/数/体/会/学/万」等、日本語の新字体と偶然一致する字は含めない。
@@ -53,6 +58,36 @@ def check(paths):
     return hits
 
 
+# モンゴル語（キリル文字）ページ用: 見た目が同じラテン文字がキリル文字の
+# 単語に混ざっていないかをチェックする。
+# 例: жонш の代わりに жоnш（"n" がラテン文字）のように打ってしまうミス。
+_WORD_RE = re.compile(r"[^\W\d_]+", re.UNICODE)
+_LATIN_RE = re.compile(r"[A-Za-z]")
+_CYRILLIC_RE = re.compile(r"[Ѐ-ӿ]")
+
+
+def check_mongol_script_mixing(paths):
+    hits = {}  # path -> [(word, count), ...]
+    for path in paths:
+        try:
+            text = open(path, encoding='utf-8').read()
+        except OSError as e:
+            print(f"skip {path}: {e}", file=sys.stderr)
+            continue
+        counts = {}
+        for word in _WORD_RE.findall(text):
+            if _LATIN_RE.search(word) and _CYRILLIC_RE.search(word):
+                counts[word] = counts.get(word, 0) + 1
+        if counts:
+            hits[path] = sorted(counts.items())
+    return hits
+
+
+def _is_mongol_path(path):
+    parts = path.replace('\\', '/').split('/')
+    return 'mn' in parts
+
+
 def main(argv):
     if '--list' in argv:
         for b, g in TRAPS.items():
@@ -61,24 +96,43 @@ def main(argv):
 
     targets = [a for a in argv if not a.startswith('-')]
     if not targets:
-        targets = sorted(glob.glob('docs/*.html'))
+        targets = sorted(glob.glob('docs/*.html') + glob.glob('docs/en/*.html') + glob.glob('docs/mn/*.html'))
     if not targets:
-        print("対象ファイルが見つかりません（docs/*.html が無い場合はパスを指定してください）", file=sys.stderr)
+        print("対象ファイルが見つかりません（パスを指定してください）", file=sys.stderr)
         return 2
 
-    hits = check(targets)
-    if not hits:
-        print(f"OK: {len(targets)} 件のファイルに簡体字専用の字形は見つかりませんでした。")
-        return 0
+    jp_targets = [t for t in targets if not _is_mongol_path(t)]
+    mn_targets = [t for t in targets if _is_mongol_path(t)]
 
-    print("NG: 簡体字専用の字形が見つかりました（要確認）:\n")
-    for path, found in hits.items():
-        print(f"  {path}")
-        for bad, good, n in found:
-            print(f"    {bad}（正: {good}）x{n}")
-    print("\n※ これは既知の紛らわしい字のブラックリストによる簡易検査です。")
+    ok = True
+
+    if jp_targets:
+        hits = check(jp_targets)
+        if not hits:
+            print(f"OK: {len(jp_targets)} 件のファイルに簡体字専用の字形は見つかりませんでした。")
+        else:
+            ok = False
+            print("NG: 簡体字専用の字形が見つかりました（要確認）:\n")
+            for path, found in hits.items():
+                print(f"  {path}")
+                for bad, good, n in found:
+                    print(f"    {bad}（正: {good}）x{n}")
+
+    if mn_targets:
+        mhits = check_mongol_script_mixing(mn_targets)
+        if not mhits:
+            print(f"OK: {len(mn_targets)} 件のファイルにラテン／キリル文字混在の単語は見つかりませんでした。")
+        else:
+            ok = False
+            print("NG: ラテン文字とキリル文字が混在する単語が見つかりました（要確認）:\n")
+            for path, found in mhits.items():
+                print(f"  {path}")
+                for word, n in found:
+                    print(f"    {word!r} x{n}")
+
+    print("\n※ これは既知パターンのブラックリスト／ヒューリスティックによる簡易検査です。")
     print("  検出ゼロでもネイティブ校正の代わりにはなりません。")
-    return 1
+    return 0 if ok else 1
 
 
 if __name__ == '__main__':

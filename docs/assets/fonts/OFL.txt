@@ -1,4 +1,4 @@
-This directory self-hosts 4 typefaces, each under its own OFL 1.1 copyright:
+This directory self-hosts 5 typefaces, each under its own OFL 1.1 copyright:
 
   Cinzel                    Copyright 2020 The Cinzel Project Authors
                              (https://github.com/NDISCOVER/Cinzel)
@@ -8,10 +8,15 @@ This directory self-hosts 4 typefaces, each under its own OFL 1.1 copyright:
                              (https://github.com/googlefonts/noto-cjk)
   Shippori Mincho            Copyright 2021 The Shippori Mincho Project Authors
                              (https://github.com/fontdasu/ShipporiMincho)
+  Noto Serif                 Copyright 2022 The Noto Project Authors
+                             (https://github.com/notofonts/latin-greek-cyrillic)
+                             — used only on the /mn/ (Mongolian) page: Shippori
+                             Mincho/Cinzel have no Cyrillic glyphs, so Mongolian
+                             text needs a typeface that actually covers Өө/Үү etc.
 
 Font files fetched from the canonical google/fonts repository
 (https://github.com/google/fonts) and recompressed to WOFF2 losslessly
-(fontTools) — no glyph or hinting changes. All four are released under the
+(fontTools) — no glyph or hinting changes. All five are released under the
 same SIL Open Font License, Version 1.1, reproduced in full below; it
 permits unrestricted use, embedding and redistribution as part of this
 website's font files (the licensed fonts themselves may not be sold on

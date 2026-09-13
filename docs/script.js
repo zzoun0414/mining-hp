@@ -2,6 +2,14 @@
 (function () {
   'use strict';
 
+  /* --- i18n strings (site is JA/EN/MN, keyed by <html lang>) --- */
+  var I18N = {
+    ja: { openMenu: 'メニューを開く', closeMenu: 'メニューを閉じる' },
+    en: { openMenu: 'Open menu', closeMenu: 'Close menu' },
+    mn: { openMenu: 'Цэс нээх', closeMenu: 'Цэс хаах' }
+  };
+  var t = I18N[document.documentElement.lang] || I18N.ja;
+
   /* --- current year --- */
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
@@ -76,12 +84,12 @@
   var closeNav = function () {
     nav.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'メニューを開く');
+    toggle.setAttribute('aria-label', t.openMenu);
   };
   toggle.addEventListener('click', function () {
     var open = nav.classList.toggle('open');
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    toggle.setAttribute('aria-label', open ? t.closeMenu : t.openMenu);
   });
   nav.addEventListener('click', function (e) {
     if (e.target.tagName === 'A') closeNav();

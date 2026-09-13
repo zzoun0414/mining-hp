@@ -13,11 +13,11 @@
 bin/set-site-url.sh https://www.example.com
 ```
 
-置換対象（`docs/` 配下）:
+置換対象（`docs/` 配下、`grep -rl` で自動検出するので JA/EN/MN 全ページが対象）:
 
 | ファイル | 箇所 |
 |---|---|
-| `index.html` | `<link rel="canonical">` / `og:url` / `og:image` / `twitter:image` / JSON-LD (`url`, `logo`, `image`) |
+| `index.html` / `en/index.html` / `mn/index.html` | `<link rel="canonical">` / hreflang alternate / `og:url` / `og:image` / `twitter:image` / JSON-LD (`url`, `logo`, `image`) |
 | `sitemap.xml` | `<loc>` |
 | `robots.txt` | `Sitemap:` |
 
@@ -27,14 +27,19 @@ bin/set-site-url.sh https://www.example.com
 
 ## 2. 検索インデックスを開始する（公開の準備が整ってから）
 
-現在は全 HTML の `<head>` に
+現在は全 HTML（JA/EN/MN 全ページ）の `<head>` に
 
 ```html
 <meta name="robots" content="noindex,nofollow">
 ```
 
 が入っており、クロールされてもインデックスされない。
-インデックスを開始するときは **`index.html` のこの 1 行だけを削除**する。
+インデックスを開始するときは **各ページのこの 1 行を削除**する。
+
+**`docs/mn/index.html` は現状ドラフト機械翻訳**（`bin/check-cjk.py` によるラテン／
+キリル文字混在チェックのみ通過済み、文意・自然さの校正は未実施）。
+モンゴル語ネイティブ校正が完了するまでは、この行を残して他言語だけ先にインデックス
+を開始することもできる（ページごとに独立しているため）。
 
 ---
 

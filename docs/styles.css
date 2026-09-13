@@ -85,6 +85,15 @@
   --italic:"Cormorant Garamond",serif;
 }
 
+/* Mongolian page: Cinzel/Shippori Mincho/Noto Sans JP don't cover Cyrillic
+   (checked against Өө/Үү specifically) — swap to a typeface that does, so
+   Mongolian text renders in one consistent face instead of a per-glyph OS fallback. */
+html[lang="mn"]{
+  --serif-en:"Noto Serif",serif;
+  --serif-jp:"Noto Serif",serif;
+  --sans-jp:"Noto Serif",serif;
+}
+
 /* =========================================================
    自社ホスティング フォント（Google Fonts への外部リクエストなし）
    ライセンス（SIL OFL 1.1・全4書体共通）: assets/fonts/OFL.txt
@@ -121,6 +130,15 @@
   font-family:"Shippori Mincho";
   src:url("assets/fonts/shippori-mincho-600.woff2") format("woff2");
   font-weight:600;
+  font-style:normal;
+  font-display:swap;
+}
+/* Shippori Mincho / Cinzel have no Cyrillic glyphs — self-hosted for the /mn/ page only,
+   so Mongolian text doesn't silently fall back to whatever serif the visitor's OS has. */
+@font-face{
+  font-family:"Noto Serif";
+  src:url("assets/fonts/noto-serif-variable.woff2") format("woff2");
+  font-weight:100 900;
   font-style:normal;
   font-display:swap;
 }
@@ -199,6 +217,15 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 .nav-cta::after{display:none}
 .nav-cta:hover{background:var(--cta-bg);color:var(--btn-ink) !important}
+
+.lang-switch{display:flex;align-items:center;gap:3px;margin-left:2px}
+.lang-switch a{
+  font-family:var(--serif-en);font-size:11px;letter-spacing:.08em;color:var(--muted);
+  padding:5px 8px;border-radius:2px;transition:color .2s ease,background .2s ease;
+}
+.lang-switch a::after{display:none}
+.lang-switch a:hover{color:var(--ink-soft);background:var(--line-soft)}
+.lang-switch a.is-current{color:var(--brand-color);background:var(--panel);cursor:default}
 
 .nav-toggle{
   display:none;width:44px;height:44px;border:0;background:none;cursor:pointer;
