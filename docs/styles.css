@@ -181,7 +181,7 @@ ul,ol{margin:0;padding:0;list-style:none}
   height:var(--header-h);
   display:flex;align-items:center;
   background:var(--header-grad);
-  transition:background .35s ease,box-shadow .35s ease,height .35s ease;
+  transition:background .35s ease,box-shadow .35s ease,height .35s ease,opacity .5s ease;
 }
 .site-header.scrolled{
   height:64px;
@@ -295,6 +295,60 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:1;width:26px;height:42px;border:1px solid var(--line);border-radius:14px;display:flex;justify-content:center;padding-top:8px;opacity:calc(1 - var(--hero-p) * 2.5)}
 .hero-scroll span{width:2px;height:8px;background:var(--gold);border-radius:2px;animation:scrolldot 1.8s ease-in-out infinite}
 @keyframes scrolldot{0%,100%{opacity:0;transform:translateY(0)}40%{opacity:1}70%{opacity:0;transform:translateY(12px)}}
+
+/* =========================================================
+   OPENING INTRO: logo + wordmark animate into the header brand,
+   then the hero copy reveals line by line (H1 → lede → sub → rest).
+   `intro-active` is added by an inline <script> in <head> (skipped
+   outright for prefers-reduced-motion / repeat pageviews this
+   session) so there is no flash-then-hide for the common case.
+   ========================================================= */
+.intro-overlay{
+  position:fixed;inset:0;z-index:500;overflow:hidden;
+  display:none;align-items:center;justify-content:center;
+  background:var(--bg);
+  transition:opacity .5s ease;
+}
+html.intro-active .intro-overlay{display:flex}
+.intro-overlay.is-leaving{opacity:0}
+.intro-overlay[hidden]{display:none !important}
+
+.intro-lockup{display:flex;align-items:center;gap:12px}
+.intro-mark{width:46px;height:46px;flex:none;color:var(--gold-deep)}
+.intro-text{display:flex;flex-direction:column;line-height:1.15}
+.intro-name{font-family:var(--serif-en);font-size:15px;letter-spacing:.22em;color:var(--brand-color)}
+.intro-sub{font-family:var(--serif-en);font-size:9.5px;letter-spacing:.34em;color:var(--muted);margin-top:2px}
+
+html.intro-active .site-header{opacity:0}
+html.intro-active .hero-kicker,
+html.intro-active .hero-title,
+html.intro-active .hero-lede,
+html.intro-active .hero-sub,
+html.intro-active .hero-jp,
+html.intro-active .hero-actions{
+  opacity:0;transform:translateY(22px);
+}
+.hero-kicker,.hero-title,.hero-lede,.hero-sub,.hero-jp,.hero-actions{
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);
+}
+/* 出現順: H1 → lede → sub → それ以外の行（kicker・和文コピー・ボタン） */
+html.intro-done .hero-title{transition-delay:0ms}
+html.intro-done .hero-lede{transition-delay:260ms}
+html.intro-done .hero-sub{transition-delay:480ms}
+html.intro-done .hero-kicker{transition-delay:680ms}
+html.intro-done .hero-jp{transition-delay:760ms}
+html.intro-done .hero-actions{transition-delay:860ms}
+
+@media (prefers-reduced-motion:reduce){
+  .intro-overlay{display:none !important}
+  html.intro-active .site-header,
+  html.intro-active .hero-kicker,
+  html.intro-active .hero-title,
+  html.intro-active .hero-lede,
+  html.intro-active .hero-sub,
+  html.intro-active .hero-jp,
+  html.intro-active .hero-actions{opacity:1 !important;transform:none !important}
+}
 
 /* =========================================================
    SECTION SHELL

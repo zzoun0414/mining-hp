@@ -16,6 +16,71 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* --- opening intro: mark + wordmark animate from center into the header brand,
+     then hand off to the hero copy reveal (see styles.css html.intro-done rules).
+     `intro-active` is only present on <html> at all if the inline <head> script
+     decided to run the animation (skips reduced-motion / repeat pageviews before
+     first paint, so there's no hide-then-flash for the common case). That same
+     inline script also carries a 4s safety timeout in case this file never loads. */
+  (function () {
+    var html = document.documentElement;
+    if (!html.classList.contains('intro-active')) return;
+
+    var overlay = document.getElementById('introOverlay');
+    var lockup = document.getElementById('introLockup');
+    var brand = document.querySelector('.brand');
+
+    var finished = false;
+    function finish() {
+      if (finished) return;
+      finished = true;
+      html.classList.remove('intro-active');
+      html.classList.add('intro-done');
+      if (overlay) overlay.setAttribute('hidden', '');
+    }
+
+    if (!overlay || !lockup || !brand) { finish(); return; }
+
+    try {
+      var brandRect = brand.getBoundingClientRect();
+      // cap the scale so the enlarged lockup never overflows narrow (mobile) viewports
+      var bigScale = Math.min(2.6, (window.innerWidth * 0.88) / brandRect.width);
+      var bigW = brandRect.width * bigScale;
+      var bigH = brandRect.height * bigScale;
+      var firstLeft = (window.innerWidth - bigW) / 2;
+      var firstTop = (window.innerHeight - bigH) / 2;
+      var dx = firstLeft - brandRect.left;
+      var dy = firstTop - brandRect.top;
+
+      // FLIP: lay the lockup out at the header's exact position/size (its "Last"
+      // state, transform:none), then hold an inverse transform so it *looks* like
+      // it's centered and big — then animate that transform away to `none`.
+      lockup.style.position = 'fixed';
+      lockup.style.left = brandRect.left + 'px';
+      lockup.style.top = brandRect.top + 'px';
+      lockup.style.transformOrigin = 'top left';
+      lockup.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + bigScale + ')';
+
+      setTimeout(function () {
+        lockup.style.transition = 'transform .8s cubic-bezier(.4,0,.2,1)';
+        lockup.style.transform = 'none';
+      }, 850);
+      setTimeout(function () {
+        if (overlay) overlay.classList.add('is-leaving');
+      }, 850 + 500);
+
+      lockup.addEventListener('transitionend', function onEnd(e) {
+        if (e.target !== lockup || e.propertyName !== 'transform') return;
+        lockup.removeEventListener('transitionend', onEnd);
+        finish();
+      });
+      // belt-and-suspenders: transitionend can fail to fire (tab backgrounded, etc.)
+      setTimeout(finish, 850 + 800 + 400);
+    } catch (e) {
+      finish();
+    }
+  })();
+
   /* --- sticky header state --- */
   var header = document.getElementById('siteHeader');
   var onScroll = function () {
