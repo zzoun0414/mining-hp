@@ -343,6 +343,11 @@ html.intro-active .hero-actions{
 .hero-kicker,.hero-title,.hero-lede,.hero-sub,.hero-jp,.hero-actions{
   transition:opacity 1s cubic-bezier(.65,0,.35,1),transform 1s cubic-bezier(.65,0,.35,1);
 }
+/* MONGOLIA × JAPAN: more than 2x slower than the other lines — a longer,
+   more deliberate entrance for the headline specifically */
+.hero-title{
+  transition-duration:2.3s;
+}
 /* 出現順: H1 → lede → sub → それ以外の行（kicker・和文コピー・ボタン） */
 html.intro-done .hero-title{transition-delay:0ms}
 html.intro-done .hero-lede{transition-delay:340ms}
