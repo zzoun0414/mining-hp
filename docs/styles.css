@@ -211,9 +211,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .site-nav a:hover::after,.site-nav a.is-active::after{width:100%}
 .site-nav a.is-active{color:var(--nav-active)}
 
-/* nav items that navigate to a separate page (BUSINESS/RESOURCES) get a
-   small ↗ mark so they read as distinct from the scroll-anchor items */
-.nav-page-icon{width:9px;height:9px;margin-left:4px;vertical-align:1px;opacity:.55;stroke:currentColor;fill:none;stroke-width:2}
+/* a thin rule separates the scroll-anchor nav items from BUSINESS/RESOURCES
+   (which navigate to a separate page) so the two behaviors read as distinct groups */
 .nav-divider{width:1px;height:16px;background:var(--line);margin:0 2px;align-self:center}
 
 .nav-cta{
