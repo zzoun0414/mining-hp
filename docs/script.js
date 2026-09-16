@@ -43,29 +43,35 @@
 
     try {
       var brandRect = brand.getBoundingClientRect();
-      // cap the scale so the enlarged lockup never overflows narrow (mobile) viewports
-      var bigScale = Math.min(2.6, (window.innerWidth * 0.88) / brandRect.width);
-      var bigW = brandRect.width * bigScale;
-      var bigH = brandRect.height * bigScale;
-      var firstLeft = (window.innerWidth - bigW) / 2;
-      var firstTop = (window.innerHeight - bigH) / 2;
-      var dx = firstLeft - brandRect.left;
-      var dy = firstTop - brandRect.top;
 
-      // FLIP: lay the lockup out at the header's exact position/size (its "Last"
-      // state, transform:none), then hold an inverse transform so it *looks* like
-      // it's centered and big — then animate that transform away to `none`.
+      // The intro lockup is sized bigger than the header .brand on purpose (it's
+      // the hero moment of the whole page, not a header-utility element scaled
+      // up) — so unlike a textbook FLIP, its own natural size isn't the target;
+      // it has to shrink *past* transform:none down to the header's real size.
+      // Position it at the header's spot first so we can measure that gap.
       lockup.style.position = 'fixed';
       lockup.style.left = brandRect.left + 'px';
       lockup.style.top = brandRect.top + 'px';
       lockup.style.transformOrigin = 'top left';
+      var lockupRect = lockup.getBoundingClientRect();
+      var finalScale = brandRect.width / lockupRect.width;
+
+      // cap the scale so the enlarged lockup never overflows narrow (mobile) viewports
+      var bigScale = Math.min(2.6, (window.innerWidth * 0.88) / lockupRect.width);
+      var bigW = lockupRect.width * bigScale;
+      var bigH = lockupRect.height * bigScale;
+      var firstLeft = (window.innerWidth - bigW) / 2;
+      var firstTop = (window.innerHeight - bigH) / 2;
+      var dx = firstLeft - lockupRect.left;
+      var dy = firstTop - lockupRect.top;
+
       lockup.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + bigScale + ')';
 
       // slower hold + a gentler "expo out" glide (rather than Material's snappier
       // ease) — a quick, mechanical-feeling move read as cheap rather than premium
       setTimeout(function () {
-        lockup.style.transition = 'transform 1.15s cubic-bezier(.16,1,.3,1)';
-        lockup.style.transform = 'none';
+        lockup.style.transition = 'transform 1.15s cubic-bezier(.65,0,.35,1)';
+        lockup.style.transform = 'scale(' + finalScale + ')';
       }, 1400);
       setTimeout(function () {
         if (overlay) overlay.classList.add('is-leaving');
