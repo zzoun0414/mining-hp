@@ -61,13 +61,15 @@
       lockup.style.transformOrigin = 'top left';
       lockup.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + bigScale + ')';
 
+      // slower hold + a gentler "expo out" glide (rather than Material's snappier
+      // ease) — a quick, mechanical-feeling move read as cheap rather than premium
       setTimeout(function () {
-        lockup.style.transition = 'transform .8s cubic-bezier(.4,0,.2,1)';
+        lockup.style.transition = 'transform 1.15s cubic-bezier(.16,1,.3,1)';
         lockup.style.transform = 'none';
-      }, 850);
+      }, 1400);
       setTimeout(function () {
         if (overlay) overlay.classList.add('is-leaving');
-      }, 850 + 500);
+      }, 1400 + 700);
 
       lockup.addEventListener('transitionend', function onEnd(e) {
         if (e.target !== lockup || e.propertyName !== 'transform') return;
@@ -75,7 +77,7 @@
         finish();
       });
       // belt-and-suspenders: transitionend can fail to fire (tab backgrounded, etc.)
-      setTimeout(finish, 850 + 800 + 400);
+      setTimeout(finish, 1400 + 1150 + 400);
     } catch (e) {
       finish();
     }
