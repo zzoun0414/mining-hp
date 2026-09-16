@@ -6,14 +6,12 @@
 (function () {
   var html = document.documentElement;
   html.classList.remove('no-js');
-  var skip = true;
+  var skip = false;
   try {
-    skip = window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-           sessionStorage.getItem('akIntroSeen') === '1';
-  } catch (e) { skip = true; }
+    skip = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (e) { skip = false; }
   if (!skip) {
     html.classList.add('intro-active');
-    try { sessionStorage.setItem('akIntroSeen', '1'); } catch (e) {}
     /* safety net: if script.js fails to load/execute, never leave content hidden */
     setTimeout(function () {
       if (html.classList.contains('intro-active')) {
@@ -248,6 +246,36 @@
           <!-- 要社長確認：規格名 -->
           <div><dt>Products</dt><dd>Fluorspar concentrate (FF-97 grade)</dd></div>
         </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPLORE (bridge to BUSINESS / RESOURCES) ============ -->
+  <section class="section section--dark" id="explore">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">EXPLORE FURTHER <span>Learn More</span></p>
+        <h2 class="section-title">A closer look at our business<br>and the resources we handle.</h2>
+      </div>
+      <div class="explore-grid reveal">
+        <article class="explore-card">
+          <p class="res-en">OUR BUSINESS</p>
+          <h3>What We Do</h3>
+          <p>We purchase fluorspar concentrate from mining companies in Mongolia, arrange export, and deliver it to customers in Japan — see how our resource trading business works.</p>
+          <a class="quiet-link" href="business/">
+            See our business
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+        <article class="explore-card">
+          <p class="res-en">OUR RESOURCES</p>
+          <h3>Materials We Handle</h3>
+          <p>Fluorspar concentrate is at our core, and we're expanding into copper, coal, and energy resources.</p>
+          <a class="quiet-link" href="resources/">
+            See our resources
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
       </div>
     </div>
   </section>

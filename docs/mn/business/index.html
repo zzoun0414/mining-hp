@@ -6,14 +6,12 @@
 (function () {
   var html = document.documentElement;
   html.classList.remove('no-js');
-  var skip = true;
+  var skip = false;
   try {
-    skip = window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-           sessionStorage.getItem('akIntroSeen') === '1';
-  } catch (e) { skip = true; }
+    skip = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (e) { skip = false; }
   if (!skip) {
     html.classList.add('intro-active');
-    try { sessionStorage.setItem('akIntroSeen', '1'); } catch (e) {}
     /* safety net: if script.js fails to load/execute, never leave content hidden */
     setTimeout(function () {
       if (html.classList.contains('intro-active')) {

@@ -6,14 +6,12 @@
 (function () {
   var html = document.documentElement;
   html.classList.remove('no-js');
-  var skip = true;
+  var skip = false;
   try {
-    skip = window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-           sessionStorage.getItem('akIntroSeen') === '1';
-  } catch (e) { skip = true; }
+    skip = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (e) { skip = false; }
   if (!skip) {
     html.classList.add('intro-active');
-    try { sessionStorage.setItem('akIntroSeen', '1'); } catch (e) {}
     /* safety net: if script.js fails to load/execute, never leave content hidden */
     setTimeout(function () {
       if (html.classList.contains('intro-active')) {
@@ -251,6 +249,36 @@
           <!-- 要社長確認：規格名 -->
           <div><dt>Бүтээгдэхүүн</dt><dd>Хайлуур жоншны баяжмал (FF-97 зэрэглэл)</dd></div>
         </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPLORE (BUSINESS / RESOURCES рүү шилжих холбоос) ============ -->
+  <section class="section section--dark" id="explore">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">EXPLORE FURTHER <span>Дэлгэрэнгүй</span></p>
+        <h2 class="section-title">Үйл ажиллагаа, борлуулдаг<br>түүхий эдийн талаар дэлгэрэнгүй.</h2>
+      </div>
+      <div class="explore-grid reveal">
+        <article class="explore-card">
+          <p class="res-en">OUR BUSINESS</p>
+          <h3>Үйл ажиллагаа</h3>
+          <p>Бид Монголын уурхайн компаниудаас хайлуур жоншны баяжмал худалдан авч, экспортыг зохион байгуулж, Японы хэрэглэгчдэд хүргэдэг — үйл ажиллагаагаа дэлгэрэнгүй үзнэ үү.</p>
+          <a class="quiet-link" href="business/">
+            Үйл ажиллагааг үзэх
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+        <article class="explore-card">
+          <p class="res-en">OUR RESOURCES</p>
+          <h3>Борлуулдаг түүхий эд</h3>
+          <p>Хайлуур жоншны баяжмал гол бүтээгдэхүүн бөгөөд зэс, нүүрс, эрчим хүчний нөөц баялаг руу өргөжиж байна.</p>
+          <a class="quiet-link" href="resources/">
+            Түүхий эдийг үзэх
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
       </div>
     </div>
   </section>
