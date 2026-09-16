@@ -117,7 +117,7 @@
     document.querySelectorAll('.res-media img').forEach(function (img) {
       driftTargets.push({ box: img.parentElement, el: img, range: 16 });
     });
-    var mark = document.querySelector('.leadership-bg');
+    var mark = document.querySelector('.leadership-mark');
     if (mark) driftTargets.push({ box: mark.parentElement, el: mark, range: 22 });
 
     if (driftTargets.length) {

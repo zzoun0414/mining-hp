@@ -71,7 +71,6 @@
 
   /* misc */
   --person-grad:linear-gradient(180deg,#F0ECE3,#E7E2D5);
-  --leadership-mark-opacity:.06;
   --contact-grad:linear-gradient(180deg,var(--bg-3),var(--bg));
   --footer-bg:#EBE6DB;
   --img-backing:#E4E0D6;
@@ -520,27 +519,25 @@ html.intro-done .hero-actions{transition-delay:860ms}
 /* =========================================================
    LEADERSHIP
    ========================================================= */
-.section--leadership{background:var(--bg);overflow:hidden}
-/* Anchored to the top-right corner (bleeding off both edges) and sized to stay
-   clear of the .people cards below — centering it on the whole section (its
-   previous approach) let its lower portion drift down onto the cards, where a
-   photographic circular edge crossing a card's straight edge read as a
-   misplaced asset rather than a deliberate watermark. */
-.leadership-bg{
-  position:absolute;inset:0;z-index:0;opacity:var(--leadership-mark-opacity);
-  background-image:url("assets/img/logo-horse.jpg");
-  background-repeat:no-repeat;
-  background-position:right -70px top -50px;
-  background-size:360px;
-  /* opaque (visible) at the top-right, where the image actually sits; fades
-     toward the bottom-left, away from it — written as an explicit "to" keyword
-     rather than a degree value so the direction can't be second-guessed */
-  mask-image:linear-gradient(to bottom left,#000,transparent 62%);
-  -webkit-mask-image:linear-gradient(to bottom left,#000,transparent 62%);
-  transform:translate3d(0,var(--py,0px),0);
-  will-change:transform;
+.section--leadership{background:var(--bg)}
+/* A whole, complete mark (not a cropped/bled background wash — the previous
+   approach never had a stable, deliberate relationship to anything else on
+   the page) bottom-aligned to the section-head text via flex, so it always
+   lines up with the note paragraph's own baseline regardless of how many
+   lines that text wraps to in JA/EN/MN. */
+.section-head--leadership{
+  max-width:none;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(24px,5vw,56px);
 }
-.section--leadership .container{position:relative;z-index:1}
+.section-head--leadership .section-head-text{max-width:760px}
+.leadership-mark{
+  width:96px;height:96px;flex:none;color:var(--gold-deep);opacity:.5;
+  transform:translate3d(0,var(--py,0px),0);will-change:transform;
+}
+@media (max-width:680px){
+  .section-head--leadership{flex-direction:column;align-items:flex-start;gap:20px}
+  .leadership-mark{display:none}
+}
 .people{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,32px)}
 .person{border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(28px,3.5vw,44px)}
 .person-role{font-family:var(--serif-en);letter-spacing:.16em;font-size:11px;color:var(--gold-label)}
@@ -798,6 +795,6 @@ html.intro-done .hero-actions{transition-delay:860ms}
   .hero-bg,.hero-inner{transform:none}
   .hero-inner,.hero-scroll{opacity:1}
   .hero-scroll span{animation:none}
-  .res-media img,.leadership-bg{transform:none}
+  .res-media img,.leadership-mark{transform:none}
   *{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
