@@ -211,6 +211,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 .site-nav a:hover::after,.site-nav a.is-active::after{width:100%}
 .site-nav a.is-active{color:var(--nav-active)}
 
+/* nav items that navigate to a separate page (BUSINESS/RESOURCES) get a
+   small ↗ mark so they read as distinct from the scroll-anchor items */
+.nav-page-icon{width:9px;height:9px;margin-left:4px;vertical-align:1px;opacity:.55;stroke:currentColor;fill:none;stroke-width:2}
+.nav-divider{width:1px;height:16px;background:var(--line);margin:0 2px;align-self:center}
+
 .nav-cta{
   border:1px solid var(--gold);border-radius:2px;
   padding:9px 18px !important;color:var(--nav-active) !important;
@@ -725,6 +730,7 @@ html.intro-done .hero-actions{transition-delay:860ms}
   }
   .site-nav.open{transform:none}
   .site-nav a{font-size:15px;letter-spacing:.14em}
+  .nav-divider{width:80%;height:1px;margin:4px 0}
   .nav-cta{margin-top:8px}
   .nav-toggle{display:flex;z-index:110}
   .about-grid{grid-template-columns:1fr;gap:36px}
