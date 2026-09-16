@@ -528,9 +528,15 @@ html.intro-done .hero-actions{transition-delay:860ms}
    misplaced asset rather than a deliberate watermark. */
 .leadership-bg{
   position:absolute;inset:0;z-index:0;opacity:var(--leadership-mark-opacity);
-  background:url("assets/img/logo-horse.jpg") right -70px top -50px/360px no-repeat;
-  mask-image:linear-gradient(135deg,#000,transparent 62%);
-  -webkit-mask-image:linear-gradient(135deg,#000,transparent 62%);
+  background-image:url("assets/img/logo-horse.jpg");
+  background-repeat:no-repeat;
+  background-position:right -70px top -50px;
+  background-size:360px;
+  /* opaque (visible) at the top-right, where the image actually sits; fades
+     toward the bottom-left, away from it — written as an explicit "to" keyword
+     rather than a degree value so the direction can't be second-guessed */
+  mask-image:linear-gradient(to bottom left,#000,transparent 62%);
+  -webkit-mask-image:linear-gradient(to bottom left,#000,transparent 62%);
   transform:translate3d(0,var(--py,0px),0);
   will-change:transform;
 }
