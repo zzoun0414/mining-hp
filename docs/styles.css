@@ -521,11 +521,16 @@ html.intro-done .hero-actions{transition-delay:860ms}
    LEADERSHIP
    ========================================================= */
 .section--leadership{background:var(--bg);overflow:hidden}
+/* Anchored to the top-right corner (bleeding off both edges) and sized to stay
+   clear of the .people cards below — centering it on the whole section (its
+   previous approach) let its lower portion drift down onto the cards, where a
+   photographic circular edge crossing a card's straight edge read as a
+   misplaced asset rather than a deliberate watermark. */
 .leadership-bg{
   position:absolute;inset:0;z-index:0;opacity:var(--leadership-mark-opacity);
-  background:url("assets/img/logo-horse.jpg") right -80px center/460px no-repeat;
-  mask-image:linear-gradient(to left,#000,transparent 70%);
-  -webkit-mask-image:linear-gradient(to left,#000,transparent 70%);
+  background:url("assets/img/logo-horse.jpg") right -70px top -50px/360px no-repeat;
+  mask-image:linear-gradient(135deg,#000,transparent 62%);
+  -webkit-mask-image:linear-gradient(135deg,#000,transparent 62%);
   transform:translate3d(0,var(--py,0px),0);
   will-change:transform;
 }
