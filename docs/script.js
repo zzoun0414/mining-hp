@@ -65,17 +65,29 @@
       var dx = firstLeft - lockupRect.left;
       var dy = firstTop - lockupRect.top;
 
+      lockup.style.opacity = '0';
       lockup.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + bigScale + ')';
 
-      // slower hold + a gentler "expo out" glide (rather than Material's snappier
-      // ease) — a quick, mechanical-feeling move read as cheap rather than premium
+      // Fade the lockup in rather than having it snap into existence — needs a
+      // frame to actually paint the opacity:0 state before transitioning away
+      // from it, hence the double rAF.
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          lockup.style.transition = 'opacity 1.1s ease-out';
+          lockup.style.opacity = '1';
+        });
+      });
+
+      // slower hold + a gentler, evenly-paced ease (rather than Material's
+      // snappier ease) — a quick, mechanical-feeling move read as cheap rather
+      // than premium
       setTimeout(function () {
         lockup.style.transition = 'transform 1.15s cubic-bezier(.65,0,.35,1)';
         lockup.style.transform = 'scale(' + finalScale + ')';
-      }, 1400);
+      }, 1600);
       setTimeout(function () {
         if (overlay) overlay.classList.add('is-leaving');
-      }, 1400 + 700);
+      }, 1600 + 700);
 
       lockup.addEventListener('transitionend', function onEnd(e) {
         if (e.target !== lockup || e.propertyName !== 'transform') return;
@@ -83,7 +95,7 @@
         finish();
       });
       // belt-and-suspenders: transitionend can fail to fire (tab backgrounded, etc.)
-      setTimeout(finish, 1400 + 1150 + 400);
+      setTimeout(finish, 1600 + 1150 + 400);
     } catch (e) {
       finish();
     }
