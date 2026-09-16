@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <script>
 (function () {
+  // Reload/back-forward would otherwise restore whatever scroll offset the
+  // visitor was at, which fights the opening intro (built to play from the
+  // very top) and can strand a reload partway down the page looking broken.
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
   var html = document.documentElement;
   html.classList.remove('no-js');
   var skip = false;
