@@ -521,22 +521,14 @@ html.intro-done .hero-actions{transition-delay:860ms}
    ========================================================= */
 .section--leadership{background:var(--bg)}
 /* A whole, complete mark (not a cropped/bled background wash — the previous
-   approach never had a stable, deliberate relationship to anything else on
-   the page) bottom-aligned to the section-head text via flex, so it always
-   lines up with the note paragraph's own baseline regardless of how many
-   lines that text wraps to in JA/EN/MN. */
-.section-head--leadership{
-  max-width:none;
-  display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(24px,5vw,56px);
-}
-.section-head--leadership .section-head-text{max-width:760px}
+   approaches never had a stable, deliberate relationship to anything else on
+   the page) set inline as the last item in the eyebrow row itself, like a
+   small crest punctuating the "MONGOLIA × JAPAN 経営体制" label — it rides
+   along with that line's own flex/wrap behavior instead of needing its own
+   positioning logic. */
 .leadership-mark{
-  width:96px;height:96px;flex:none;color:var(--gold-deep);opacity:.5;
+  width:22px;height:22px;flex:none;align-self:center;color:var(--gold-deep);opacity:.65;
   transform:translate3d(0,var(--py,0px),0);will-change:transform;
-}
-@media (max-width:680px){
-  .section-head--leadership{flex-direction:column;align-items:flex-start;gap:20px}
-  .leadership-mark{display:none}
 }
 .people{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,32px)}
 .person{border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(28px,3.5vw,44px)}
