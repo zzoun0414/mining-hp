@@ -23,6 +23,26 @@ hreflang・SEO を正しく分離するため）:
 - `bin/check-cjk.py` — 日本語ページの簡体字混入チェックに加え、`docs/mn/` 配下は
   ラテン文字とキリル文字が同じ単語内に混在していないかもチェックする
   （コミット前に実行推奨: `python3 bin/check-cjk.py`）。
+- モンゴル語ページは Cinzel / Shippori Mincho / Noto Sans JP が Cyrillic（特に Өө／Үю）を
+  カバーしないため、`html[lang="mn"]` スコープで自社ホスティングの Noto Serif に
+  差し替えている（`styles.css` 冒頭のフォントトークン参照）。
+
+## ページ構成（BUSINESS / RESOURCES は独立ページ）
+`OUR BUSINESS`（事業内容）と `OUR RESOURCES`（取扱資源）はトップページのセクションではなく、
+言語ごとに独立したページ：
+
+| ページ | JA | EN | MN |
+|---|---|---|---|
+| トップ | `docs/index.html` | `docs/en/index.html` | `docs/mn/index.html` |
+| 事業内容 | `docs/business/index.html` | `docs/en/business/index.html` | `docs/mn/business/index.html` |
+| 取扱資源 | `docs/resources/index.html` | `docs/en/resources/index.html` | `docs/mn/resources/index.html` |
+
+- 事業内容ページには「OUR PROCESS」（旧トップページの調達フロー図）も統合し、
+  モンゴルの鉱山会社 → 買付・品質管理 → 輸出手配 → 販売 → 日本のお客様、と
+  誰が何をするかを明示する形に書き直した（旧フローは抽象的すぎたため）。
+- 各サブページ末尾に相互リンク（`.quiet-link`、控えめな「〜を見る ▷」形式）を設置。
+- トップページの HERO ボタン・footer nav・nav の BUSINESS/RESOURCES リンクは
+  すべて該当ページへのパスに変更済み（旧 `#business`/`#resources` アンカーは廃止）。
 
 ## 素材
 デザイン元データ・ロゴ・会社概要・名刺は `source/` を参照（社内資料・非公開）。

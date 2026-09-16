@@ -17,7 +17,7 @@ bin/set-site-url.sh https://www.example.com
 
 | ファイル | 箇所 |
 |---|---|
-| `index.html` / `en/index.html` / `mn/index.html` | `<link rel="canonical">` / hreflang alternate / `og:url` / `og:image` / `twitter:image` / JSON-LD (`url`, `logo`, `image`) |
+| 全9ページ（JA/EN/MN × トップ・事業内容・取扱資源） | `<link rel="canonical">` / hreflang alternate / `og:url` / `og:image` / `twitter:image` / JSON-LD (`url`, `logo`, `image`) |
 | `sitemap.xml` | `<loc>` |
 | `robots.txt` | `Sitemap:` |
 

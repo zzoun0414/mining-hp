@@ -1,10 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ドメイン確定後、loc の URL を bin/set-site-url.sh で一括置換すること。 -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- ドメイン確定後、loc / xhtml:link href の URL を bin/set-site-url.sh で一括置換すること。 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://PRODUCTION-DOMAIN.example/</loc>
-    <lastmod>2026-09-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/"/>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://PRODUCTION-DOMAIN.example/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://PRODUCTION-DOMAIN.example/mn/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://PRODUCTION-DOMAIN.example/business/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/business/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/business/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/business/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://PRODUCTION-DOMAIN.example/en/business/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/business/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/business/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/business/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://PRODUCTION-DOMAIN.example/mn/business/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/business/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/business/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/business/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://PRODUCTION-DOMAIN.example/resources/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/resources/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/resources/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/resources/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://PRODUCTION-DOMAIN.example/en/resources/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/resources/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/resources/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/resources/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://PRODUCTION-DOMAIN.example/mn/resources/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/resources/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/resources/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/resources/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
