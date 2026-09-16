@@ -191,16 +191,19 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
 
-.brand{display:flex;align-items:center;gap:12px}
+/* flex:none + white-space:nowrap: without these, some browsers (seen in Safari)
+   let this flex item shrink below its unbreakable text's natural width and the
+   nav's first item overlaps it instead of the row simply not fitting */
+.brand{display:flex;align-items:center;gap:12px;flex:none}
 .brand-mark{border-radius:50%;border:1px solid var(--line);flex:none}
 .brand-text{display:flex;flex-direction:column;line-height:1.15}
-.brand-name{font-family:var(--serif-en);font-size:15px;letter-spacing:.22em;color:var(--brand-color)}
-.brand-sub{font-family:var(--serif-en);font-size:9.5px;letter-spacing:.34em;color:var(--muted)}
+.brand-name{font-family:var(--serif-en);font-size:15px;letter-spacing:.22em;color:var(--brand-color);white-space:nowrap}
+.brand-sub{font-family:var(--serif-en);font-size:9.5px;letter-spacing:.34em;color:var(--muted);white-space:nowrap}
 
-.site-nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,30px)}
+.site-nav{display:flex;align-items:center;gap:clamp(10px,1.5vw,20px)}
 .site-nav a{
   font-family:var(--serif-en);
-  font-size:12px;letter-spacing:.16em;color:var(--ink-soft);
+  font-size:12px;letter-spacing:.13em;color:var(--ink-soft);
   padding:6px 0;position:relative;transition:color .25s ease;
 }
 .site-nav a::after{
@@ -217,7 +220,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 
 .nav-cta{
   border:1px solid var(--gold);border-radius:2px;
-  padding:9px 18px !important;color:var(--nav-active) !important;
+  padding:9px 15px !important;color:var(--nav-active) !important;
 }
 .nav-cta::after{display:none}
 .nav-cta:hover{background:var(--cta-bg);color:var(--btn-ink) !important}
@@ -719,7 +722,13 @@ html.intro-done .hero-actions{transition-delay:860ms}
   .card-grid--5{grid-template-columns:repeat(3,1fr)}
   .card-grid--5 .mini-card:nth-child(4),.card-grid--5 .mini-card:nth-child(5){grid-column:span 1}
 }
-@media (max-width:960px){
+/* nav gets its own (wider) breakpoint from the content-reflow rules below:
+   with BUSINESS/RESOURCES back in the main nav plus the divider, the full
+   desktop nav's natural width no longer fits inside the 1180px container
+   until the container has actually reached that full width (see .header-inner
+   max-width above) — collapsing to the drawer any earlier than that avoids
+   the cramped/overlapping nav a narrower "desktop" threshold produced */
+@media (max-width:1180px){
   .site-nav{
     position:fixed;inset:0 0 0 auto;width:min(78vw,340px);
     flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;
@@ -732,6 +741,8 @@ html.intro-done .hero-actions{transition-delay:860ms}
   .nav-divider{width:80%;height:1px;margin:4px 0}
   .nav-cta{margin-top:8px}
   .nav-toggle{display:flex;z-index:110}
+}
+@media (max-width:960px){
   .about-grid{grid-template-columns:1fr;gap:36px}
   .about-facts{border-left:0;border-top:1px solid var(--line);border-image:var(--rule-h) 1;padding-top:4px}
   .about-facts>div{padding-left:0}
