@@ -96,9 +96,10 @@
 
       // slower hold + a gentler, evenly-paced ease (rather than Material's
       // snappier ease) — a quick, mechanical-feeling move read as cheap rather
-      // than premium. HOLD/MOVE doubled again 2026-09-16 per feedback that the
-      // handoff still felt rushed.
-      var HOLD = 3200;
+      // than premium. HOLD was doubled to 3200ms earlier 2026-09-16, then
+      // found too long once tested on the real (uncached) code and halved
+      // back down; MOVE stayed at the doubled 2300ms.
+      var HOLD = 1600;
       var MOVE = 2300;
       var EASE = 'cubic-bezier(.65,0,.35,1)';
 
