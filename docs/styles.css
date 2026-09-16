@@ -322,11 +322,19 @@ html.intro-active .intro-overlay{display:flex}
 /* Deliberately bigger/more spaced out than the header .brand it hands off to —
    this lockup is the opening hero moment, not a header element merely scaled
    up, so a wordmark sized to only look right at header-utility scale reads as
-   thin once it's the biggest thing on screen. script.js's FLIP math measures
-   this element's own (larger) natural size and shrinks past transform:none
-   down to the header's real size, so the mismatch is intentional and handled. */
+   thin once it's the biggest thing on screen. script.js grows these values
+   further still for the opening hold, then animates the real width/height/
+   font-size (not a CSS transform: scale()) back down to the header's measured
+   size — deliberately not a transform-based FLIP, since scaling a raster of
+   this element blurred the thin mark and the wordmark text. */
 .intro-lockup{display:flex;align-items:center;gap:18px}
 .intro-mark{width:56px;height:56px;flex:none;color:var(--gold-deep)}
+/* the mark's stroke is drawn at a fixed width in its own 1254-unit coordinate
+   space; without this it scales down with the SVG's box (down to a fraction of
+   a screen pixel at icon sizes) and reads as a faint, blurry hairline instead
+   of a crisp thin line. non-scaling-stroke keeps it a real, constant pixel
+   width no matter how small or large the mark is drawn. */
+.intro-mark path,.leadership-mark path{vector-effect:non-scaling-stroke;stroke-width:2}
 .intro-text{display:flex;flex-direction:column;line-height:1.2}
 .intro-name{font-family:var(--serif-en);font-size:19px;letter-spacing:.2em;color:var(--brand-color)}
 .intro-sub{font-family:var(--serif-en);font-size:11.5px;letter-spacing:.3em;color:var(--muted);margin-top:5px}

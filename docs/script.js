@@ -29,6 +29,12 @@
     var overlay = document.getElementById('introOverlay');
     var lockup = document.getElementById('introLockup');
     var brand = document.querySelector('.brand');
+    var mark = document.querySelector('.intro-mark');
+    var nameEl = document.querySelector('.intro-name');
+    var subEl = document.querySelector('.intro-sub');
+    var brandMark = document.querySelector('.brand-mark');
+    var brandName = document.querySelector('.brand-name');
+    var brandSub = document.querySelector('.brand-sub');
 
     var finished = false;
     function finish() {
@@ -39,34 +45,44 @@
       if (overlay) overlay.setAttribute('hidden', '');
     }
 
-    if (!overlay || !lockup || !brand) { finish(); return; }
+    if (!overlay || !lockup || !brand || !mark || !nameEl || !subEl ||
+        !brandMark || !brandName || !brandSub) { finish(); return; }
 
     try {
+      // Animate real width/height/font-size (not a CSS transform: scale()) all
+      // the way through. transform: scale() paints the lockup once at its
+      // resting size and then stretches that bitmap — fine for solid shapes,
+      // but it visibly softens thin hairline strokes and, in Safari especially,
+      // can leave the wordmark's text looking soft too. Resizing the real
+      // properties instead makes every browser re-render the vector mark and
+      // the text glyphs at each actual size, so it stays crisp start to finish.
       var brandRect = brand.getBoundingClientRect();
+      var markTarget = brandMark.getBoundingClientRect().width;
+      var nameTarget = parseFloat(getComputedStyle(brandName).fontSize);
+      var subTarget = parseFloat(getComputedStyle(brandSub).fontSize);
 
-      // The intro lockup is sized bigger than the header .brand on purpose (it's
-      // the hero moment of the whole page, not a header-utility element scaled
-      // up) — so unlike a textbook FLIP, its own natural size isn't the target;
-      // it has to shrink *past* transform:none down to the header's real size.
-      // Position it at the header's spot first so we can measure that gap.
+      var markBase = mark.getBoundingClientRect().width;
+      var nameBase = parseFloat(getComputedStyle(nameEl).fontSize);
+      var subBase = parseFloat(getComputedStyle(subEl).fontSize);
+
       lockup.style.position = 'fixed';
       lockup.style.left = brandRect.left + 'px';
       lockup.style.top = brandRect.top + 'px';
-      lockup.style.transformOrigin = 'top left';
-      var lockupRect = lockup.getBoundingClientRect();
-      var finalScale = brandRect.width / lockupRect.width;
+      var restRect = lockup.getBoundingClientRect();
 
       // cap the scale so the enlarged lockup never overflows narrow (mobile) viewports
-      var bigScale = Math.min(2.6, (window.innerWidth * 0.88) / lockupRect.width);
-      var bigW = lockupRect.width * bigScale;
-      var bigH = lockupRect.height * bigScale;
-      var firstLeft = (window.innerWidth - bigW) / 2;
-      var firstTop = (window.innerHeight - bigH) / 2;
-      var dx = firstLeft - lockupRect.left;
-      var dy = firstTop - lockupRect.top;
+      var bigScale = Math.min(2.6, (window.innerWidth * 0.88) / restRect.width);
 
+      mark.style.width = (markBase * bigScale) + 'px';
+      mark.style.height = (markBase * bigScale) + 'px';
+      nameEl.style.fontSize = (nameBase * bigScale) + 'px';
+      subEl.style.fontSize = (subBase * bigScale) + 'px';
+
+      // re-measure now that it's actually sized big, to center it for real
+      var bigRect = lockup.getBoundingClientRect();
+      lockup.style.left = ((window.innerWidth - bigRect.width) / 2) + 'px';
+      lockup.style.top = ((window.innerHeight - bigRect.height) / 2) + 'px';
       lockup.style.opacity = '0';
-      lockup.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + bigScale + ')';
 
       // Fade the lockup in rather than having it snap into existence — needs a
       // frame to actually paint the opacity:0 state before transitioning away
@@ -80,22 +96,36 @@
 
       // slower hold + a gentler, evenly-paced ease (rather than Material's
       // snappier ease) — a quick, mechanical-feeling move read as cheap rather
-      // than premium
+      // than premium. HOLD/MOVE doubled again 2026-09-16 per feedback that the
+      // handoff still felt rushed.
+      var HOLD = 3200;
+      var MOVE = 2300;
+      var EASE = 'cubic-bezier(.65,0,.35,1)';
+
       setTimeout(function () {
-        lockup.style.transition = 'transform 1.15s cubic-bezier(.65,0,.35,1)';
-        lockup.style.transform = 'scale(' + finalScale + ')';
-      }, 1600);
+        lockup.style.transition = 'left ' + MOVE + 'ms ' + EASE + ',top ' + MOVE + 'ms ' + EASE;
+        mark.style.transition = 'width ' + MOVE + 'ms ' + EASE + ',height ' + MOVE + 'ms ' + EASE;
+        nameEl.style.transition = 'font-size ' + MOVE + 'ms ' + EASE;
+        subEl.style.transition = 'font-size ' + MOVE + 'ms ' + EASE;
+
+        lockup.style.left = brandRect.left + 'px';
+        lockup.style.top = brandRect.top + 'px';
+        mark.style.width = markTarget + 'px';
+        mark.style.height = markTarget + 'px';
+        nameEl.style.fontSize = nameTarget + 'px';
+        subEl.style.fontSize = subTarget + 'px';
+      }, HOLD);
       setTimeout(function () {
         if (overlay) overlay.classList.add('is-leaving');
-      }, 1600 + 700);
+      }, HOLD + Math.round(MOVE * 0.61));
 
       lockup.addEventListener('transitionend', function onEnd(e) {
-        if (e.target !== lockup || e.propertyName !== 'transform') return;
+        if (e.target !== lockup || e.propertyName !== 'left') return;
         lockup.removeEventListener('transitionend', onEnd);
         finish();
       });
       // belt-and-suspenders: transitionend can fail to fire (tab backgrounded, etc.)
-      setTimeout(finish, 1600 + 1150 + 400);
+      setTimeout(finish, HOLD + MOVE + 400);
     } catch (e) {
       finish();
     }
