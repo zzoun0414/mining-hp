@@ -27,22 +27,35 @@ hreflang・SEO を正しく分離するため）:
   カバーしないため、`html[lang="mn"]` スコープで自社ホスティングの Noto Serif に
   差し替えている（`styles.css` 冒頭のフォントトークン参照）。
 
-## ページ構成（BUSINESS / RESOURCES は独立ページ）
-`OUR BUSINESS`（事業内容）と `OUR RESOURCES`（取扱資源）はトップページのセクションではなく、
-言語ごとに独立したページ：
+## ページ構成（全セクションが独立ページ）
+トップページに残るのは HERO・EXPLORE（7ページへの案内ハブ）・CONTACT・COMPANY のみ。
+ABOUT / STRENGTHS / LEADERSHIP / VISION / BASES / BUSINESS / RESOURCES の7セクションは
+すべて言語ごとに独立したページとして分離済み（社長の意向：現状コンテンツは薄いが、
+今後随時追加していく前提で先に構成を分けた）：
 
 | ページ | JA | EN | MN |
 |---|---|---|---|
 | トップ | `docs/index.html` | `docs/en/index.html` | `docs/mn/index.html` |
+| 会社紹介 | `docs/about/index.html` | `docs/en/about/index.html` | `docs/mn/about/index.html` |
+| 強み | `docs/strengths/index.html` | `docs/en/strengths/index.html` | `docs/mn/strengths/index.html` |
+| 経営体制 | `docs/leadership/index.html` | `docs/en/leadership/index.html` | `docs/mn/leadership/index.html` |
+| ビジョン | `docs/vision/index.html` | `docs/en/vision/index.html` | `docs/mn/vision/index.html` |
+| 拠点 | `docs/bases/index.html` | `docs/en/bases/index.html` | `docs/mn/bases/index.html` |
 | 事業内容 | `docs/business/index.html` | `docs/en/business/index.html` | `docs/mn/business/index.html` |
 | 取扱資源 | `docs/resources/index.html` | `docs/en/resources/index.html` | `docs/mn/resources/index.html` |
 
 - 事業内容ページには「OUR PROCESS」（旧トップページの調達フロー図）も統合し、
   モンゴルの鉱山会社 → 買付・品質管理 → 輸出手配 → 販売 → 日本のお客様、と
   誰が何をするかを明示する形に書き直した（旧フローは抽象的すぎたため）。
+- 各サブページの見出し直下に `<h1 class="sr-only">`（視覚的には非表示、AT向け）を設置。
+  既存の `.section-title`（h2）を h1 に格上げすると、カードグリッドの h3 が直後に続く
+  ページで見出しレベルが飛ぶ（h1→h3）ため、この方式を採用。
+- 全サブページのヘッダー nav・footer nav は7ページ共通のフルページ形式
+  （`/about/` 等のルート相対パス、`#` アンカー混在なし）に統一済み。
+  トップページ自身の nav のみ相対パス（`about/` 等）。
 - 各サブページ末尾に相互リンク（`.quiet-link`、控えめな「〜を見る ▷」形式）を設置。
-- トップページの HERO ボタン・footer nav・nav の BUSINESS/RESOURCES リンクは
-  すべて該当ページへのパスに変更済み（旧 `#business`/`#resources` アンカーは廃止）。
+- トップページの EXPLORE セクション（7カードのハブ）・footer nav・nav の各リンクは
+  すべて該当ページへのパスに変更済み（旧 `#about`/`#business` 等のアンカーは廃止）。
 
 ## 素材
 デザイン元データ・ロゴ・会社概要・名刺は `source/` を参照（社内資料・非公開）。

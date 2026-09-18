@@ -160,20 +160,14 @@
     </a>
 
     <nav class="site-nav" id="siteNav" aria-label="Үндсэн цэс">
-      <a href="#about">БИДНИЙ ТУХАЙ</a>
-      <a href="#strengths">ДАВУУ ТАЛ</a>
-      <a href="#leadership">УДИРДЛАГА</a>
-      <a href="#vision">АЛСЫН ХАРАА</a>
-      <a href="#bases">САЛБАРУУД</a>
-      <span class="nav-divider" aria-hidden="true"></span>
+      <a href="about/">БИДНИЙ ТУХАЙ</a>
+      <a href="strengths/">ДАВУУ ТАЛ</a>
+      <a href="leadership/">УДИРДЛАГА</a>
+      <a href="vision/">АЛСЫН ХАРАА</a>
+      <a href="bases/">САЛБАРУУД</a>
       <a href="business/">ҮЙЛ АЖИЛЛАГАА</a>
       <a href="resources/">НӨӨЦ БАЯЛАГ</a>
       <a class="nav-cta" href="#contact">ХОЛБОО БАРИХ</a>
-      <div class="lang-switch" role="group" aria-label="Хэл сонголт">
-        <a href="/" lang="ja" hreflang="ja">JA</a>
-        <a href="/en/" lang="en" hreflang="en">EN</a>
-        <a href="/mn/" lang="mn" hreflang="mn" class="is-current" aria-current="page">MN</a>
-      </div>
     </nav>
 
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Цэс нээх">
@@ -215,8 +209,7 @@
   ═══════════════════════════════════════════════════════════════
 -->
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="hero">
+<section class="hero" id="hero">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container container--wide hero-inner">
       <p class="hero-kicker">ALTAN KHULEG RESOURCES LLC</p>
@@ -237,19 +230,63 @@
         </a>
       </div>
     </div>
-    <a class="hero-scroll" href="#about" aria-label="Дараагийн хэсэг рүү гүйлгэх">
+    <a class="hero-scroll" href="#explore" aria-label="Дараагийн хэсэг рүү гүйлгэх">
       <span></span>
     </a>
   </section>
-
-  <!-- ============ EXPLORE (BUSINESS / RESOURCES рүү шилжих холбоос) ============ -->
+  <!-- ============ EXPLORE (hub to all section pages) ============ -->
   <section class="section section--dark" id="explore">
     <div class="container">
       <div class="section-head reveal">
         <p class="eyebrow">EXPLORE FURTHER <span>Дэлгэрэнгүй</span></p>
-        <h2 class="section-title">Үйл ажиллагаа, борлуулдаг<br>түүхий эдийн талаар дэлгэрэнгүй.</h2>
+        <h2 class="section-title">Үйл ажиллагаа, компанийн<br>талаар дэлгэрэнгүй.</h2>
       </div>
       <div class="explore-grid reveal">
+        <article class="explore-card">
+          <p class="res-en">ABOUT US</p>
+          <h3>Бидний тухай</h3>
+          <p>Япон, Монгол улсын хамтарсан хөрөнгө оруулалттай нөөц баялгийн худалдааны компани.</p>
+          <a class="quiet-link" href="about/">
+            Бидний тухай үзэх
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+        <article class="explore-card">
+          <p class="res-en">OUR STRENGTHS</p>
+          <h3>Давуу тал</h3>
+          <p>Хоёр орны хооронд ажилладаг учраас боломжтой хэлцлүүд.</p>
+          <a class="quiet-link" href="strengths/">
+            Давуу талыг үзэх
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+        <article class="explore-card">
+          <p class="res-en">LEADERSHIP</p>
+          <h3>Удирдлага</h3>
+          <p>Хоёр талын туршлага, сүлжээг нэгтгэдэг манай удирдлага.</p>
+          <a class="quiet-link" href="leadership/">
+            Удирдлагыг үзэх
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+        <article class="explore-card">
+          <p class="res-en">OUR VISION</p>
+          <h3>Алсын хараа</h3>
+          <p>Хайлуур жоншноос ашигт малтмал, эрчим хүч хүртэл.</p>
+          <a class="quiet-link" href="vision/">
+            Алсын хараа үзэх
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+        <article class="explore-card">
+          <p class="res-en">OUR BASES</p>
+          <h3>Салбарууд</h3>
+          <p>Улаанбаатар, Токио хотод байрлах салбарууд.</p>
+          <a class="quiet-link" href="bases/">
+            Салбаруудыг үзэх
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
         <article class="explore-card">
           <p class="res-en">OUR BUSINESS</p>
           <h3>Үйл ажиллагаа</h3>
@@ -272,227 +309,7 @@
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
-  <section class="section section--about" id="about">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">ABOUT US <span>Компанийн танилцуулга</span></p>
-        <h2 class="section-title">Япон, Монголыг холбогч<br>нөөц баялгийн худалдааны компани.</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-lead reveal">
-          <p>
-            <strong>ALTAN KHULEG RESOURCES LLC</strong> нь Япон, Монгол улсын
-            хамтарсан хөрөнгө оруулалтаар байгуулагдсан нөөц баялгийн худалдааны компани юм.
-          </p>
-          <!-- 要社長確認：暫定文言（事業内容） -->
-          <p>
-            Бид Монголын хайлуур жоншны уурхайгаас олборлосон баяжмалыг Японы
-            хэрэглэгчдэд импортолж, борлуулдаг. Найдвартай түнш болохын хувьд бид
-            хоёр улсад урт хугацааны үнэ цэнийг бий болгохыг зорьж байна.
-          </p>
-        </div>
-        <dl class="about-facts reveal">
-          <!-- 要社長確認：設立年 -->
-          <div><dt>Байгуулагдсан он</dt><dd>2026</dd></div>
-          <div><dt>Салбарууд</dt><dd>Токио / Улаанбаатар</dd></div>
-          <!-- 要社長確認：規格名 -->
-          <div><dt>Бүтээгдэхүүн</dt><dd>Хайлуур жоншны баяжмал (FF-97 зэрэглэл)</dd></div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ STRENGTHS ============ -->
-  <section class="section section--dark" id="strengths">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">OUR STRENGTHS <span>Бидэнтэй хамтрах давуу тал</span></p>
-        <h2 class="section-title">Хоёр орны хооронд ажилладаг учраас<br>боломжтой хэлцлүүд.</h2>
-      </div>
-      <div class="card-grid card-grid--5">
-        <article class="mini-card reveal">
-          <span class="idx">01</span>
-          <h3>Япон, Монголын хамтарсан хөрөнгө оруулалт</h3>
-          <p>Бид хоёр орны өнцөг, сүлжээг ашиглан хоёр талдаа итгэл үнэмшил төрүүлэхүйц хэлцлийг бүрдүүлдэг.</p>
-        </article>
-        <article class="mini-card reveal">
-          <span class="idx">02</span>
-          <h3>Хүчирхэг орон нутгийн сүлжээ</h3>
-          <p>Япон улсад ажиллаж байсан дипломат туршлагатай төлөөлөгчийн удирдлаган дор хоёр орны холбоог ашиглана.</p>
-        </article>
-        <article class="mini-card reveal">
-          <span class="idx">03</span>
-          <!-- 要社長確認：暫定文言（供給体制） -->
-          <h3>Тогтвортой нийлүүлэлтийн сүлжээ</h3>
-          <p>Бид Монголын уурхайн компаниудтай хамтран тогтвортой, найдвартай нийлүүлэлтийн сүлжээг бий болгодог.</p>
-        </article>
-        <article class="mini-card reveal">
-          <span class="idx">04</span>
-          <h3>Тодорхой шаардлагад нийцүүлэх</h3>
-          <p>Бид Японы худалдан авагчдын чанар, найрлага, ширхэгийн хэмжээний шаардлагад тохирсон бүтээгдэхүүн нийлүүлдэг.</p>
-        </article>
-        <article class="mini-card reveal">
-          <span class="idx">05</span>
-          <h3>Олборлолтоос экспорт хүртэл бүх шатыг хариуцна</h3>
-          <p>Бид олборлолт, чанарын хяналт, экспортын логистикийг эхнээс нь дуустал удирдаж, найдвартай худалдааны харилцааг бий болгохыг зорьдог.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ LEADERSHIP ============ -->
-  <section class="section section--leadership" id="leadership">
-    <div class="container">
-      <div class="section-head section-head--leadership reveal">
-        <div class="section-head-text">
-          <p class="eyebrow">MONGOLIA × JAPAN <span>Удирдлага</span></p>
-          <h2 class="section-title">Хоёр талын туршлага, сүлжээг<br>нэгтгэдэг.</h2>
-          <p class="section-note">
-          ALTAN KHULEG RESOURCES компанийг Япон, Монгол улсын түншүүд хамтран хөрөнгө оруулж байгуулсан.
-        </p>
-        </div>
-        <svg class="leadership-mark" viewBox="0 0 1254 1254" role="img" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"><path id="open-circular-frame" d="M 1109.9800,732.2751 A 508,508 0 1 0 934.6948,1012.7901 L 909.5219,981.7043 A 468,468 0 1 1 1071.0052,723.2771 Z"/><path id="horse-outline" d="M799 228 C780 285 779 330 794 376 L1090 801 Q1100 813 1086 830 C1048 877 1002 918 950 946 Q934 956 922 936 L877 819 L782 756 C750 758 728 741 713 732 C685 782 624 813 569 816 C539 884 490 951 519 1024 C479 979 481 913 494 867 L530 835 C507 837 479 830 459 821 C410 870 377 910 351 960 C399 807 545 662 660 490 C502 559 336 690 271 878 C271 783 306 686 396 599 C313 618 242 682 198 750 C211 653 302 574 441 514 C397 540 349 521 315 502 C267 547 225 593 202 635 C234 498 375 350 526 339 C582 334 626 342 663 359 C700 288 750 251 799 228 Z"/><path id="upper-mane-opening" d="M335 483 C418 413 512 358 624 374 C527 419 447 537 335 483 Z"/><path id="middle-opening" d="M456 560 C529 481 633 400 730 414 L696 377 C709 343 732 312 759 290 C751 328 754 365 763 394 L1055 812 C1026 851 990 884 948 912 L903 800 L792 713 C691 720 638 653 659 566 C668 520 688 480 701 457 C616 491 537 548 456 560 Z"/><path id="lower-mane-opening" d="M478 782 C531 724 584 660 627 608 C621 652 642 687 678 707 C635 760 557 809 478 782 Z"/><path id="eye-outline" d="M736 501 Q768 517 811 519 L851 580 Q827 571 809 576 C775 582 758 551 736 501 Z"/><path id="eye-opening" d="M768 535 L801 540 L820 558 C795 560 781 551 768 535 Z"/><path id="nostril" d="M1017 796 C1008 750 970 749 954 775 C934 806 952 831 975 841 L985 823 C962 817 960 798 971 787 C984 775 1002 783 1017 796 Z"/></g></svg>
-      </div>
-      <!-- 要社長確認：代表者氏名・経歴（両名） -->
-      <div class="people">
-        <article class="person reveal">
-          <p class="person-role">ДАРГА</p>
-          <h3 class="person-name">Kazuyuki Surita <span>摺田 和行</span></h3>
-          <ul class="person-points">
-            <li>Үүсгэн байгуулагч, Удирдах зөвлөлийн дарга</li>
-            <li>Японы хувьцаа эзэмшигчид болон компанийн стратегийг хариуцна</li>
-            <li>Япон даяарх салбарын сүлжээтэй холбоо тогтоож ажилладаг</li>
-          </ul>
-        </article>
-        <article class="person reveal">
-          <p class="person-role">ЕРӨНХИЙЛӨГЧ, ТӨЛӨӨЛӨН УДИРДАХ ЗАХИРАЛ</p>
-          <h3 class="person-name">Монгол талын төлөөлөгч</h3>
-          <ul class="person-points">
-            <li>Урьд нь Японд суусан дипломат ажилтан байсан</li>
-            <li>Япон, Англи, Монгол хэлээр чөлөөтэй ярьдаг</li>
-            <li>Монголын дотоод болон гадаад сүлжээг хариуцна</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ COMPANY PHOTOS ============ -->
-  <!-- 要社長確認：写真差し替え（モンゴル出張時の撮影を予定） -->
-  <section class="section section--about" id="photos">
-    <div class="container">
-      <div class="section-head section-head--center reveal">
-        <p class="eyebrow">TOGETHER <span>Хоёр орны салбарууд</span></p>
-        <h2 class="section-title">Хоёр улс,<br>нэг баг.</h2>
-      </div>
-      <div class="photo-trio reveal">
-        <div class="photo-slot">
-          <div class="photo-placeholder">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.2"/></svg>
-            <p class="ph-label">TOKYO OFFICE</p>
-            <p class="ph-note">Токио оффисийн зураг (удахгүй нэмэгдэнэ)</p>
-          </div>
-        </div>
-        <div class="photo-slot photo-slot--feature">
-          <div class="photo-placeholder">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.2"/></svg>
-            <p class="ph-label">JAPAN × MONGOLIA</p>
-            <p class="ph-note">Хоёр төлөөлөгчийн хамтарсан зураг (удахгүй нэмэгдэнэ)</p>
-          </div>
-        </div>
-        <div class="photo-slot">
-          <div class="photo-placeholder">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.2"/></svg>
-            <p class="ph-label">ULAANBAATAR OFFICE</p>
-            <p class="ph-note">Улаанбаатар төв оффисын зураг (удахгүй нэмэгдэнэ)</p>
-          </div>
-        </div>
-      </div>
-      <p class="photo-trio-caption reveal">※ Зургуудыг очиж авахад тухай бүр нэмж оруулна.</p>
-    </div>
-  </section>
-
-  <!-- ============ VISION ============ -->
-  <section class="section section--dark" id="vision">
-    <div class="container container--wide">
-      <div class="section-head reveal">
-        <p class="eyebrow">OUR VISION <span>Бидний чиглэх зам</span></p>
-        <h2 class="section-title">Хайлуур жоншноос ашигт малтмал,<br>эрчим хүч хүртэл.</h2>
-      </div>
-      <!-- 要社長確認：取扱・展開品目（銅・石炭・エネルギー等） -->
-      <div class="phases">
-        <article class="phase reveal">
-          <p class="phase-label">PHASE 01 <span>Одоо</span></p>
-          <h3>Хайлуур жонш, Зэс</h3>
-          <p>Бид Монголын хайлуур жонш, зэсийг Японы зах зээлд нийлүүлдэг.</p>
-        </article>
-        <span class="phase-arrow" aria-hidden="true">→</span>
-        <article class="phase reveal">
-          <p class="phase-label">PHASE 02 <span>Дараагийн шат</span></p>
-          <h3>Нүүрс болон бусад ашигт малтмал</h3>
-          <p>Бид нүүрс болон илүү өргөн хүрээний ашигт малтмал руу өргөжинө.</p>
-        </article>
-        <span class="phase-arrow" aria-hidden="true">→</span>
-        <article class="phase reveal">
-          <p class="phase-label">PHASE 03 <span>Ирээдүйд</span></p>
-          <h3>Эрчим хүчний нөөц баялаг руу</h3>
-          <p>Бид түүхий нефть, нефтийн бүтээгдэхүүн, байгалийн хий зэрэг эрчим хүчний салбар руу өргөжинө.</p>
-        </article>
-      </div>
-      <p class="vision-closing reveal">
-        Монгол, Япон, дэлхийтэй хамт хөгждөг<br class="sp-br">
-        нөөц баялаг, эрчим хүчний худалдааны компани болохыг зорьж байна.
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ BASES ============ -->
-  <section class="section section--bases" id="bases">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">OUR BASES <span>Бидний оффисууд</span></p>
-        <h2 class="section-title">Улаанбаатар, Токио<br>хотод оффистой.</h2>
-      </div>
-      <!-- 要社長確認：拠点住所・電話番号（2拠点） -->
-      <div class="bases-grid">
-        <article class="base-card reveal">
-          <div class="base-media" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
-            <span>MONGOLIA</span>
-          </div>
-          <div class="base-body">
-            <p class="base-en">ULAANBAATAR HEAD OFFICE</p>
-            <h3>Улаанбаатар төв оффис</h3>
-            <address>
-              Блю Скай Тауэр, 1106 тоот, Энхтайваны өргөн чөлөө,<br>
-              Улаанбаатар 14240, Монгол улс<br>
-              <a href="tel:+97677817778">TEL +976 7781 7778</a>
-            </address>
-          </div>
-        </article>
-        <article class="base-card reveal">
-          <div class="base-media" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
-            <span>JAPAN</span>
-          </div>
-          <div class="base-body">
-            <p class="base-en">TOKYO OFFICE</p>
-            <h3>Токио оффис</h3>
-            <address>
-              Nomura Real Estate Nishi-Shinjuku Kyodo Bldg. 2F<br>
-              8-5-1 Nishi-Shinjuku, Shinjuku-ku<br>
-              Tokyo 160-0023, Япон улс<br>
-              <a href="tel:+818042942657">TEL +81 80 4294 2657</a>
-            </address>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section class="section section--contact" id="contact">
+<section class="section section--contact" id="contact">
     <div class="container contact-inner">
       <div class="contact-head reveal">
         <p class="eyebrow">CONTACT <span>Бидэнтэй холбогдох</span></p>
@@ -570,9 +387,7 @@
       </div>
     </div>
   </section>
-
-  <!-- ============ COMPANY ============ -->
-  <section class="section section--company" id="company">
+<section class="section section--company" id="company">
     <div class="container container--narrow">
       <div class="section-head reveal">
         <p class="eyebrow">COMPANY <span>Байгууллагын мэдээлэл</span></p>
@@ -605,12 +420,14 @@
       </div>
     </div>
     <nav class="footer-nav" aria-label="Хөлийн цэс">
-      <a href="#about">Бидний тухай</a>
-      <a href="business/">Үйл ажиллагаа</a>
-      <a href="resources/">Нөөц баялаг</a>
-      <a href="#vision">Алсын хараа</a>
-      <a href="#bases">Салбарууд</a>
-      <a href="#contact">Холбоо барих</a>
+      <a href="about/">БИДНИЙ ТУХАЙ</a>
+      <a href="strengths/">ДАВУУ ТАЛ</a>
+      <a href="leadership/">УДИРДЛАГА</a>
+      <a href="vision/">АЛСЫН ХАРАА</a>
+      <a href="bases/">САЛБАРУУД</a>
+      <a href="business/">ҮЙЛ АЖИЛЛАГАА</a>
+      <a href="resources/">НӨӨЦ БАЯЛАГ</a>
+      <a href="#contact">ХОЛБОО БАРИХ</a>
     </nav>
   </div>
   <div class="container footer-bottom">
