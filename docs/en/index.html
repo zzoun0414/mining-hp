@@ -14,14 +14,19 @@
   try {
     skip = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   } catch (e) { skip = false; }
-  // Only a real refresh (Cmd/Ctrl+R, reload button) should replay the
-  // intro — navigating in from a link (including the nav links on the
-  // business/resources sub-pages back to this page) shouldn't re-trigger
-  // it every time.
+  // A real refresh (Cmd/Ctrl+R, reload button) always replays the intro.
+  // Otherwise — a regular link click, including the nav links on the
+  // business/resources sub-pages back to this page — it only plays once
+  // per tab, so a first-time visitor still gets the welcome moment but
+  // clicking around afterward doesn't keep re-triggering it.
   try {
     var navEntries = performance.getEntriesByType('navigation');
-    if (!navEntries.length || navEntries[0].type !== 'reload') skip = true;
-  } catch (e) { skip = true; }
+    var isReload = navEntries.length && navEntries[0].type === 'reload';
+    var seenBefore = false;
+    try { seenBefore = sessionStorage.getItem('akIntroSeen') === '1'; } catch (e2) { seenBefore = false; }
+    if (!isReload && seenBefore) skip = true;
+    if (!skip) { try { sessionStorage.setItem('akIntroSeen', '1'); } catch (e3) {} }
+  } catch (e) { /* detection unavailable — fall back to always showing it */ }
   if (!skip) {
     html.classList.add('intro-active');
     /* safety net: if script.js fails to load/execute, never leave content hidden */
