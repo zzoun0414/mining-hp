@@ -95,16 +95,24 @@
   --space-xl:64px;
   --space-2xl:96px;
   --space-3xl:128px;
+  /* 2026-09-18: deliberately bold section rhythm — a section should feel
+     like it owns the screen, not share it with its neighbours. */
+  --space-4xl:120px;
+  --space-5xl:160px;
+  --space-6xl:200px;
 
   /* heading tiers — card/subsection titles had drifted to ~8 near-duplicate
      sizes (1.0/1.02/1.05/1.2/1.25/1.3/1.4/1.5rem) across components; these
      three replace them so the same title role reads at the same size
-     wherever it appears. .hero-title and .section-title already had one
-     shared rule each and are untouched. */
-  --h3-dense:1.05rem;   /* repeated grid items: mini-card, flow-step, and
+     wherever it appears. Sized so even the smallest tier clears body text
+     (~0.9-0.96rem) by at least 1.6x — a flat hierarchy was the complaint.
+     .hero-title keeps its own (already large) scale; .section-title now
+     sits close to it on purpose, since each section is its own full-screen
+     statement rather than one stop in a denser scroll. */
+  --h3-dense:1.5rem;    /* repeated grid items: mini-card, flow-step, and
                            small in-text subheads like privacy-note */
-  --h3-card:1.25rem;    /* one-of-a-few cards: explore, phase, base, logistics */
-  --h3-feature:1.4rem;  /* the most prominent single cards: resource detail,
+  --h3-card:1.75rem;    /* one-of-a-few cards: explore, phase, base, logistics */
+  --h3-feature:2rem;    /* the most prominent single cards: resource detail,
                            leadership person name */
 }
 
@@ -174,7 +182,7 @@ body{
   color:var(--ink);
   font-family:var(--sans-jp);
   font-weight:300;
-  line-height:1.9;
+  line-height:1.85;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   overflow-x:hidden;
@@ -190,6 +198,12 @@ p{margin:0}
 ul,ol{margin:0;padding:0;list-style:none}
 
 .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+/* content width contrast: not every section should read at the same width.
+   The hero and vision are single big statements — let them stretch closer
+   to the viewport edge. The company table is dense key/value data — give
+   it a narrower column so it reads instead of sprawling. */
+.container--wide{max-width:1400px}
+.container--narrow{max-width:860px}
 
 .skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--gold);color:var(--btn-ink);padding:10px 18px;border-radius:0 0 6px 0}
 .skip-link:focus{left:0}
@@ -290,7 +304,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 .hero-title{
   font-family:var(--serif-en);font-weight:600;
-  font-size:clamp(2.7rem,7.5vw,5.6rem);letter-spacing:.06em;
+  font-size:clamp(2.7rem,7.5vw,5.6rem);letter-spacing:.06em;line-height:1.15;
   color:var(--text-strong);
 }
 .hero-title .tj{white-space:nowrap}
@@ -402,34 +416,53 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 /* =========================================================
    SECTION SHELL
    ========================================================= */
-.section{position:relative;padding:clamp(var(--space-xl),11vw,var(--space-3xl)) 0;scroll-margin-top:var(--header-h)}
+/* 2026-09-18: section padding roughly 1.7x what it was — a section should
+   fill the screen as one statement, not share the viewport with its
+   neighbours. */
+.section{position:relative;padding:clamp(var(--space-4xl),12vw,var(--space-6xl)) 0;scroll-margin-top:var(--header-h)}
 [id]{scroll-margin-top:var(--header-h)}
 .section--dark{background:var(--bg-2)}
 .section--about{background:var(--bg)}
 .section--resources{background:var(--bg-3)}
-.section--company{background:var(--bg-2);padding-bottom:clamp(var(--space-2xl),12vw,var(--space-3xl))}
+.section--company{background:var(--bg-2);padding-bottom:clamp(var(--space-5xl),12vw,var(--space-6xl))}
 
-.section-head{max-width:760px;margin-bottom:clamp(var(--space-md),6vw,var(--space-xl))}
+/* was 760px — too narrow for .section-title's own hand-placed <br> line
+   breaks now that the title runs up to 4rem; that width was sized for the
+   old 2.4rem cap and was quietly cutting most titles into an extra,
+   unintended line instead of the two clean lines the copy was written for */
+.section-head{max-width:960px;margin-bottom:clamp(var(--space-lg),6vw,var(--space-2xl))}
 .section-head--center{margin-left:auto;margin-right:auto;text-align:center}
+/* the small English label above each section title ("OUR STRENGTHS" etc.) —
+   made smaller and wider-tracked so it reads as a thin rule, not a second
+   headline competing with .section-title's now much larger scale. */
 .eyebrow{
-  font-family:var(--serif-en);letter-spacing:.24em;font-size:13px;color:var(--gold-label);
+  font-family:var(--serif-en);letter-spacing:.3em;font-size:10px;color:var(--gold-label);
   display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:var(--space-sm);
 }
 .section-head--center .eyebrow{justify-content:center}
-.eyebrow span{font-family:var(--serif-jp);letter-spacing:.14em;font-size:12px;color:var(--muted)}
+.eyebrow span{font-family:var(--serif-jp);letter-spacing:.14em;font-size:11px;color:var(--muted)}
 .eyebrow::before{content:"";width:34px;height:1px;background:var(--rule-h);align-self:center}
 .section-head--center .eyebrow::before{display:none}
 .section-title{
   font-family:var(--serif-jp);font-weight:600;
-  font-size:clamp(1.5rem,3.6vw,2.4rem);letter-spacing:.04em;color:var(--text-strong);
+  font-size:clamp(2.4rem,5vw,4rem);letter-spacing:.04em;line-height:1.15;color:var(--text-strong);
 }
-.section-note{margin-top:20px;color:var(--ink-soft);font-family:var(--serif-jp);font-size:.98rem}
+.section-note{margin-top:20px;color:var(--ink-soft);font-family:var(--serif-jp);font-size:.98rem;max-width:34em}
+/* keeps a specific run of characters (e.g. a katakana loanword like
+   トレーディング・カンパニー) from being split mid-word by the now much
+   larger .section-title — but only where there's room: on narrow viewports
+   forcing it to stay on one line ran the text off the edge of the screen,
+   which is worse than the line-break it was meant to avoid. */
+.no-mid-break{white-space:nowrap}
+@media (max-width:680px){
+  .no-mid-break{white-space:normal}
+}
 
 /* =========================================================
    PAGE INTRO (BUSINESS / RESOURCES sub-pages: a quiet banner,
    not a full hero — the mega-hero stays reserved for the home page)
    ========================================================= */
-.page-intro{padding-top:calc(var(--header-h) + var(--space-2xl));padding-bottom:12px}
+.page-intro{padding-top:calc(var(--header-h) + var(--space-4xl));padding-bottom:12px}
 .page-manifesto{
   font-family:var(--serif-jp);font-size:1.15rem;line-height:1.9;color:var(--ink-soft);
   max-width:600px;margin-top:28px;
@@ -486,7 +519,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
    ABOUT
    ========================================================= */
 .about-grid{display:grid;grid-template-columns:1.4fr .75fr;gap:clamp(32px,6vw,68px);align-items:start}
-.about-lead p{font-family:var(--serif-jp);font-size:1.05rem;color:var(--ink-soft)}
+.about-lead p{font-family:var(--serif-jp);font-size:1.05rem;color:var(--ink-soft);max-width:34em}
 .about-lead p+p{margin-top:20px}
 .about-lead strong{color:var(--gold-ink);font-weight:600}
 .about-facts{display:flex;flex-direction:column;border-left:1px solid var(--line);border-image:var(--rule-v) 1}
@@ -550,7 +583,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .res-en{font-family:var(--serif-en);letter-spacing:.2em;font-size:12px;color:var(--gold-label)}
 .res-body h3{font-family:var(--serif-jp);font-size:var(--h3-feature);color:var(--text-strong);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .res-body h3 span:not(.tag){font-size:.8rem;color:var(--muted);letter-spacing:.1em}
-.res-body>p{color:var(--ink-soft);font-family:var(--serif-jp);font-size:.96rem}
+.res-body>p{color:var(--ink-soft);font-family:var(--serif-jp);font-size:.96rem;max-width:34em}
 .res-spec{margin-top:8px;border-top:1px solid var(--line-soft)}
 .res-spec li{
   display:grid;grid-template-columns:8.5em 1fr;gap:14px;
@@ -572,7 +605,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
   max-width:none;
   display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(24px,5vw,56px);
 }
-.section-head--leadership .section-head-text{max-width:760px}
+.section-head--leadership .section-head-text{max-width:960px}
 .leadership-mark{
   width:clamp(96px,11vw,150px);height:clamp(96px,11vw,150px);flex:none;
   color:var(--gold-deep);opacity:.5;
@@ -628,7 +661,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .logistics-map::after{content:"";position:absolute;inset:0;background:var(--logistics-map-overlay);mix-blend-mode:multiply;pointer-events:none}
 .logistics-map img{display:block;filter:var(--map-filter)}
 .logistics-text h3{font-family:var(--serif-jp);font-size:var(--h3-card);color:var(--text-strong);margin-bottom:14px}
-.logistics-text p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.95rem}
+.logistics-text p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.95rem;max-width:34em}
 
 /* =========================================================
    VISION
@@ -726,7 +759,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
   border-top:1px solid var(--line-soft);
 }
 .privacy-note h3{font-family:var(--serif-jp);font-size:var(--h3-dense);color:var(--text-strong);margin-bottom:12px}
-.privacy-note p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.9rem;line-height:1.9}
+.privacy-note p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.9rem;line-height:1.9;max-width:34em}
 
 /* =========================================================
    COMPANY TABLE
@@ -737,7 +770,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
   padding:20px 4px;border-bottom:1px solid var(--line-soft);
 }
 .company-table dt{font-family:var(--serif-en);font-size:12px;letter-spacing:.12em;color:var(--gold-label);padding-top:3px}
-.company-table dd{margin:0;font-family:var(--serif-jp);color:var(--ink-soft);font-size:.96rem}
+.company-table dd{margin:0;font-family:var(--serif-jp);color:var(--ink-soft);font-size:.96rem;max-width:34em}
 
 /* =========================================================
    FOOTER
