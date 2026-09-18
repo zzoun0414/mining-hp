@@ -243,6 +243,14 @@ ul,ol{margin:0;padding:0;list-style:none}
   font-size:12px;letter-spacing:.13em;color:var(--ink-soft);
   padding:6px 0;position:relative;transition:color .25s ease;
 }
+/* JA nav now carries real Japanese labels (see docs/index.html) instead of
+   the all-English caps used on EN/MN — Cinzel's wide small-caps tracking
+   was tuned for that Latin treatment and reads thin/pale on Shippori
+   Mincho at the same size, so give the JA nav its own weight/size/color. */
+html[lang="ja"] .site-nav a{
+  font-family:var(--serif-jp);font-weight:600;
+  font-size:14px;letter-spacing:.04em;color:var(--ink);
+}
 .site-nav a::after{
   content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
   background:var(--rule-h);transition:width .3s ease;
@@ -323,6 +331,9 @@ ul,ol{margin:0;padding:0;list-style:none}
   margin-top:28px;line-height:1.7;
 }
 .hero-jp{font-family:var(--serif-jp);font-size:clamp(1rem,2.4vw,1.25rem);color:var(--ink);margin-top:16px;letter-spacing:.06em}
+/* a plain, unambiguous line stating what the company actually does —
+   the brand lines above are evocative on purpose, this one isn't */
+.hero-statement{font-family:var(--sans-jp);font-weight:500;font-size:clamp(.95rem,1.8vw,1.1rem);color:var(--text-strong);margin-top:14px;letter-spacing:.02em}
 
 .hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
 
@@ -583,6 +594,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .tone-copper{background:radial-gradient(circle at 50% 40%,rgba(176,110,72,.28),transparent 70%),var(--bg-3)}
 .tone-energy{background:radial-gradient(circle at 50% 60%,rgba(80,120,150,.24),transparent 70%),var(--bg-3)}
 .res-body{padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:12px}
+.res-cta{align-self:flex-start;margin-top:6px}
 .res-en{font-family:var(--serif-en);letter-spacing:.2em;font-size:12px;color:var(--gold-label)}
 .res-body h3{font-family:var(--serif-jp);font-size:var(--h3-feature);color:var(--text-strong);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .res-body h3 span:not(.tag){font-size:.8rem;color:var(--muted);letter-spacing:.1em}
@@ -714,7 +726,10 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .contact-inner{max-width:720px}
 .contact-head .eyebrow{justify-content:center}
 .contact-head .eyebrow::before{display:none}
-.contact-head .section-title{margin-top:6px}
+/* the shared .section-title scale (up to 4rem) reads as too heavy for a
+   short, conversational CTA line in a narrow, centered column — pull it
+   back down closer to its pre-bold-pass size for this one context */
+.contact-head .section-title{margin-top:6px;font-size:clamp(1.6rem,4vw,2.2rem)}
 .contact-actions{margin-top:38px;display:flex;flex-direction:column;align-items:center;gap:18px}
 .contact-mail{font-family:var(--serif-en);letter-spacing:.14em;color:var(--ink-soft);font-size:.95rem}
 
@@ -725,7 +740,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 }
 .form-row{display:flex;flex-direction:column;gap:8px}
 .form-row--full{grid-column:1/-1}
-.contact-form label{font-family:var(--serif-jp);font-size:.9rem;color:var(--ink-soft);display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.contact-form label{font-family:var(--serif-jp);font-size:.9rem;color:var(--ink);display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
 .contact-form .req{
   font-family:var(--sans-jp);font-size:10px;letter-spacing:.05em;color:var(--gold-ink);
   border:1px solid var(--line);border-radius:2px;padding:1px 6px;line-height:1.5;
@@ -829,6 +844,25 @@ html.intro-done .hero-actions{transition-delay:1140ms}
   .nav-divider{width:80%;height:1px;margin:4px 0}
   .nav-cta{margin-top:8px}
   .nav-toggle{display:flex;z-index:110}
+}
+/* MN nav labels run noticeably longer than the JA/EN ones (multi-word
+   Cyrillic phrases), so the same desktop nav wraps to two cramped lines
+   well before 1180px. Give MN its own, wider trigger for the same drawer
+   — duplicated rather than parameterized since CSS media queries can't
+   read a custom property for their condition. */
+@media (max-width:1500px){
+  html[lang="mn"] .site-nav{
+    position:fixed;inset:0 0 0 auto;width:min(78vw,340px);
+    flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;
+    background:var(--nav-drawer-bg);backdrop-filter:blur(12px);
+    padding:0 40px;transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);
+    border-left:1px solid var(--line);
+  }
+  html[lang="mn"] .site-nav.open{transform:none}
+  html[lang="mn"] .site-nav a{font-size:15px;letter-spacing:.14em}
+  html[lang="mn"] .nav-divider{width:80%;height:1px;margin:4px 0}
+  html[lang="mn"] .nav-cta{margin-top:8px}
+  html[lang="mn"] .nav-toggle{display:flex;z-index:110}
 }
 @media (max-width:960px){
   .about-grid{grid-template-columns:1fr;gap:36px}
