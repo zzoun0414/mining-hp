@@ -565,7 +565,11 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .about-lead p{font-family:var(--serif-jp);font-size:1.05rem;color:var(--ink-soft);max-width:34em}
 .about-lead p+p{margin-top:20px}
 .about-lead strong{color:var(--gold-ink);font-weight:600}
-.about-facts{display:flex;flex-direction:column;border-left:1px solid var(--line);border-image:var(--rule-v) 1}
+/* .about-facts is a <dl> — the real culprit was its own default 16px
+   margin-top (browser UA stylesheet, never reset for dl anywhere on the
+   site), not the row padding fixed earlier; that fix stays but wasn't
+   the actual cause */
+.about-facts{margin:0;display:flex;flex-direction:column;border-left:1px solid var(--line);border-image:var(--rule-v) 1}
 .about-facts>div{padding:16px 0 16px 26px;display:flex;flex-direction:column;gap:5px}
 .about-facts>div:first-child{padding-top:0}
 .about-facts>div+div{border-top:1px solid var(--line-soft)}
@@ -817,7 +821,7 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 /* =========================================================
    COMPANY TABLE
    ========================================================= */
-.company-table{border-top:1px solid var(--line);border-image:var(--rule-h) 1}
+.company-table{margin:0;border-top:1px solid var(--line);border-image:var(--rule-h) 1}
 .company-table>div{
   display:grid;grid-template-columns:12em 1fr;gap:24px;
   padding:20px 4px;border-bottom:1px solid var(--line-soft);

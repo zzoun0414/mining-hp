@@ -14,6 +14,14 @@
   try {
     skip = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   } catch (e) { skip = false; }
+  // Only a real refresh (Cmd/Ctrl+R, reload button) should replay the
+  // intro — navigating in from a link (including the nav links on the
+  // business/resources sub-pages back to this page) shouldn't re-trigger
+  // it every time.
+  try {
+    var navEntries = performance.getEntriesByType('navigation');
+    if (!navEntries.length || navEntries[0].type !== 'reload') skip = true;
+  } catch (e) { skip = true; }
   if (!skip) {
     html.classList.add('intro-active');
     /* safety net: if script.js fails to load/execute, never leave content hidden */
