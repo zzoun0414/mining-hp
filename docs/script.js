@@ -233,18 +233,16 @@
   /* --- scroll reveal --- */
   var reveals = document.querySelectorAll('.reveal');
 
-  /* give grid items a short cascading delay so rows settle in sequence */
+  /* stagger sibling .reveal elements 100ms apart (per parent group), so a
+     row of cards settles in sequence instead of all at once. General by
+     DOM position rather than a hardcoded list of grid selectors, so it
+     applies to any current or future group of reveals automatically. */
   if (!reduceMotion) {
-    ['.card-grid', '.res-grid', '.people', '.phases', '.flow'].forEach(function (sel) {
-      document.querySelectorAll(sel).forEach(function (grid) {
-        var i = 0;
-        Array.prototype.forEach.call(grid.children, function (child) {
-          if (child.classList.contains('reveal')) {
-            child.style.setProperty('--rd', (Math.min(i, 5) * 65) + 'ms');
-            i++;
-          }
-        });
-      });
+    reveals.forEach(function (el) {
+      var parent = el.parentElement;
+      var i = parent.__revealCount || 0;
+      el.style.setProperty('--rd', (i * 100) + 'ms');
+      parent.__revealCount = i + 1;
     });
   }
 
@@ -260,6 +258,48 @@
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* --- number count-up (e.g. founding year in the company facts) ---
+     Any element with data-count-to="N" counts up from 0 to N once it
+     scrolls into view. IntersectionObserver-driven, one-shot, and skipped
+     entirely under reduced motion (jumps straight to the final number). */
+  var counters = document.querySelectorAll('[data-count-to]');
+  if (counters.length) {
+    var runCounter = function (el) {
+      var target = parseInt(el.getAttribute('data-count-to'), 10);
+      if (reduceMotion || isNaN(target)) {
+        el.textContent = isNaN(target) ? el.textContent : target;
+        return;
+      }
+      var duration = 1200;
+      var startTime = null;
+      function tick(ts) {
+        if (startTime === null) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = target;
+        }
+      }
+      requestAnimationFrame(tick);
+    };
+    if ('IntersectionObserver' in window) {
+      var counterIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            runCounter(en.target);
+            counterIo.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(function (el) { counterIo.observe(el); });
+    } else {
+      counters.forEach(function (el) { el.textContent = el.getAttribute('data-count-to'); });
+    }
   }
 
   /* --- active nav link on scroll --- */
