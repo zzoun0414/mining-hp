@@ -535,17 +535,36 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    without this, scrolling past ABOUT jumps straight to STRENGTHS
    with no acknowledgment that those two nav items exist)
    ========================================================= */
-/* now the home page's hub to all 7 section-pages (was a 2-card bridge to
-   just business/resources) — 3 columns so 7 cards settle into 3+3+1 rather
-   than the more awkwardly uneven 4+3 a 4-column grid would give */
-.explore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+/* the home page's hub to all 7 section-pages. 2 columns, not 3 — 7 cards
+   don't divide evenly into either, but 2 columns lets the last odd-one-out
+   (BASES, closing the "softer" group of 5) resolve as one deliberate
+   full-width row instead of a lone tile stranded next to empty space.
+   BUSINESS/RESOURCES — the two things we actually *do* — get their own
+   larger, higher-emphasis row after that, so the grid reads in order of
+   weight (get-to-know-us cards, then the two that matter most) rather
+   than presenting all 7 as equally important. */
+.explore-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
 .explore-card{background:var(--bg-2);border:1px solid transparent;padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;gap:16px;transition:border-color .24s ease}
 .explore-card:hover{border-color:var(--line)}
 .explore-card .res-en{display:block}
 .explore-card h3{font-family:var(--serif-jp);font-weight:600;font-size:var(--h3-card);color:var(--text-strong)}
-.explore-card p{color:var(--ink-soft);font-family:var(--serif-jp);font-size:.95rem}
+/* keep-all stops JP breaks mid-particle/mid-verb (e.g. "実現でき|る");
+   anywhere is the escape hatch if a translation ever runs long regardless.
+   line-clamp is a hard backstop so a card's height still can't run away
+   even if a future copy edit forgets to keep to ~2 lines. */
+.explore-card p{
+  color:var(--ink-soft);font-family:var(--serif-jp);font-size:.95rem;
+  word-break:keep-all;overflow-wrap:anywhere;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
+}
 .explore-card .quiet-link{align-self:flex-start;margin-top:4px}
-@media (max-width:960px){.explore-grid{grid-template-columns:repeat(2,1fr)}}
+.explore-card--wide{grid-column:1 / -1}
+.explore-card--wide p{max-width:640px}
+/* BUSINESS / RESOURCES: the primary pair, set apart with a bigger heading
+   and more breathing room rather than another same-size tile */
+.explore-card--primary{padding:clamp(36px,5vw,56px)}
+.explore-card--primary h3{font-size:var(--h3-feature)}
+.explore-card--primary p{font-size:1.05rem}
 @media (max-width:680px){.explore-grid{grid-template-columns:1fr}}
 
 .page-crosslink{margin-top:clamp(var(--space-md),6vw,var(--space-xl));text-align:center}
