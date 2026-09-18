@@ -82,6 +82,38 @@
   --serif-jp:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
   --sans-jp:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
   --italic:"Cormorant Garamond",serif;
+
+  /* spacing scale — named steps instead of ad hoc numbers, so section
+     rhythm and internal breathing room stay consistent as pages are added.
+     No color/visual system copied from anywhere; just the idea of picking
+     a small set of deliberate steps rather than one-off px values. */
+  --space-3xs:8px;
+  --space-xs:16px;
+  --space-sm:24px;
+  --space-md:32px;
+  --space-lg:48px;
+  --space-xl:64px;
+  --space-2xl:96px;
+  --space-3xl:128px;
+  /* 2026-09-18: deliberately bold section rhythm — a section should feel
+     like it owns the screen, not share it with its neighbours. */
+  --space-4xl:120px;
+  --space-5xl:160px;
+  --space-6xl:200px;
+
+  /* heading tiers — card/subsection titles had drifted to ~8 near-duplicate
+     sizes (1.0/1.02/1.05/1.2/1.25/1.3/1.4/1.5rem) across components; these
+     three replace them so the same title role reads at the same size
+     wherever it appears. Sized so even the smallest tier clears body text
+     (~0.9-0.96rem) by at least 1.6x — a flat hierarchy was the complaint.
+     .hero-title keeps its own (already large) scale; .section-title now
+     sits close to it on purpose, since each section is its own full-screen
+     statement rather than one stop in a denser scroll. */
+  --h3-dense:1.5rem;    /* repeated grid items: mini-card, flow-step, and
+                           small in-text subheads like privacy-note */
+  --h3-card:1.75rem;    /* one-of-a-few cards: explore, phase, base, logistics */
+  --h3-feature:2rem;    /* the most prominent single cards: resource detail,
+                           leadership person name */
 }
 
 /* Mongolian page: Cinzel/Shippori Mincho/Noto Sans JP don't cover Cyrillic
@@ -150,7 +182,7 @@ body{
   color:var(--ink);
   font-family:var(--sans-jp);
   font-weight:300;
-  line-height:1.9;
+  line-height:1.85;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   overflow-x:hidden;
@@ -166,6 +198,12 @@ p{margin:0}
 ul,ol{margin:0;padding:0;list-style:none}
 
 .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+/* content width contrast: not every section should read at the same width.
+   The hero and vision are single big statements — let them stretch closer
+   to the viewport edge. The company table is dense key/value data — give
+   it a narrower column so it reads instead of sprawling. */
+.container--wide{max-width:1400px}
+.container--narrow{max-width:860px}
 
 .skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--gold);color:var(--btn-ink);padding:10px 18px;border-radius:0 0 6px 0}
 .skip-link:focus{left:0}
@@ -266,7 +304,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 .hero-title{
   font-family:var(--serif-en);font-weight:600;
-  font-size:clamp(2.7rem,7.5vw,5.6rem);letter-spacing:.06em;
+  font-size:clamp(2.7rem,7.5vw,5.6rem);letter-spacing:.06em;line-height:1.15;
   color:var(--text-strong);
 }
 .hero-title .tj{white-space:nowrap}
@@ -378,34 +416,53 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 /* =========================================================
    SECTION SHELL
    ========================================================= */
-.section{position:relative;padding:clamp(72px,11vw,140px) 0;scroll-margin-top:var(--header-h)}
+/* 2026-09-18: section padding roughly 1.7x what it was — a section should
+   fill the screen as one statement, not share the viewport with its
+   neighbours. */
+.section{position:relative;padding:clamp(var(--space-4xl),12vw,var(--space-6xl)) 0;scroll-margin-top:var(--header-h)}
 [id]{scroll-margin-top:var(--header-h)}
 .section--dark{background:var(--bg-2)}
 .section--about{background:var(--bg)}
 .section--resources{background:var(--bg-3)}
-.section--company{background:var(--bg-2);padding-bottom:clamp(80px,12vw,150px)}
+.section--company{background:var(--bg-2);padding-bottom:clamp(var(--space-5xl),12vw,var(--space-6xl))}
 
-.section-head{max-width:760px;margin-bottom:clamp(40px,6vw,68px)}
+/* was 760px — too narrow for .section-title's own hand-placed <br> line
+   breaks now that the title runs up to 4rem; that width was sized for the
+   old 2.4rem cap and was quietly cutting most titles into an extra,
+   unintended line instead of the two clean lines the copy was written for */
+.section-head{max-width:960px;margin-bottom:clamp(var(--space-lg),6vw,var(--space-2xl))}
 .section-head--center{margin-left:auto;margin-right:auto;text-align:center}
+/* the small English label above each section title ("OUR STRENGTHS" etc.) —
+   made smaller and wider-tracked so it reads as a thin rule, not a second
+   headline competing with .section-title's now much larger scale. */
 .eyebrow{
-  font-family:var(--serif-en);letter-spacing:.24em;font-size:13px;color:var(--gold-label);
-  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:22px;
+  font-family:var(--serif-en);letter-spacing:.3em;font-size:10px;color:var(--gold-label);
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:var(--space-sm);
 }
 .section-head--center .eyebrow{justify-content:center}
-.eyebrow span{font-family:var(--serif-jp);letter-spacing:.14em;font-size:12px;color:var(--muted)}
+.eyebrow span{font-family:var(--serif-jp);letter-spacing:.14em;font-size:11px;color:var(--muted)}
 .eyebrow::before{content:"";width:34px;height:1px;background:var(--rule-h);align-self:center}
 .section-head--center .eyebrow::before{display:none}
 .section-title{
   font-family:var(--serif-jp);font-weight:600;
-  font-size:clamp(1.5rem,3.6vw,2.4rem);letter-spacing:.04em;color:var(--text-strong);
+  font-size:clamp(2.4rem,5vw,4rem);letter-spacing:.04em;line-height:1.15;color:var(--text-strong);
 }
-.section-note{margin-top:20px;color:var(--ink-soft);font-family:var(--serif-jp);font-size:.98rem}
+.section-note{margin-top:20px;color:var(--ink-soft);font-family:var(--serif-jp);font-size:.98rem;max-width:34em}
+/* keeps a specific run of characters (e.g. a katakana loanword like
+   トレーディング・カンパニー) from being split mid-word by the now much
+   larger .section-title — but only where there's room: on narrow viewports
+   forcing it to stay on one line ran the text off the edge of the screen,
+   which is worse than the line-break it was meant to avoid. */
+.no-mid-break{white-space:nowrap}
+@media (max-width:680px){
+  .no-mid-break{white-space:normal}
+}
 
 /* =========================================================
    PAGE INTRO (BUSINESS / RESOURCES sub-pages: a quiet banner,
    not a full hero — the mega-hero stays reserved for the home page)
    ========================================================= */
-.page-intro{padding-top:calc(var(--header-h) + 88px);padding-bottom:12px}
+.page-intro{padding-top:calc(var(--header-h) + var(--space-4xl));padding-bottom:12px}
 .page-manifesto{
   font-family:var(--serif-jp);font-size:1.15rem;line-height:1.9;color:var(--ink-soft);
   max-width:600px;margin-top:28px;
@@ -444,12 +501,12 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .explore-card{background:var(--bg-2);padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;gap:16px;transition:background .35s ease}
 .explore-card:hover{background:var(--panel)}
 .explore-card .res-en{display:block}
-.explore-card h3{font-family:var(--serif-jp);font-weight:600;font-size:1.3rem;color:var(--text-strong)}
+.explore-card h3{font-family:var(--serif-jp);font-weight:600;font-size:var(--h3-card);color:var(--text-strong)}
 .explore-card p{color:var(--ink-soft);font-family:var(--serif-jp);font-size:.95rem}
 .explore-card .quiet-link{align-self:flex-start;margin-top:4px}
 @media (max-width:680px){.explore-grid{grid-template-columns:1fr}}
 
-.page-crosslink{margin-top:clamp(40px,6vw,64px);text-align:center}
+.page-crosslink{margin-top:clamp(var(--space-md),6vw,var(--space-xl));text-align:center}
 .quiet-link{
   display:inline-flex;align-items:center;gap:9px;
   font-family:var(--serif-en);letter-spacing:.14em;font-size:12px;color:var(--gold-deep);
@@ -462,7 +519,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
    ABOUT
    ========================================================= */
 .about-grid{display:grid;grid-template-columns:1.4fr .75fr;gap:clamp(32px,6vw,68px);align-items:start}
-.about-lead p{font-family:var(--serif-jp);font-size:1.05rem;color:var(--ink-soft)}
+.about-lead p{font-family:var(--serif-jp);font-size:1.05rem;color:var(--ink-soft);max-width:34em}
 .about-lead p+p{margin-top:20px}
 .about-lead strong{color:var(--gold-ink);font-weight:600}
 .about-facts{display:flex;flex-direction:column;border-left:1px solid var(--line);border-image:var(--rule-v) 1}
@@ -486,7 +543,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .mini-card .ic{width:34px;height:34px;fill:none;stroke:var(--gold);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
 .mini-card .idx{font-family:var(--serif-en);font-size:13px;letter-spacing:.2em;color:var(--gold-deep)}
 .mini-card h3{
-  font-family:var(--serif-jp);font-size:1.02rem;color:var(--text-strong);
+  font-family:var(--serif-jp);font-size:var(--h3-dense);color:var(--text-strong);
   word-break:normal;word-break:auto-phrase;line-break:strict;text-wrap:balance;
 }
 .mini-card h3 .tag{margin-left:6px}
@@ -524,9 +581,9 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .tone-energy{background:radial-gradient(circle at 50% 60%,rgba(80,120,150,.24),transparent 70%),var(--bg-3)}
 .res-body{padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:12px}
 .res-en{font-family:var(--serif-en);letter-spacing:.2em;font-size:12px;color:var(--gold-label)}
-.res-body h3{font-family:var(--serif-jp);font-size:1.4rem;color:var(--text-strong);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.res-body h3{font-family:var(--serif-jp);font-size:var(--h3-feature);color:var(--text-strong);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .res-body h3 span:not(.tag){font-size:.8rem;color:var(--muted);letter-spacing:.1em}
-.res-body>p{color:var(--ink-soft);font-family:var(--serif-jp);font-size:.96rem}
+.res-body>p{color:var(--ink-soft);font-family:var(--serif-jp);font-size:.96rem;max-width:34em}
 .res-spec{margin-top:8px;border-top:1px solid var(--line-soft)}
 .res-spec li{
   display:grid;grid-template-columns:8.5em 1fr;gap:14px;
@@ -548,7 +605,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
   max-width:none;
   display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(24px,5vw,56px);
 }
-.section-head--leadership .section-head-text{max-width:760px}
+.section-head--leadership .section-head-text{max-width:960px}
 .leadership-mark{
   width:clamp(96px,11vw,150px);height:clamp(96px,11vw,150px);flex:none;
   color:var(--gold-deep);opacity:.5;
@@ -562,7 +619,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .person{border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(28px,3.5vw,44px)}
 .person-role{font-family:var(--serif-en);letter-spacing:.16em;font-size:11px;color:var(--gold-label)}
 .person-role span{font-family:var(--serif-jp);color:var(--muted);letter-spacing:.1em;margin-left:8px}
-.person-name{font-family:var(--serif-jp);font-size:1.5rem;color:var(--text-strong);margin:14px 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line);border-image:var(--rule-h) 1}
+.person-name{font-family:var(--serif-jp);font-size:var(--h3-feature);color:var(--text-strong);margin:14px 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line);border-image:var(--rule-h) 1}
 .person-name span{display:block;font-size:.95rem;color:var(--ink-soft);margin-top:4px}
 .person-points li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:.92rem;font-family:var(--serif-jp)}
 .person-points li+li{margin-top:10px}
@@ -588,7 +645,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .flow-mark{width:52px;height:52px;border-radius:50%;border:1px solid var(--gold)}
 .flow-step--hub{background:var(--flow-hub-bg);border-color:var(--line)}
 .flow-en{font-family:var(--serif-en);letter-spacing:.14em;font-size:10.5px;color:var(--gold-label)}
-.flow-step h3{font-family:var(--serif-jp);font-size:1rem;color:var(--text-strong);word-break:normal;word-break:auto-phrase;line-break:strict;text-wrap:balance}
+.flow-step h3{font-family:var(--serif-jp);font-size:var(--h3-dense);color:var(--text-strong);word-break:normal;word-break:auto-phrase;line-break:strict;text-wrap:balance}
 .flow-step p{font-size:.8rem;color:var(--muted);line-height:1.7}
 .flow-step:not(:last-child)::after{
   content:"→";position:absolute;right:-11px;top:50%;transform:translateY(-50%);
@@ -596,15 +653,15 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 }
 
 .logistics{
-  margin-top:clamp(32px,5vw,56px);
+  margin-top:clamp(var(--space-md),5vw,var(--space-lg));
   display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,4vw,48px);align-items:center;
   background:var(--logistics-bg);border:1px solid var(--line-soft);padding:clamp(20px,3vw,36px);
 }
 .logistics-map{position:relative;border:1px solid var(--line);overflow:hidden}
 .logistics-map::after{content:"";position:absolute;inset:0;background:var(--logistics-map-overlay);mix-blend-mode:multiply;pointer-events:none}
 .logistics-map img{display:block;filter:var(--map-filter)}
-.logistics-text h3{font-family:var(--serif-jp);font-size:1.2rem;color:var(--text-strong);margin-bottom:14px}
-.logistics-text p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.95rem}
+.logistics-text h3{font-family:var(--serif-jp);font-size:var(--h3-card);color:var(--text-strong);margin-bottom:14px}
+.logistics-text p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.95rem;max-width:34em}
 
 /* =========================================================
    VISION
@@ -618,11 +675,11 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .phase:hover{border-color:var(--line);background:var(--panel)}
 .phase-label{font-family:var(--serif-en);letter-spacing:.14em;font-size:12px;color:var(--gold-label)}
 .phase-label span{font-family:var(--serif-jp);color:var(--muted);letter-spacing:.1em;margin-left:8px}
-.phase h3{font-family:var(--serif-jp);font-size:1.25rem;color:var(--text-strong)}
+.phase h3{font-family:var(--serif-jp);font-size:var(--h3-card);color:var(--text-strong)}
 .phase p{font-size:.9rem;color:var(--muted);line-height:1.8}
 .phase-arrow{display:flex;align-items:center;color:var(--gold-deep);font-size:20px}
 .vision-closing{
-  margin-top:clamp(36px,5vw,56px);text-align:center;
+  margin-top:clamp(var(--space-md),5vw,var(--space-lg));text-align:center;
   font-family:var(--serif-jp);font-size:clamp(1.05rem,2.4vw,1.4rem);color:var(--statement-color);
   letter-spacing:.06em;line-height:1.9;
 }
@@ -642,7 +699,7 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .base-media span{font-family:var(--serif-en);letter-spacing:.28em;font-size:11px;color:var(--muted)}
 .base-body{padding:clamp(22px,3vw,34px)}
 .base-en{font-family:var(--serif-en);letter-spacing:.16em;font-size:11px;color:var(--gold-label)}
-.base-body h3{font-family:var(--serif-jp);font-size:1.25rem;color:var(--text-strong);margin:10px 0 16px}
+.base-body h3{font-family:var(--serif-jp);font-size:var(--h3-card);color:var(--text-strong);margin:10px 0 16px}
 .base-body address{font-style:normal;font-family:var(--serif-jp);color:var(--ink-soft);font-size:.92rem;line-height:1.9}
 .base-body address a{color:var(--gold-ink);border-bottom:1px solid var(--line)}
 .base-body address a:hover{border-color:var(--gold)}
@@ -698,11 +755,11 @@ html.intro-done .hero-actions{transition-delay:1140ms}
 .contact-mail-alt a{color:var(--gold-ink);border-bottom:1px solid var(--line)}
 .contact-mail-alt a:hover{border-color:var(--gold)}
 .privacy-note{
-  margin:56px auto 0;padding-top:32px;max-width:720px;text-align:left;
+  margin:var(--space-xl) auto 0;padding-top:var(--space-md);max-width:720px;text-align:left;
   border-top:1px solid var(--line-soft);
 }
-.privacy-note h3{font-family:var(--serif-jp);font-size:1.05rem;color:var(--text-strong);margin-bottom:12px}
-.privacy-note p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.9rem;line-height:1.9}
+.privacy-note h3{font-family:var(--serif-jp);font-size:var(--h3-dense);color:var(--text-strong);margin-bottom:12px}
+.privacy-note p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.9rem;line-height:1.9;max-width:34em}
 
 /* =========================================================
    COMPANY TABLE
@@ -713,12 +770,12 @@ html.intro-done .hero-actions{transition-delay:1140ms}
   padding:20px 4px;border-bottom:1px solid var(--line-soft);
 }
 .company-table dt{font-family:var(--serif-en);font-size:12px;letter-spacing:.12em;color:var(--gold-label);padding-top:3px}
-.company-table dd{margin:0;font-family:var(--serif-jp);color:var(--ink-soft);font-size:.96rem}
+.company-table dd{margin:0;font-family:var(--serif-jp);color:var(--ink-soft);font-size:.96rem;max-width:34em}
 
 /* =========================================================
    FOOTER
    ========================================================= */
-.site-footer{background:var(--footer-bg);border-top:1px solid var(--line-soft);padding:clamp(40px,6vw,64px) 0 28px}
+.site-footer{background:var(--footer-bg);border-top:1px solid var(--line-soft);padding:clamp(var(--space-md),6vw,var(--space-xl)) 0 28px}
 .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid var(--line-soft)}
 .footer-brand{display:flex;align-items:center;gap:14px}
 .footer-brand img{border-radius:50%;border:1px solid var(--line)}
