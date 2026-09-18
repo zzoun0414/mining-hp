@@ -567,6 +567,7 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .about-lead strong{color:var(--gold-ink);font-weight:600}
 .about-facts{display:flex;flex-direction:column;border-left:1px solid var(--line);border-image:var(--rule-v) 1}
 .about-facts>div{padding:16px 0 16px 26px;display:flex;flex-direction:column;gap:5px}
+.about-facts>div:first-child{padding-top:0}
 .about-facts>div+div{border-top:1px solid var(--line-soft)}
 .about-facts dt{font-family:var(--serif-jp);font-size:11px;letter-spacing:.16em;color:var(--gold-label)}
 .about-facts dd{margin:0;font-family:var(--serif-jp);font-size:1rem;color:var(--ink);letter-spacing:.03em}
