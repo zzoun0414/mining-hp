@@ -36,6 +36,15 @@
     var brandName = document.querySelector('.brand-name');
     var brandSub = document.querySelector('.brand-sub');
 
+    // The overlay visually covers the header (z-index) while intro-active,
+    // but without this a keyboard Tab right after load still walks into
+    // the header/nav links underneath it — inert removes them from the tab
+    // order (and from AT) until the handoff is done.
+    var introSiteHeader = document.getElementById('siteHeader');
+    var introSiteNav = document.getElementById('siteNav');
+    if (introSiteHeader) introSiteHeader.setAttribute('inert', '');
+    if (introSiteNav) introSiteNav.setAttribute('inert', '');
+
     var finished = false;
     function finish() {
       if (finished) return;
@@ -43,6 +52,8 @@
       html.classList.remove('intro-active');
       html.classList.add('intro-done');
       if (overlay) overlay.setAttribute('hidden', '');
+      if (introSiteHeader) introSiteHeader.removeAttribute('inert');
+      if (introSiteNav) introSiteNav.removeAttribute('inert');
     }
 
     if (!overlay || !lockup || !brand || !mark || !nameEl || !subEl ||
