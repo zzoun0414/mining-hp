@@ -328,20 +328,29 @@ html[lang="ja"] .site-nav a{
 }
 .hero-title .tj{white-space:nowrap}
 .hero-title .times{color:var(--gold);font-weight:400;margin:0 .1em}
+/* 2026-09-18: the hero had grown to six lines in four different typefaces
+   (Cinzel, Cormorant Garamond italic, Shippori Mincho, Noto Sans JP) all
+   reading at roughly similar weight — felt cluttered with no clear order
+   of importance. Consolidated to two families (the existing serif-en/
+   italic accent stay; hero-statement moves off Noto Sans JP onto the same
+   serif-jp as hero-jp) and reworked size/weight into two clear tiers below
+   the title: a quiet cluster (lede/sub/jp, all smaller now) and a single
+   promoted statement line that's the real second point of emphasis. */
 .hero-lede{
   font-family:var(--italic);font-style:italic;font-weight:600;
-  font-size:clamp(1.4rem,3.6vw,2.6rem);
+  font-size:clamp(1.05rem,2.4vw,1.5rem);
   color:var(--hero-lede-color);margin-top:6px;
 }
 .hero-sub{
-  font-family:var(--serif-en);letter-spacing:.14em;
-  font-size:clamp(.85rem,1.8vw,1.05rem);color:var(--ink-soft);
-  margin-top:28px;line-height:1.7;
+  font-family:var(--serif-en);letter-spacing:.12em;
+  font-size:clamp(.72rem,1.4vw,.85rem);color:var(--ink-soft);
+  margin-top:18px;line-height:1.7;
 }
-.hero-jp{font-family:var(--serif-jp);font-size:clamp(1rem,2.4vw,1.25rem);color:var(--ink);margin-top:16px;letter-spacing:.06em}
-/* a plain, unambiguous line stating what the company actually does —
-   the brand lines above are evocative on purpose, this one isn't */
-.hero-statement{font-family:var(--sans-jp);font-weight:500;font-size:clamp(.95rem,1.8vw,1.1rem);color:var(--text-strong);margin-top:14px;letter-spacing:.02em}
+.hero-jp{font-family:var(--serif-jp);font-size:clamp(.92rem,2vw,1.1rem);color:var(--ink);margin-top:12px;letter-spacing:.05em}
+/* the one plain, unambiguous line stating what the company actually does —
+   the brand lines above are evocative on purpose, this one isn't, and it's
+   sized as the clear second tier after the title, not just another line */
+.hero-statement{font-family:var(--serif-jp);font-weight:600;font-size:clamp(1.15rem,2.6vw,1.5rem);color:var(--text-strong);margin-top:24px;letter-spacing:.03em}
 
 .hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
 
