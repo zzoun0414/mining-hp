@@ -148,6 +148,40 @@
         <h2 class="section-title">Улаанбаатар, Токио<br>хотод оффистой.</h2>
       </div>
       <!-- 要社長確認：拠点住所・電話番号（2拠点） -->
+      <div class="route-map reveal">
+        <svg class="route-map-svg" viewBox="0 0 1600 480" role="img" aria-labelledby="routeMapTitle">
+          <title id="routeMapTitle">Манай хоёр салбар: Улаанбаатар ба Токио</title>
+          <g stroke="currentColor" stroke-width="1" opacity=".12">
+            <line x1="0" y1="80" x2="1600" y2="80"/>
+            <line x1="0" y1="180" x2="1600" y2="180"/>
+            <line x1="0" y1="280" x2="1600" y2="280"/>
+            <line x1="0" y1="380" x2="1600" y2="380"/>
+            <line x1="200" y1="0" x2="200" y2="480"/>
+            <line x1="500" y1="0" x2="500" y2="480"/>
+            <line x1="800" y1="0" x2="800" y2="480"/>
+            <line x1="1100" y1="0" x2="1100" y2="480"/>
+            <line x1="1400" y1="0" x2="1400" y2="480"/>
+          </g>
+          <path d="M 300 300 Q 800 110 1300 260" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-dasharray="2 14" stroke-linecap="round"/>
+          <!-- midpoint mark: the brand's horse-head glyph (same outline path as the
+               header logo), scaled down small, riding the route's midpoint -->
+          <g transform="translate(740,120) scale(0.062)" fill="none" stroke="var(--gold-deep)" stroke-width="9" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M799 228 C780 285 779 330 794 376 L1090 801 Q1100 813 1086 830 C1048 877 1002 918 950 946 Q934 956 922 936 L877 819 L782 756 C750 758 728 741 713 732 C685 782 624 813 569 816 C539 884 490 951 519 1024 C479 979 481 913 494 867 L530 835 C507 837 479 830 459 821 C410 870 377 910 351 960 C399 807 545 662 660 490 C502 559 336 690 271 878 C271 783 306 686 396 599 C313 618 242 682 198 750 C211 653 302 574 441 514 C397 540 349 521 315 502 C267 547 225 593 202 635 C234 498 375 350 526 339 C582 334 626 342 663 359 C700 288 750 251 799 228 Z"/>
+          </g>
+          <g transform="translate(300,300)">
+            <circle r="8" fill="var(--gold-deep)"/>
+            <circle r="16" fill="none" stroke="var(--gold-deep)" stroke-width="1.5" opacity=".5"/>
+            <text x="0" y="-34" text-anchor="middle" class="route-label">ULAANBAATAR</text>
+            <text x="0" y="46" text-anchor="middle" class="route-sublabel">Төв оффис</text>
+          </g>
+          <g transform="translate(1300,260)">
+            <circle r="8" fill="var(--gold-deep)"/>
+            <circle r="16" fill="none" stroke="var(--gold-deep)" stroke-width="1.5" opacity=".5"/>
+            <text x="0" y="-34" text-anchor="middle" class="route-label">TOKYO</text>
+            <text x="0" y="46" text-anchor="middle" class="route-sublabel">Токио оффис</text>
+          </g>
+        </svg>
+      </div>
       <div class="bases-grid">
         <article class="base-card reveal">
           <div class="base-media" aria-hidden="true">

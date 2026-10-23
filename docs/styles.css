@@ -298,7 +298,7 @@ html[lang="ja"] .site-nav a{
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;--hero-p:0}
 .hero-bg{
   position:absolute;top:-14vh;bottom:0;left:0;right:0;z-index:0;   /* 上方向へオーバースキャン: 下へずらしても上端が見えない */
-  background:var(--hero-overlay),url("assets/img/fluorite-crystal.jpg") center/cover no-repeat;
+  background:var(--hero-overlay),url("assets/img/fluorite-hero.jpg") center/cover no-repeat;
   filter:var(--hero-img-filter);
   /* パララックス: 背景は前景よりゆっくり動き、わずかにズームイン */
   transform:scale(calc(1.05 + var(--hero-p) * .06)) translate3d(0,calc(var(--hero-p) * 9vh),0);
@@ -639,6 +639,35 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 }
 .wide-banner img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;display:block}
 
+/* BUSINESS page HOW WE WORK: a slow, continuous auto-scrolling filmstrip of
+   logistics photos (ship/port/rail/road) rather than one static banner.
+   The track holds the image set twice back-to-back and animates exactly
+   one set-width per loop, so the seam is invisible and the loop is
+   seamless. Decorative only (aria-hidden) — the disclaimer line below is
+   the one thing a screen reader needs from this block. */
+.logistics-carousel{overflow:hidden;border-radius:2px;margin-bottom:10px}
+.logistics-track{
+  display:flex;gap:12px;width:max-content;
+  animation:logisticsScroll 42s linear infinite;
+}
+.logistics-carousel:hover .logistics-track,
+.logistics-carousel:focus-within .logistics-track{animation-play-state:paused}
+.logistics-track img{
+  /* height:auto is required — the height="675" attribute (kept for CLS)
+     otherwise pins an explicit height, which disables aspect-ratio (it
+     only applies when a dimension is auto) and leaves object-fit:cover
+     stretch-cropping into a tall sliver instead of 4:3 */
+  flex:none;width:clamp(220px,28vw,340px);height:auto;aspect-ratio:4/3;object-fit:cover;
+  border-radius:2px;background:var(--img-backing);display:block;
+}
+@keyframes logisticsScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.carousel-note{text-align:right;font-family:var(--serif-en);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){
+  .logistics-track{animation:none}
+  .logistics-track img:nth-child(n+6){display:none}
+  .logistics-carousel{overflow-x:auto}
+}
+
 /* =========================================================
    RESOURCES
    ========================================================= */
@@ -774,6 +803,19 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    BASES
    ========================================================= */
 .section--bases{background:var(--bg)}
+/* a small original line-art graphic (not a licensed map) showing the two
+   bases joined by one route, with the brand's horse mark riding the
+   midpoint — avoids both the licensing weight of a real map tile and the
+   generic-stock-photo look, in favor of something that is unambiguously
+   "ours" the way the logo mark already is */
+.route-map{
+  background:var(--panel);border:1px solid var(--line-soft);border-radius:2px;
+  padding:clamp(20px,4vw,40px) clamp(16px,3vw,32px);
+  margin-bottom:clamp(18px,3vw,28px);color:var(--ink);
+}
+.route-map-svg{width:100%;height:auto;display:block}
+.route-label{font-family:var(--serif-en);font-size:15px;font-weight:600;letter-spacing:.1em;fill:var(--text-strong)}
+.route-sublabel{font-family:var(--serif-jp);font-size:13px;fill:var(--muted);letter-spacing:.04em}
 .bases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,28px)}
 .base-card{border:1px solid var(--line-soft);background:var(--bg-2);overflow:hidden;display:flex;flex-direction:column}
 .base-media{
