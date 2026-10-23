@@ -514,7 +514,6 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    Real photos from the boss's Mongolia trip, Oct 2026.
    ========================================================= */
 .photo-trio{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:clamp(16px,3vw,28px);align-items:end}
-.photo-slot--feature{transform:translateY(-20px)}
 .photo-slot img{
   /* height:auto is required — without it, the <img> height="1750" attribute
      (needed for CLS) sets an explicit CSS height, which per spec disables
@@ -526,7 +525,7 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .photo-caption{margin-top:10px;text-align:center;font-family:var(--serif-en);font-size:11px;letter-spacing:.14em;color:var(--gold-label)}
 @media (max-width:680px){
   .photo-trio{grid-template-columns:1fr;gap:16px}
-  .photo-slot--feature{transform:none;order:-1}
+  .photo-slot--feature{order:-1}
 }
 
 /* =========================================================
@@ -579,7 +578,11 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 /* =========================================================
    ABOUT
    ========================================================= */
-.about-grid{display:grid;grid-template-columns:1.4fr .75fr;gap:clamp(32px,6vw,68px);align-items:start}
+/* center, not start — the prose column and the facts list rarely run the
+   same length, and top-pinning both left the shorter one stranded above a
+   patch of empty space while the taller one ran on below it; centering
+   settles the two against each other instead */
+.about-grid{display:grid;grid-template-columns:1.4fr .75fr;gap:clamp(32px,6vw,68px);align-items:center}
 .about-lead p{font-family:var(--serif-jp);font-size:1.05rem;color:var(--ink-soft);max-width:34em}
 .about-lead p+p{margin-top:20px}
 .about-lead strong{color:var(--gold-ink);font-weight:600}
@@ -593,6 +596,12 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .about-facts>div+div{border-top:1px solid var(--line-soft)}
 .about-facts dt{font-family:var(--serif-jp);font-size:11px;letter-spacing:.16em;color:var(--gold-label)}
 .about-facts dd{margin:0;font-family:var(--serif-jp);font-size:1rem;color:var(--ink);letter-spacing:.03em}
+/* PHOTOS is the second half of the (now standalone) ABOUT page, not its
+   own chapter — at the shared .section-title's full size it read as a
+   second page opener stacked under the first, fighting the real page
+   heading above it. Scaled down the same way CONTACT's was, so it reads
+   as this page continuing, not restarting. */
+#photos .section-title{font-size:clamp(1.7rem,4vw,2.4rem)}
 
 /* =========================================================
    CARD GRID (business / strengths)
