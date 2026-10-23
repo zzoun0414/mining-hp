@@ -620,6 +620,25 @@ html.intro-done .hero-actions{transition-delay:1200ms}
   color:var(--gold-ink);border:1px solid var(--line);border-radius:2px;padding:2px 7px;
 }
 
+/* small disclaimer badge for stock/illustrative photos (mineral specimens,
+   scenery, logistics scenes) that are NOT the company's own real-site
+   photos — keeps those honestly distinct from the real office/team photos
+   elsewhere on the site. Needs position:relative on its containing box. */
+.img-note{
+  position:absolute;right:10px;bottom:10px;z-index:1;
+  font-family:var(--serif-en);font-size:10px;letter-spacing:.06em;
+  color:#fff;background:rgba(20,20,20,.5);padding:4px 9px;border-radius:2px;
+  pointer-events:none;
+}
+
+/* wide banner photo (VISION scenery / BUSINESS logistics) — same stock-photo
+   treatment as the resource cards below, just full-width instead of grid-boxed */
+.wide-banner{
+  position:relative;overflow:hidden;border-radius:2px;background:var(--img-backing);
+  margin-bottom:clamp(var(--space-lg),5vw,var(--space-2xl));
+}
+.wide-banner img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;display:block}
+
 /* =========================================================
    RESOURCES
    ========================================================= */
