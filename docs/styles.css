@@ -540,8 +540,18 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    own .hero-statement line: bigger, bolder, full-strength ink. */
 #explore .section-note{
   font-size:clamp(1.05rem,2.2vw,1.25rem);font-weight:600;color:var(--text-strong);
-  max-width:40em;
+  max-width:40em;text-wrap:balance;
 }
+/* plain Japanese text has no spaces to signal word boundaries, so the
+   browser's line-break algorithm is free to split anywhere — tested at
+   1024/1280/1440px it was breaking "輸出する" in half mid-verb each time,
+   at a different point per width. Not fixable with word-break/balance
+   alone (those still only choose among the same character-level break
+   points); the JA copy carries its own manual <br>s at real clause
+   boundaries instead. text-wrap:balance is kept as a safety net for
+   evening out whichever of those clauses is long enough to wrap again
+   on narrow screens, and does the full job on its own for EN/MN, which
+   wrap on spaces and were never at risk of a mid-word split. */
 /* the home page's hub to all 7 section-pages. 2 columns, not 3 — 7 cards
    don't divide evenly into either, but 2 columns lets the last odd-one-out
    (BASES, closing the "softer" group of 5) resolve as one deliberate
