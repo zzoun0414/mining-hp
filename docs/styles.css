@@ -533,10 +533,6 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    without this, scrolling past ABOUT jumps straight to STRENGTHS
    with no acknowledgment that those two nav items exist)
    ========================================================= */
-/* the heading here is a full two-sentence company statement, not the
-   short 2-line nav-style phrase .section-title's 4rem cap was tuned for —
-   scaled down the same way CONTACT's and PHOTOS' were */
-#explore .section-title{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.5}
 /* the home page's hub to all 7 section-pages. 2 columns, not 3 — 7 cards
    don't divide evenly into either, but 2 columns lets the last odd-one-out
    (BASES, closing the "softer" group of 5) resolve as one deliberate
