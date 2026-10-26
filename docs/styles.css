@@ -621,7 +621,6 @@ html.intro-done .hero-actions{transition-delay:1200ms}
   font-family:var(--serif-jp);font-size:var(--h3-dense);color:var(--text-strong);
   word-break:normal;word-break:auto-phrase;line-break:strict;text-wrap:balance;
 }
-.mini-card h3 .tag{margin-left:6px}
 .mini-card p{font-size:.9rem;color:var(--muted);line-height:1.85}
 .tag{
   display:inline-block;vertical-align:middle;white-space:nowrap;
@@ -707,6 +706,13 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .res-en{font-family:var(--serif-en);letter-spacing:.2em;font-size:12px;color:var(--gold-label)}
 .res-body h3{font-family:var(--serif-jp);font-size:var(--h3-feature);color:var(--text-strong);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .res-body h3 span:not(.tag){font-size:.8rem;color:var(--muted);letter-spacing:.1em}
+/* status tags (取扱予定 / 将来展開) sit outside the h3 as their own line,
+   not as a wrapping flex child of it — a short title (石炭) left its tag
+   inline while a long one (エネルギー資源) wrapped onto its own line, so
+   two cards sitting side by side landed their tags in different places.
+   A fixed position below the title is consistent regardless of length. */
+.res-tag-row{margin-top:-4px}
+.res-tag-row .tag{display:inline-block}
 .res-body>p{color:var(--ink-soft);font-family:var(--serif-jp);font-size:.96rem;max-width:34em}
 .res-spec{margin-top:8px;border-top:1px solid var(--line-soft)}
 .res-spec li{
