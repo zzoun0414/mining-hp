@@ -533,6 +533,15 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    without this, scrolling past ABOUT jumps straight to STRENGTHS
    with no acknowledgment that those two nav items exist)
    ========================================================= */
+/* the base .section-note (.98rem, muted) reads as plain body copy — at
+   nearly the same size as .explore-card p (.95rem) right below it, the
+   two blurred together. This is a statement under the English title, not
+   a footnote, so it gets the same "second tier" treatment as the hero's
+   own .hero-statement line: bigger, bolder, full-strength ink. */
+#explore .section-note{
+  font-size:clamp(1.05rem,2.2vw,1.25rem);font-weight:600;color:var(--text-strong);
+  max-width:40em;
+}
 /* the home page's hub to all 7 section-pages. 2 columns, not 3 — 7 cards
    don't divide evenly into either, but 2 columns lets the last odd-one-out
    (BASES, closing the "softer" group of 5) resolve as one deliberate
