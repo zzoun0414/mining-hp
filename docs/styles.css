@@ -803,9 +803,19 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    instead, the same way it already does between Chairman and CEO. */
 .people{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px)}
 .person{border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(28px,3.5vw,44px)}
-.person-role{font-family:var(--serif-en);letter-spacing:.16em;font-size:11px;color:var(--gold-label)}
+/* role label and name both reserve a fixed 2-line box (line-height×2 via
+   min-height) regardless of whether the text actually wraps to 1 or 2
+   lines — some roles wrap at this card width and some don't (CHAIRMAN
+   fits on one line, CHIEF EXECUTIVE OFFICER/SENIOR ECONOMIC ADVISOR
+   wrap to two), and not every name has a native-script subtitle line.
+   Without this the divider under each name lands at a different height
+   per card. Fixed per-role/per-name reservations (e.g. an empty nbsp
+   span) broke the moment the grid went from 2 to 3 columns and the
+   wrap points shifted — min-height holds regardless of column count
+   or viewport width. */
+.person-role{font-family:var(--serif-en);letter-spacing:.16em;font-size:11px;color:var(--gold-label);line-height:1.6;min-height:3.2em}
 .person-role span{font-family:var(--serif-jp);color:var(--muted);letter-spacing:.1em;margin-left:8px}
-.person-name{font-family:var(--serif-jp);font-size:var(--h3-feature);color:var(--text-strong);margin:14px 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line);border-image:var(--rule-h) 1}
+.person-name{font-family:var(--serif-jp);font-size:var(--h3-feature);line-height:1.3;min-height:2.6em;color:var(--text-strong);margin:14px 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line);border-image:var(--rule-h) 1}
 .person-name span{display:block;font-size:.95rem;color:var(--ink-soft);margin-top:4px}
 .person-points li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:.92rem;font-family:var(--serif-jp)}
 .person-points li+li{margin-top:10px}
