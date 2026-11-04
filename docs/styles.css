@@ -228,8 +228,21 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 .site-header.scrolled{
   height:64px;
-  background:var(--header-bg-scrolled);
   box-shadow:var(--header-shadow);
+}
+/* the scrolled header's frosted-glass tint lives on ::before, not on
+   .site-header itself. backdrop-filter (like transform) establishes a new
+   containing block for position:fixed descendants — #siteNav (the mobile
+   drawer) sits inside .site-header, so putting backdrop-filter directly on
+   .site-header made the drawer's position:fixed resolve against this 64px-
+   tall header box instead of the viewport once scrolled, collapsing the
+   open drawer to a 64px sliver instead of covering the screen. Moving the
+   blur+tint to a pseudo-element sibling of the header's real content keeps
+   the identical visual (painted behind .header-inner, nothing else changes)
+   without .site-header itself ever carrying backdrop-filter. */
+.site-header.scrolled::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:var(--header-bg-scrolled);
   backdrop-filter:blur(10px);
 }
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
