@@ -752,24 +752,31 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    LEADERSHIP
    ========================================================= */
 .section--leadership{background:var(--bg)}
-/* A whole, complete mark, top-aligned beside the eyebrow+title block (not the
-   note paragraph below, and not bled/cropped off any edge) — per the user's
-   own markup of where they wanted it: top-right, level with "MONGOLIA ×
-   JAPAN", ending around where the heading ends, never reaching the .people
-   cards below. */
+/* 2026-11 redesign: the detailed new mark read as a small, slightly odd
+   icon sitting next to the heading at the old foreground size/opacity
+   (dense linework competes with the text at a glance). Reworked as a large,
+   pale background watermark instead — sized well past the heading block,
+   low opacity, sitting behind the text (z-index) rather than beside it.
+   Still contained within the section-head box, not bled past the
+   container edge. */
 .section-head--leadership{
-  max-width:none;
-  display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(24px,5vw,56px);
+  max-width:none;position:relative;
+  display:flex;align-items:flex-start;gap:clamp(24px,5vw,56px);
 }
-.section-head--leadership .section-head-text{max-width:960px}
+.section-head--leadership .section-head-text{max-width:960px;position:relative;z-index:1}
+.leadership-mark-wrap{
+  position:absolute;inset:0;z-index:0;overflow:hidden;
+  display:flex;align-items:center;justify-content:flex-end;
+  pointer-events:none;
+}
 .leadership-mark{
-  width:clamp(96px,11vw,150px);height:clamp(96px,11vw,150px);flex:none;
-  color:var(--gold-deep);opacity:.5;
+  width:clamp(320px,36vw,580px);height:clamp(320px,36vw,580px);flex:none;
+  color:var(--gold);opacity:.12;
   transform:translate3d(0,var(--py,0px),0);will-change:transform;
 }
 @media (max-width:680px){
   .section-head--leadership{flex-direction:column;align-items:flex-start;gap:20px}
-  .leadership-mark{display:none}
+  .leadership-mark-wrap{display:none}
 }
 .people{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,32px)}
 .person{border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(28px,3.5vw,44px)}
