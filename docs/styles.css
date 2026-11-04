@@ -718,7 +718,10 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 /* =========================================================
    RESOURCES
    ========================================================= */
-.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,24px)}
+/* 4 non-feature cards (copper/tungsten/coal/energy) as of 2026-11 — 4 columns
+   so they fill one row instead of leaving a lone 4th card stranded on its
+   own row under a 3-column grid */
+.res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,24px)}
 .res-card{
   grid-column:span 1;
   background:var(--bg-2);border:1px solid var(--line-soft);
@@ -800,6 +803,24 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .person-points li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:.92rem;font-family:var(--serif-jp)}
 .person-points li+li{margin-top:10px}
 .person-points li::before{content:"";position:absolute;left:0;top:.85em;width:8px;height:1px;background:var(--gold)}
+
+/* advisor tier (2026-11): one notch below Chairman/CEO, so it's a distinct
+   strip below .people rather than a 3rd card crammed into the 2-col grid */
+.advisors{margin-top:clamp(24px,3vw,32px);padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line-soft)}
+.advisors-label{font-family:var(--serif-en);letter-spacing:.16em;font-size:11px;color:var(--gold-label);margin-bottom:16px}
+.advisors-label span{font-family:var(--serif-jp);color:var(--muted);letter-spacing:.1em;margin-left:8px}
+.person--advisor{
+  display:flex;gap:24px;align-items:flex-start;max-width:640px;
+  border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(24px,3vw,32px);
+}
+.person-photo{
+  width:72px;height:72px;flex:none;border-radius:50%;object-fit:cover;
+  border:1px solid var(--line);filter:var(--hero-img-filter);
+}
+.person--advisor .person-name{font-size:var(--h3-feature);margin:10px 0 16px;padding-bottom:14px}
+@media (max-width:560px){
+  .person--advisor{flex-direction:column;align-items:flex-start;gap:16px}
+}
 
 /* =========================================================
    FROM MINE TO MARKET
