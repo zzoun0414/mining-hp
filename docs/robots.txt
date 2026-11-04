@@ -10,4 +10,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://PRODUCTION-DOMAIN.example/sitemap.xml
+Sitemap: https://altankhuleg-r.com/sitemap.xml

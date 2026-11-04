@@ -4,31 +4,31 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/"/>
+    <loc>https://altankhuleg-r.com/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/"/>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/en/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/"/>
+    <loc>https://altankhuleg-r.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/"/>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/mn/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/"/>
+    <loc>https://altankhuleg-r.com/mn/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/"/>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -36,31 +36,31 @@
 
   <!-- about -->
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/about/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/about/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/about/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/about/"/>
+    <loc>https://altankhuleg-r.com/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/about/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/en/about/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/about/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/about/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/about/"/>
+    <loc>https://altankhuleg-r.com/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/about/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/mn/about/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/about/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/about/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/about/"/>
+    <loc>https://altankhuleg-r.com/mn/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/about/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -68,31 +68,31 @@
 
   <!-- strengths -->
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/strengths/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/strengths/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/strengths/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/strengths/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/strengths/"/>
+    <loc>https://altankhuleg-r.com/strengths/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/strengths/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/strengths/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/strengths/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/strengths/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/en/strengths/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/strengths/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/strengths/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/strengths/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/strengths/"/>
+    <loc>https://altankhuleg-r.com/en/strengths/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/strengths/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/strengths/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/strengths/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/strengths/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/mn/strengths/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/strengths/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/strengths/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/strengths/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/strengths/"/>
+    <loc>https://altankhuleg-r.com/mn/strengths/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/strengths/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/strengths/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/strengths/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/strengths/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -100,31 +100,31 @@
 
   <!-- leadership -->
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/leadership/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/leadership/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/leadership/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/leadership/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/leadership/"/>
+    <loc>https://altankhuleg-r.com/leadership/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/leadership/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/en/leadership/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/leadership/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/leadership/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/leadership/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/leadership/"/>
+    <loc>https://altankhuleg-r.com/en/leadership/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/leadership/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/mn/leadership/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/leadership/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/leadership/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/leadership/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/leadership/"/>
+    <loc>https://altankhuleg-r.com/mn/leadership/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/leadership/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/leadership/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -132,31 +132,31 @@
 
   <!-- vision -->
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/vision/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/vision/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/vision/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/vision/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/vision/"/>
+    <loc>https://altankhuleg-r.com/vision/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/vision/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/vision/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/vision/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/vision/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/en/vision/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/vision/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/vision/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/vision/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/vision/"/>
+    <loc>https://altankhuleg-r.com/en/vision/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/vision/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/vision/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/vision/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/vision/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/mn/vision/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/vision/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/vision/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/vision/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/vision/"/>
+    <loc>https://altankhuleg-r.com/mn/vision/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/vision/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/vision/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/vision/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/vision/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -164,92 +164,92 @@
 
   <!-- bases -->
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/bases/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/bases/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/bases/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/bases/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/bases/"/>
+    <loc>https://altankhuleg-r.com/bases/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/bases/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/bases/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/bases/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/bases/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/en/bases/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/bases/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/bases/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/bases/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/bases/"/>
+    <loc>https://altankhuleg-r.com/en/bases/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/bases/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/bases/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/bases/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/bases/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/mn/bases/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/bases/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/bases/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/bases/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/bases/"/>
+    <loc>https://altankhuleg-r.com/mn/bases/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/bases/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/bases/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/bases/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/bases/"/>
     <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/business/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/business/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/business/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/business/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/business/"/>
+    <loc>https://altankhuleg-r.com/business/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/business/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/business/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/business/"/>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/en/business/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/business/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/business/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/business/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/business/"/>
+    <loc>https://altankhuleg-r.com/en/business/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/business/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/business/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/business/"/>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/mn/business/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/business/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/business/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/business/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/business/"/>
+    <loc>https://altankhuleg-r.com/mn/business/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/business/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/business/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/business/"/>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/resources/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/resources/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/resources/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/resources/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/resources/"/>
+    <loc>https://altankhuleg-r.com/resources/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/resources/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/resources/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/resources/"/>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/en/resources/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/resources/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/resources/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/resources/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/resources/"/>
+    <loc>https://altankhuleg-r.com/en/resources/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/resources/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/resources/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/resources/"/>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://PRODUCTION-DOMAIN.example/mn/resources/</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://PRODUCTION-DOMAIN.example/resources/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://PRODUCTION-DOMAIN.example/en/resources/"/>
-    <xhtml:link rel="alternate" hreflang="mn" href="https://PRODUCTION-DOMAIN.example/mn/resources/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://PRODUCTION-DOMAIN.example/resources/"/>
+    <loc>https://altankhuleg-r.com/mn/resources/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://altankhuleg-r.com/resources/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://altankhuleg-r.com/en/resources/"/>
+    <xhtml:link rel="alternate" hreflang="mn" href="https://altankhuleg-r.com/mn/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://altankhuleg-r.com/resources/"/>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
