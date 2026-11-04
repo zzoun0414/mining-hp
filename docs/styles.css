@@ -794,7 +794,14 @@ html.intro-done .hero-actions{transition-delay:1200ms}
   .section-head--leadership{flex-direction:column;align-items:flex-start;gap:20px}
   .leadership-mark-wrap{display:none}
 }
-.people{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,32px)}
+/* 2026-11: Chairman/CEO/Senior Economic Advisor as 3 equal .person cards —
+   previously the advisor sat in its own wider strip below with a photo
+   neither of the other two had, so it read as the single biggest, most
+   prominent element on the page despite being the junior-most role. Giving
+   all three identical card treatment lets the existing in-card role label
+   (CHAIRMAN / CEO / SENIOR ECONOMIC ADVISOR) carry the seniority distinction
+   instead, the same way it already does between Chairman and CEO. */
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px)}
 .person{border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(28px,3.5vw,44px)}
 .person-role{font-family:var(--serif-en);letter-spacing:.16em;font-size:11px;color:var(--gold-label)}
 .person-role span{font-family:var(--serif-jp);color:var(--muted);letter-spacing:.1em;margin-left:8px}
@@ -803,23 +810,8 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .person-points li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:.92rem;font-family:var(--serif-jp)}
 .person-points li+li{margin-top:10px}
 .person-points li::before{content:"";position:absolute;left:0;top:.85em;width:8px;height:1px;background:var(--gold)}
-
-/* advisor tier (2026-11): one notch below Chairman/CEO, so it's a distinct
-   strip below .people rather than a 3rd card crammed into the 2-col grid */
-.advisors{margin-top:clamp(24px,3vw,32px);padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line-soft)}
-.advisors-label{font-family:var(--serif-en);letter-spacing:.16em;font-size:11px;color:var(--gold-label);margin-bottom:16px}
-.advisors-label span{font-family:var(--serif-jp);color:var(--muted);letter-spacing:.1em;margin-left:8px}
-.person--advisor{
-  display:flex;gap:24px;align-items:flex-start;max-width:640px;
-  border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(24px,3vw,32px);
-}
-.person-photo{
-  width:72px;height:72px;flex:none;border-radius:50%;object-fit:cover;
-  border:1px solid var(--line);filter:var(--hero-img-filter);
-}
-.person--advisor .person-name{font-size:var(--h3-feature);margin:10px 0 16px;padding-bottom:14px}
-@media (max-width:560px){
-  .person--advisor{flex-direction:column;align-items:flex-start;gap:16px}
+@media (max-width:900px){
+  .people{grid-template-columns:1fr;max-width:520px}
 }
 
 /* =========================================================
