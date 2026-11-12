@@ -1125,3 +1125,37 @@ html[lang="mn"] .nav-toggle{display:flex;z-index:110}
   .res-media img,.leadership-mark{transform:none}
   *{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
+
+/* =========================================================
+   2026-11-12 UI/UX 監査の修正（redesign ブランチ・CSS のみ）
+   ========================================================= */
+/* iOS Safari は 16px 未満の入力欄にフォーカスすると画面を自動ズームする
+   （.96rem = 15.36px だった）。入力欄だけ 16px を下限にする。 */
+.contact-form input:not([type="checkbox"]),.contact-form select,.contact-form textarea{font-size:max(16px,.96rem)}
+/* 同意チェックボックス: 16px は小さく見落としやすい → 20px */
+.contact-form .checkbox input{width:20px;height:20px;margin-top:1px}
+.contact-form .req{font-size:11px}
+
+/* 取扱資源: 4列カードの見出しが語の途中で折れていた
+   （「タング／ステン」「エネル／ギー資源」）。4列カードだけ見出しを
+   列幅に合わせて縮め、和文の語中改行を止める。 */
+.res-card:not(.res-card--feature) .res-body h3{
+  font-size:clamp(1.15rem,1.55vw,1.5rem);
+  word-break:keep-all;overflow-wrap:break-word;
+}
+
+/* タップ領域: 見た目は変えず、当たり判定だけ 44px 前後に広げる
+   （.quiet-link は実測 26px、footer nav は 25px だった） */
+.quiet-link,.footer-nav a{position:relative}
+.quiet-link::after,.footer-nav a::after{content:"";position:absolute;inset:-10px -8px}
+
+/* HERO: 「…調達・輸入・／販売」と1語だけ次行に落ちるのを均等割りに */
+.hero-statement{text-wrap:balance;word-break:auto-phrase}
+@media (max-width:680px){
+  /* 375px 幅で1行に収まる大きさに（18字）。収まらない幅では上の指定で文節改行 */
+  .hero-statement{font-size:1.08rem;letter-spacing:.01em}
+  /* 2つの CTA の幅が不揃いだった（文字数なり）→ 同じ幅に揃え、矢印を右端へ */
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  .hero-actions .btn{min-width:240px}
+  .hero-actions .btn svg{margin-left:auto}
+}
