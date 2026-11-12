@@ -889,13 +889,14 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .section--bases{background:var(--bg)}
 .bases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,28px)}
 .base-card{border:1px solid var(--line-soft);background:var(--bg-2);overflow:hidden;display:flex;flex-direction:column}
-/* photo above the map, building-exterior shots (2026-11) — 3:4 rather than
-   16:9 since both source photos are tall/portrait building shots; a wide
-   crop would have cut most of the building off. margin-bottom separates it
-   from .base-media below (previously flush against it, reading as one
-   merged image block) — the gap reveals .base-card's own background. */
-.base-photo{aspect-ratio:3/4;overflow:hidden;background:var(--img-backing);margin-bottom:10px}
-.base-photo img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;display:block;filter:var(--hero-img-filter)}
+/* photo above the map, building-exterior shots (2026-11) — shown at each
+   photo's own natural aspect ratio, uncropped (no aspect-ratio/object-fit
+   forcing a crop) and with full original color (no --hero-img-filter
+   desaturation) per direct request. margin-bottom separates it from
+   .base-media below (previously flush against it, reading as one merged
+   image block) — the gap reveals .base-card's own background. */
+.base-photo{overflow:hidden;background:var(--img-backing);margin-bottom:10px}
+.base-photo img{width:100%;height:auto;display:block}
 /* a real embedded Google Map (the no-API-key /maps?...&output=embed form) —
    not a screenshot: redistributing scraped map-tile imagery, restyled or
    not, is against Google's terms, where an embed is the sanctioned way to
@@ -1241,7 +1242,15 @@ html[lang="mn"] .nav-toggle{display:flex;z-index:110}
   .res-card:not(.res-card--feature){display:grid;grid-template-rows:subgrid;grid-row:span 5;row-gap:0}
   .res-card:not(.res-card--feature)>.res-media{grid-row:1}
   .res-card:not(.res-card--feature)>.res-body{grid-row:2 / span 4;display:grid;grid-template-rows:subgrid;row-gap:12px;align-content:start}
-  .res-card:not(.res-card--feature) .res-body>.res-en{grid-row:1;align-self:end}
+  /* align-self:start, not end — "ENERGY RESOURCES" wraps to 2 lines while
+     the other 3 cards' labels are 1 line; subgrid shares row 1's height
+     across all 4 (sized to fit the 2-line label), but bottom-aligning
+     (end) within that shared row made the 1-line labels sit noticeably
+     lower than the 2-line one, reading as misaligned even though h3 below
+     is already correctly flush. Top-aligning instead keeps every label's
+     top edge level (what the eye actually tracks), with the extra line
+     simply growing downward into the row's reserved space. */
+  .res-card:not(.res-card--feature) .res-body>.res-en{grid-row:1;align-self:start}
   .res-card:not(.res-card--feature) .res-body>h3{grid-row:2}
   .res-card:not(.res-card--feature) .res-body>.res-tag-row{grid-row:3}
   .res-card:not(.res-card--feature) .res-body>p{grid-row:4}
