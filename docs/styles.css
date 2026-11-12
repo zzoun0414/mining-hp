@@ -1154,10 +1154,9 @@ html[lang="mn"] .nav-toggle{display:flex;z-index:110}
 @media (max-width:680px){
   /* 375px 幅で1行に収まる大きさに（18字）。収まらない幅では上の指定で文節改行 */
   .hero-statement{font-size:1.08rem;letter-spacing:.01em}
-  /* 2つの CTA の幅が不揃いだった（文字数なり）→ 同じ幅に揃え、矢印を右端へ */
-  .hero-actions{flex-direction:column;align-items:flex-start}
+  /* 2つの CTA を縦積みに（幅の統一は下の「カード類の整列」ブロックで全幅共通に） */
+  .hero-actions{grid-auto-flow:row}
   .hero-actions .btn{min-width:240px}
-  .hero-actions .btn svg{margin-left:auto}
 }
 
 /* --- 2026-11-12 CONTACT まわりの調整（Suu 指摘） --- */
@@ -1172,3 +1171,87 @@ html[lang="mn"] .nav-toggle{display:flex;z-index:110}
 /* 個人情報保護方針: 枠は 720px なのに本文だけ 34em（約490px）で、
    フォームより狭い段になっていた → フォームと同じ幅に揃える */
 .privacy-note p,.privacy-note .privacy-meta{max-width:none}
+
+/* =========================================================
+   2026-11-12 カード類の整列（Suu 指摘: 事業の内容・取扱資源が揃っていない）
+   全ページを 1280 / 820 / 375px で実測し、同じ行に並ぶカードの
+   「列幅」と「見出し・本文の開始位置」のずれを直したもの。
+   方式: 横並びのあいだは各カードを subgrid にして、行（アイコン／
+   英字ラベル／見出し／タグ／本文）をカード間で共有する。見出しが
+   1行のカードと2行のカードが混ざっても、本文の開始位置が揃う。
+   ========================================================= */
+
+/* HERO の2ボタン: 文字数なりで幅が違っていた（212/173px）→ 広い方に統一 */
+.hero-actions{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr}
+.hero-actions .btn svg{margin-left:auto}
+/* スマホは縦積み（この指定は上の grid-auto-flow:column より後に置く必要がある） */
+@media (max-width:680px){
+  .hero-actions{grid-auto-flow:row}
+}
+
+/* --- 5枚カード（事業の内容・強み） ---
+   repeat(5,1fr) は中身の最小幅に引っ張られ、列幅が 203/203/246/203/222px と
+   不揃いになっていた（「コンサルティング」が折れないため）。
+   minmax(0,1fr) で等幅に固定し、見出しは列幅に収まる大きさにする。 */
+.card-grid--5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.card-grid--5 .mini-card{padding-left:22px;padding-right:22px}
+.card-grid--5 .mini-card h3{font-size:clamp(1.15rem,1.55vw,1.5rem);overflow-wrap:break-word}
+/* 中間幅（681〜1080px）: 3列だと 3枚+2枚 になり、2段目の右に空きマスが
+   できていた。6分割にして 1段目=3枚（各2）、2段目=2枚（各3）で端まで埋める。 */
+@media (min-width:681px) and (max-width:1080px){
+  .card-grid--5{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .card-grid--5 .mini-card{grid-column:span 2}
+  .card-grid--5 .mini-card:nth-child(n+4){grid-column:span 3}
+}
+/* スマホは従来どおり1列（上の等幅指定が 680px 用の指定を上書きしないように） */
+@media (max-width:680px){
+  .card-grid--5{grid-template-columns:minmax(0,1fr)}
+  .card-grid--5 .mini-card{padding-left:26px;padding-right:26px}
+  .card-grid--5 .mini-card h3{font-size:var(--h3-dense)}
+}
+@media (min-width:681px){
+  .card-grid--5 .mini-card{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:14px;align-content:start}
+  .card-grid--5 .mini-card>.ic,.card-grid--5 .mini-card>.idx{grid-row:1;justify-self:start}
+  .card-grid--5 .mini-card>h3{grid-row:2}
+  .card-grid--5 .mini-card>p{grid-row:3}
+  /* タグ（将来展開など）を持つカードがあるグリッドだけ、タグ用の行を1つ足す */
+  .card-grid--5:has(.res-tag-row) .mini-card{grid-row:span 4}
+  .card-grid--5:has(.res-tag-row) .mini-card>.res-tag-row{grid-row:3}
+  .card-grid--5:has(.res-tag-row) .mini-card>p{grid-row:4}
+
+  /* --- 取引の流れ（5ステップ） ---
+     英字ラベルが2行になるカード（JAPANESE CUSTOMERS）と、ロゴが大きい
+     中央カードだけ、見出し・本文が下にずれていた */
+  .flow-step{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:8px;justify-items:center;align-items:start;align-content:start}
+  .flow-step>.ic,.flow-step>.flow-mark{grid-row:1;align-self:center}
+  .flow-step>.flow-en{grid-row:2;align-self:end}
+  .flow-step>h3{grid-row:3}
+  .flow-step>p:not(.flow-en){grid-row:4}
+
+  /* --- 取扱資源の小カード（銅・タングステン・石炭・エネルギー） ---
+     英字ラベルが2行のカードは見出しが下がり、タグの無い「銅」だけ
+     本文が上がっていた */
+  .res-card:not(.res-card--feature){display:grid;grid-template-rows:subgrid;grid-row:span 5;row-gap:0}
+  .res-card:not(.res-card--feature)>.res-media{grid-row:1}
+  .res-card:not(.res-card--feature)>.res-body{grid-row:2 / span 4;display:grid;grid-template-rows:subgrid;row-gap:12px;align-content:start}
+  .res-card:not(.res-card--feature) .res-body>.res-en{grid-row:1;align-self:end}
+  .res-card:not(.res-card--feature) .res-body>h3{grid-row:2}
+  .res-card:not(.res-card--feature) .res-body>.res-tag-row{grid-row:3}
+  .res-card:not(.res-card--feature) .res-body>p{grid-row:4}
+}
+/* --- 経営体制の3カード: 役職ラベルの行高の差で氏名が 3px ずれていた --- */
+@media (min-width:901px){
+  .person{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0;align-content:start}
+}
+/* --- 拠点: 住所の行数が違うと「Googleマップで見る」の高さがずれていた → 下端に揃える --- */
+.base-body{display:flex;flex-direction:column;flex:1}
+.base-body address{margin-bottom:16px}
+.base-map-link{margin-top:auto;align-self:flex-start}
+
+/* --- リード文の改行位置（全ページ） ---
+   幅 600px / 34em の箱で成り行き改行していたため、「輸出を手／配し、」
+   「私たち／は、」「ALTAN／KHULEG RESOURCES」のように語の途中で折れていた。
+   原稿の改行位置（＝文の切れ目）ごとに .phrase で包み、箱は1句が1行に
+   収まる幅まで広げる。狭い画面では各句の中で自然に折り返す。 */
+.page-manifesto:has(.phrase){max-width:44em}
+.section-note:has(.phrase){max-width:42em}
