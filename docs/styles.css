@@ -981,6 +981,9 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 }
 .privacy-note h3{font-family:var(--serif-jp);font-size:var(--h3-dense);color:var(--text-strong);margin-bottom:12px}
 .privacy-note p{font-family:var(--serif-jp);color:var(--ink-soft);font-size:.9rem;line-height:1.9;max-width:34em}
+.privacy-note h4{font-family:var(--serif-jp);font-size:.95rem;font-weight:700;color:var(--text-strong);margin:22px 0 6px}
+.privacy-note h4:first-of-type{margin-top:4px}
+.privacy-note .privacy-meta{margin-top:22px;font-size:.8rem;color:var(--muted);max-width:34em}
 
 /* =========================================================
    COMPANY TABLE
