@@ -1255,3 +1255,14 @@ html[lang="mn"] .nav-toggle{display:flex;z-index:110}
    収まる幅まで広げる。狭い画面では各句の中で自然に折り返す。 */
 .page-manifesto:has(.phrase){max-width:44em}
 .section-note:has(.phrase){max-width:42em}
+
+/* --- 大見出しの改行（スマホ幅） ---
+   「資源トレーディ／ングを軸に、」「展／開します。」のように語の途中で
+   折れていた。カード見出し（.mini-card h3）と同じ指定を大見出しにも適用:
+   文節単位で折り（auto-phrase 対応ブラウザ）、行の長さを均等にする。 */
+.section-title{word-break:normal;word-break:auto-phrase;line-break:strict;text-wrap:balance}
+/* スマホでは 2.4rem（38px）だと1行に約8字しか入らず、9字の「資源トレーディング」が
+   必ず途中で折れる。1行に11〜12字入る大きさまで下げる。 */
+@media (max-width:680px){
+  .section-title{font-size:clamp(1.6rem,7.4vw,2.1rem);line-height:1.3}
+}
