@@ -225,9 +225,14 @@
     if (e.key === 'Escape') closeNav();
   });
 
-  /* --- contact form: デモ動作のみ（バックエンド未接続、実際には送信されない） --- */
+  /* --- contact form: /contact.php (同一ドメイン内のPHP) へ fetch で送信 --- */
   var contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    var tsField = document.getElementById('cf-ts');
+    // ページ読込時刻を記録 — contact.php 側でこの時刻からの経過が短すぎる
+    // 送信（人間がフォームを読んで書く時間がない）を弾くための簡易ボット対策
+    if (tsField) tsField.value = String(Date.now());
+
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!contactForm.checkValidity()) {
@@ -235,9 +240,32 @@
         return;
       }
       var success = document.getElementById('formSuccess');
-      success.hidden = false;
-      success.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
-      contactForm.reset();
+      var errorEl = document.getElementById('formError');
+      var submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (errorEl) errorEl.hidden = true;
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch('/contact.php', { method: 'POST', body: new FormData(contactForm) })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (submitBtn) submitBtn.disabled = false;
+          if (data && data.ok) {
+            success.hidden = false;
+            success.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+            contactForm.reset();
+            if (tsField) tsField.value = String(Date.now());
+          } else if (errorEl) {
+            errorEl.hidden = false;
+            errorEl.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+          }
+        })
+        .catch(function () {
+          if (submitBtn) submitBtn.disabled = false;
+          if (errorEl) {
+            errorEl.hidden = false;
+            errorEl.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+          }
+        });
     });
   }
 

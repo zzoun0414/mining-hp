@@ -74,7 +74,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
 <!-- フォントは自社ホスティング（docs/assets/fonts/、styles.css 冒頭の @font-face）。Google Fonts への外部リクエストなし -->
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -292,8 +292,13 @@
         </p>
       </div>
 
-      <!-- 要バックエンド選定：現在はダミー送信（送信しても実際には届きません。JS が成功表示のみ行います） -->
-      <form class="contact-form reveal" id="contactForm" novalidate>
+      <form class="contact-form reveal" id="contactForm" novalidate action="/contact.php" method="post">
+        <input type="hidden" name="lang" value="ja">
+        <input type="hidden" name="ts" id="cf-ts" value="">
+        <div class="hp-field" aria-hidden="true">
+          <label for="cf-website">ウェブサイト</label>
+          <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-row">
           <label for="cf-topic">お問い合わせ項目 <span class="req">必須</span></label>
           <select id="cf-topic" name="topic" required>
@@ -335,10 +340,12 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>
             送信する
           </button>
-          <p class="form-note">※ 現在デモ動作中です。実際の送信機能は準備中です。</p>
         </div>
         <p class="form-success" id="formSuccess" role="status" hidden>
-          送信しました（デモ）。実際にはまだ送信されていません — お急ぎの場合は下記メールへ直接ご連絡ください。
+          送信しました。内容を確認の上、担当者よりご連絡いたします。
+        </p>
+        <p class="form-error" id="formError" role="alert" hidden>
+          送信に失敗しました。お手数ですが、下記メールへ直接ご連絡ください。
         </p>
       </form>
 

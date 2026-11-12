@@ -961,6 +961,17 @@ html.intro-done .hero-actions{transition-delay:1200ms}
   grid-column:1/-1;margin-top:4px;padding:14px 18px;border:1px solid var(--line);
   background:var(--gold-glow);color:var(--ink);font-family:var(--serif-jp);font-size:.9rem;line-height:1.8;
 }
+/* muted terracotta rather than a stock bright red, to stay in the site's
+   warm neutral palette — still reads clearly as "something's wrong" next
+   to .form-success's gold tone */
+.form-error{
+  grid-column:1/-1;margin-top:4px;padding:14px 18px;border:1px solid #c98c7c80;
+  background:#f8ebe7;color:#8c3b2b;font-family:var(--serif-jp);font-size:.9rem;line-height:1.8;
+}
+/* honeypot: off-screen rather than display:none/visibility:hidden, since
+   some spam bots specifically skip fields hidden that way; real visitors
+   never scroll to -9999px so never see or fill it */
+.hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
 .contact-mail-alt{margin-top:32px;text-align:center;font-family:var(--serif-jp);color:var(--ink-soft);font-size:.9rem}
 .contact-mail-alt a{color:var(--gold-ink);border-bottom:1px solid var(--line)}
 .contact-mail-alt a:hover{border-color:var(--gold)}
