@@ -1159,3 +1159,16 @@ html[lang="mn"] .nav-toggle{display:flex;z-index:110}
   .hero-actions .btn{min-width:240px}
   .hero-actions .btn svg{margin-left:auto}
 }
+
+/* --- 2026-11-12 CONTACT まわりの調整（Suu 指摘） --- */
+/* リード文: 34em だと1文目（33字）がぎりぎりで、幅やフォント次第で
+   「…など、」だけが次行に落ちていた。読点で区切った2つの句をそれぞれ
+   inline-block にして、広い画面では必ず句の切れ目で改行、狭い画面では
+   各句の中で自然に折り返すようにする。 */
+.contact-head .section-note{max-width:40em}
+.phrase{display:inline-block}
+/* 「またはメールで直接」: フォーム・送信ボタンは左揃えなのにここだけ中央だった */
+.contact-mail-alt{text-align:left}
+/* 個人情報保護方針: 枠は 720px なのに本文だけ 34em（約490px）で、
+   フォームより狭い段になっていた → フォームと同じ幅に揃える */
+.privacy-note p,.privacy-note .privacy-meta{max-width:none}
