@@ -932,7 +932,14 @@ html.intro-done .hero-actions{transition-delay:1200ms}
   font-family:var(--sans-jp);font-size:10px;letter-spacing:.05em;color:var(--gold-ink);
   border:1px solid var(--line);border-radius:2px;padding:1px 6px;line-height:1.5;
 }
-.contact-form input,.contact-form select,.contact-form textarea{
+/* :not([type="checkbox"]) — this underline/appearance:none reset is meant
+   for the text-style fields (name/email/tel/company/message). Without the
+   exclusion it also stripped the checkbox's native box+tick (appearance:none)
+   and left it borderless/transparent, leaving a plain 16px blank box with no
+   visible checked/unchecked state at all — functional (still toggled,
+   still validated) but invisible. The checkbox keeps its native rendering,
+   tinted via accent-color below. */
+.contact-form input:not([type="checkbox"]),.contact-form select,.contact-form textarea{
   width:100%;font-family:var(--serif-jp);font-size:.96rem;color:var(--ink);
   background:transparent;border:none;border-bottom:1px solid var(--line);
   padding:9px 2px;transition:border-color .25s ease,outline-color .25s ease;appearance:none;-webkit-appearance:none;
