@@ -889,12 +889,13 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .section--bases{background:var(--bg)}
 .bases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,28px)}
 .base-card{border:1px solid var(--line-soft);background:var(--bg-2);overflow:hidden;display:flex;flex-direction:column}
-/* photo above the map — reuses the same office photos already used on the
-   About page (interior shots, not building exteriors; we don't have a
-   confirmed exterior photo of either building, so the alt text says so
-   honestly rather than implying one) */
-.base-photo{aspect-ratio:16/9;overflow:hidden;background:var(--img-backing)}
-.base-photo img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block;filter:var(--hero-img-filter)}
+/* photo above the map, building-exterior shots (2026-11) — 3:4 rather than
+   16:9 since both source photos are tall/portrait building shots; a wide
+   crop would have cut most of the building off. margin-bottom separates it
+   from .base-media below (previously flush against it, reading as one
+   merged image block) — the gap reveals .base-card's own background. */
+.base-photo{aspect-ratio:3/4;overflow:hidden;background:var(--img-backing);margin-bottom:10px}
+.base-photo img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;display:block;filter:var(--hero-img-filter)}
 /* a real embedded Google Map (the no-API-key /maps?...&output=embed form) —
    not a screenshot: redistributing scraped map-tile imagery, restyled or
    not, is against Google's terms, where an embed is the sanctioned way to
