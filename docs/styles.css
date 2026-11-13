@@ -889,14 +889,16 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .section--bases{background:var(--bg)}
 .bases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,28px)}
 .base-card{border:1px solid var(--line-soft);background:var(--bg-2);overflow:hidden;display:flex;flex-direction:column}
-/* photo above the map, building-exterior shots (2026-11) — shown at each
-   photo's own natural aspect ratio, uncropped (no aspect-ratio/object-fit
-   forcing a crop) and with full original color (no --hero-img-filter
-   desaturation) per direct request. margin-bottom separates it from
-   .base-media below (previously flush against it, reading as one merged
-   image block) — the gap reveals .base-card's own background. */
-.base-photo{overflow:hidden;background:var(--img-backing);margin-bottom:10px}
-.base-photo img{width:100%;height:auto;display:block}
+/* photo above the map, building-exterior shots (2026-11) — both source
+   photos are now pre-cropped to the same 3:4 framing (full building, no
+   cut-off tops) before saving, so aspect-ratio here is mostly a safety net
+   rather than doing additional cropping; it keeps the two cards' photo
+   boxes the same height even if a future replacement photo isn't exactly
+   3:4. Full original color — no --hero-img-filter desaturation. margin-
+   bottom separates it from .base-media below (previously flush against
+   it, reading as one merged image block). */
+.base-photo{aspect-ratio:3/4;overflow:hidden;background:var(--img-backing);margin-bottom:10px}
+.base-photo img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;display:block}
 /* a real embedded Google Map (the no-API-key /maps?...&output=embed form) —
    not a screenshot: redistributing scraped map-tile imagery, restyled or
    not, is against Google's terms, where an embed is the sanctioned way to
