@@ -445,8 +445,8 @@ html.intro-active .intro-overlay{display:flex}
    fixed proportion of the artwork's own viewBox (set on the <g> in the
    markup) — it only ever renders large here, so that's fine. */
 .intro-text{
-  display:flex;flex-direction:column;align-items:center;line-height:1.2;
-  text-align:center;opacity:0;transition:opacity .8s ease-out;
+  display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;
+  text-align:left;opacity:0;transition:opacity .8s ease-out;
 }
 .intro-name{font-family:var(--serif-en);font-size:clamp(30px,7vw,58px);letter-spacing:.2em;color:var(--brand-color)}
 .intro-sub{font-family:var(--serif-en);font-size:clamp(12px,2.3vw,22px);letter-spacing:.3em;color:var(--muted);margin-top:.6em}

@@ -76,6 +76,17 @@
       var nameTarget = parseFloat(getComputedStyle(brandName).fontSize);
       var subTarget = parseFloat(getComputedStyle(brandSub).fontSize);
 
+      // .intro-text is left-aligned the whole time (same as the header's own
+      // .brand-text — no text-align/align-items switch later, since neither
+      // property can transition: toggling one mid-animation reported as a
+      // sudden, out-of-place jump — "resources llc那行...从中间对齐跳到左
+      // 边"). Instead the shorter sub-line fakes a centered-under-the-name
+      // look during the hold via a real, animatable margin-left offset, then
+      // slides that back to 0 in step with the move below, so it reads as
+      // one continuous easing into place rather than a snap.
+      var subCenterOffset = (nameEl.getBoundingClientRect().width - subEl.getBoundingClientRect().width) / 2;
+      subEl.style.marginLeft = Math.max(0, subCenterOffset) + 'px';
+
       // dock the small simple mark onto the header's mark spot right away —
       // it stays invisible (opacity:0, see styles.css) and never moves; it
       // only fades in later, already sitting exactly where it needs to be.
@@ -127,8 +138,6 @@
         textEl.style.position = 'fixed';
         textEl.style.left = textRect.left + 'px';
         textEl.style.top = textRect.top + 'px';
-        textEl.style.textAlign = 'left';
-        textEl.style.alignItems = 'flex-start';
 
         void markBig.offsetWidth; // force reflow so the frozen values above apply before transitioning
         void textEl.offsetWidth;
@@ -163,9 +172,10 @@
         textEl.style.top = textTargetRect.top + 'px';
 
         nameEl.style.transition = 'font-size ' + MOVE + 'ms ' + EASE;
-        subEl.style.transition = 'font-size ' + MOVE + 'ms ' + EASE;
+        subEl.style.transition = 'font-size ' + MOVE + 'ms ' + EASE + ',margin-left ' + MOVE + 'ms ' + EASE;
         nameEl.style.fontSize = nameTarget + 'px';
         subEl.style.fontSize = subTarget + 'px';
+        subEl.style.marginLeft = '0px';
       }, HOLD);
 
       // let the fully-docked, header-matching result hold for a beat so the
