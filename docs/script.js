@@ -87,24 +87,26 @@
       // Fade the big mark + wordmark in together rather than having them
       // snap into existence — needs a frame to actually paint the
       // opacity:0 state before transitioning away from it, hence the
-      // double rAF.
+      // double rAF. The big mark only ever reaches a faint watermark
+      // opacity (never fully opaque) — at full strength its dense linework
+      // fights the wordmark for attention right as both appear (reported
+      // directly: "字体和图案混到一起看不清楚").
+      var BIG_MARK_OPACITY = 0.22;
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          markBig.style.opacity = '1';
+          markBig.style.opacity = String(BIG_MARK_OPACITY);
           textEl.style.opacity = '1';
         });
       });
 
       // slower hold + a gentler, evenly-paced ease (rather than Material's
       // snappier ease) — a quick, mechanical-feeling move read as cheap rather
-      // than premium. HOLD was doubled to 3200ms earlier 2026-09-16, then
-      // found too long once tested on the real (uncached) code and halved
-      // back down; MOVE stayed at the doubled 2300ms.
-      var HOLD = 1600;
-      var MOVE = 2300;
+      // than premium. Both HOLD and MOVE were slowed further 2026-11 (the
+      // first cut of this redesign felt rushed on direct feedback).
+      var HOLD = 2000;
+      var MOVE = 3200;
       var EASE = 'cubic-bezier(.65,0,.35,1)';
-      var CROSSFADE = 450; // last slice of MOVE: big mark dissolves into the small one
-      var PAUSE = 350;     // how long the fully-docked state holds before the scrim fades
+      var PAUSE = 400;     // how long the fully-docked state holds before the scrim fades
       var LEAVE_FADE = 650; // matches .intro-overlay's own opacity transition
 
       setTimeout(function () {
@@ -131,17 +133,29 @@
         void markBig.offsetWidth; // force reflow so the frozen values above apply before transitioning
         void textEl.offsetWidth;
 
+        // The big mark's opacity fades across the *entire* move (not just
+        // the tail end) in step with its own shrink — it starts faint
+        // (BIG_MARK_OPACITY) and is already most of the way to invisible
+        // well before it gets small enough for its dense linework to blur
+        // together, instead of staying at full strength right up until a
+        // late, sudden swap (reported directly as "糊成一团" — a blurry,
+        // abruptly-handled patch). The small simple mark fades in over the
+        // back half of the same move, so the two overlap smoothly and both
+        // finish exactly when the position/size move does.
+        var CROSS_DELAY = Math.round(MOVE * 0.45);
+        var CROSS_DUR = MOVE - CROSS_DELAY;
+
         markBig.style.transition =
           'left ' + MOVE + 'ms ' + EASE + ',top ' + MOVE + 'ms ' + EASE + ',' +
           'width ' + MOVE + 'ms ' + EASE + ',height ' + MOVE + 'ms ' + EASE + ',' +
-          'opacity ' + CROSSFADE + 'ms ease ' + (MOVE - CROSSFADE) + 'ms';
+          'opacity ' + MOVE + 'ms ease';
         markBig.style.left = markTargetRect.left + 'px';
         markBig.style.top = markTargetRect.top + 'px';
         markBig.style.width = markTargetRect.width + 'px';
         markBig.style.height = markTargetRect.height + 'px';
         markBig.style.opacity = '0';
 
-        markSmall.style.transition = 'opacity ' + CROSSFADE + 'ms ease ' + (MOVE - CROSSFADE) + 'ms';
+        markSmall.style.transition = 'opacity ' + CROSS_DUR + 'ms ease ' + CROSS_DELAY + 'ms';
         markSmall.style.opacity = '1';
 
         textEl.style.transition = 'left ' + MOVE + 'ms ' + EASE + ',top ' + MOVE + 'ms ' + EASE;
