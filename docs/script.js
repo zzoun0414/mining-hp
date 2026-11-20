@@ -70,21 +70,18 @@
     if (!overlay || !markBig || !markSmall || !textEl || !nameEl || !subEl ||
         !brandMark || !brandText || !brandName || !brandSub) { finish(); return; }
 
-    // Every measurement below (text widths for the centered-look margin,
-    // the header's own target rects) reads real rendered text, so it has to
-    // wait for the self-hosted serif font to actually be loaded — measuring
-    // against the browser's temporary fallback-font metrics produced a
-    // real, visible jump the instant the real font swapped in moments
-    // later (reported directly: "还是会跳"). document.fonts.ready covers
-    // exactly that; where it's unavailable, fall back to running right away
-    // rather than blocking the intro entirely.
-    function run() {
-      try { runIntro(); } catch (e) { finish(); }
-    }
-    if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
-      document.fonts.ready.then(run, run);
-    } else {
-      run();
+    // (2026-11: briefly gated this whole thing behind document.fonts.ready,
+    // thinking a fallback-font measurement might explain a reported jump.
+    // Reverted — on a true cold load it measured fonts.ready taking almost
+    // two minutes to resolve even though every font file had already loaded
+    // fine individually, which left the entire intro invisible until the
+    // inline <head> script's 7s safety net kicked in. Not worth the risk:
+    // the font was already loading fast enough without waiting on it, per
+    // the original fix below.)
+    try {
+      runIntro();
+    } catch (e) {
+      finish();
     }
 
     function runIntro() {
