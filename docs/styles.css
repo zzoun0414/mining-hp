@@ -195,7 +195,14 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.35}
 h1,h2,h3{text-wrap:balance}
 p,li,dd,address,figcaption{text-wrap:pretty}
 :lang(ja),[lang="ja"]{line-break:strict;word-break:normal}
-p{margin:0;text-align:justify}
+p{margin:0}
+/* Justify only the wide about-page lede — a narrower column (card grids,
+   bulleted lists, even the leadership page's own section-note) only fits a
+   couple of words per line, so justify stretches that one gap enormously
+   instead of spreading it across many; confirmed bad directly on the
+   leadership cards. Scoped tightly to where it's actually been checked and
+   reads naturally — ask if it should extend to other wide paragraphs. */
+.about-lead p{text-align:justify}
 ul,ol{margin:0;padding:0;list-style:none}
 
 .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
@@ -847,7 +854,7 @@ html.intro-done .hero-actions{transition-delay:1200ms}
 .person-role span{display:block;font-family:var(--serif-jp);color:var(--muted);letter-spacing:.1em;margin-top:4px}
 .person-name{font-family:var(--serif-jp);font-size:var(--h3-feature);line-height:1.3;min-height:2.6em;color:var(--text-strong);margin:14px 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line);border-image:var(--rule-h) 1}
 .person-name span{display:block;font-size:.95rem;color:var(--ink-soft);margin-top:4px}
-.person-points li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:.92rem;font-family:var(--serif-jp);text-align:justify}
+.person-points li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:.92rem;font-family:var(--serif-jp)}
 .person-points li+li{margin-top:10px}
 .person-points li::before{content:"";position:absolute;left:0;top:.85em;width:8px;height:1px;background:var(--gold)}
 @media (max-width:900px){
