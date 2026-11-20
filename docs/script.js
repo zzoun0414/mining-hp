@@ -30,6 +30,7 @@
     var lockup = document.getElementById('introLockup');
     var brand = document.querySelector('.brand');
     var mark = document.querySelector('.intro-mark');
+    var markBg = document.querySelector('.intro-mark-bg');
     var nameEl = document.querySelector('.intro-name');
     var subEl = document.querySelector('.intro-sub');
     var brandMark = document.querySelector('.brand-mark');
@@ -102,6 +103,10 @@
         requestAnimationFrame(function () {
           lockup.style.transition = 'opacity 1.1s ease-out';
           lockup.style.opacity = '1';
+          // large pale detailed-mark backdrop fades in alongside the lockup,
+          // then fades out again at the HOLD timeout below — it never takes
+          // part in the shrink-to-header move, only .intro-mark does.
+          if (markBg) markBg.classList.add('is-visible');
         });
       });
 
@@ -115,6 +120,7 @@
       var EASE = 'cubic-bezier(.65,0,.35,1)';
 
       setTimeout(function () {
+        if (markBg) markBg.classList.remove('is-visible');
         lockup.style.transition = 'left ' + MOVE + 'ms ' + EASE + ',top ' + MOVE + 'ms ' + EASE;
         mark.style.transition = 'width ' + MOVE + 'ms ' + EASE + ',height ' + MOVE + 'ms ' + EASE;
         nameEl.style.transition = 'font-size ' + MOVE + 'ms ' + EASE;

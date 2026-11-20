@@ -425,6 +425,23 @@ html.intro-active .intro-overlay{display:flex}
 .intro-name{font-family:var(--serif-en);font-size:19px;letter-spacing:.2em;color:var(--brand-color)}
 .intro-sub{font-family:var(--serif-en);font-size:11.5px;letter-spacing:.3em;color:var(--muted);margin-top:5px}
 
+/* Detailed new mark, shown large and pale behind the lockup during the
+   opening hold only (2026-11). It reads muddy at the small nav-icon size
+   the header actually uses (confirmed on a direct trial), so it never
+   replaces .intro-mark — it just gets its own moment here, big and faint,
+   then script.js fades it out right as the hold ends so it's gone before
+   .intro-lockup starts shrinking into the header. End state is therefore
+   unchanged: still today's small simple mark in the nav bar. */
+.intro-mark-bg{
+  position:absolute;left:50%;top:50%;
+  width:min(62vmin,520px);height:min(62vmin,520px);
+  transform:translate(-50%,-50%);
+  color:var(--gold-deep);opacity:0;
+  transition:opacity .6s ease;
+  pointer-events:none;
+}
+.intro-mark-bg.is-visible{opacity:.13}
+
 html.intro-active .site-header{opacity:0}
 html.intro-active .hero-kicker,
 html.intro-active .hero-title,
