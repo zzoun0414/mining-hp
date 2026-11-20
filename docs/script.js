@@ -16,24 +16,34 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* --- opening intro: mark + wordmark animate from center into the header brand,
-     then hand off to the hero copy reveal (see styles.css html.intro-done rules).
-     `intro-active` is only present on <html> at all if the inline <head> script
-     decided to run the animation (skips reduced-motion / repeat pageviews before
-     first paint, so there's no hide-then-flash for the common case). That same
-     inline script also carries a 4s safety timeout in case this file never loads. */
+  /* --- opening intro (2026-11 redesign): a big pale detailed mark sits behind
+     the centered wordmark during the hold, then BOTH independently animate
+     their real position/size/font-size (never transform:scale(), to keep
+     hairline strokes and glyphs crisp) across to the header's measured
+     .brand-mark / .brand-text spots — running at the same time, per the
+     boss's "大logo变成小logo，字也这样移上去，两个动画同时运行" request.
+     The big detailed mark crossfades into the small simple mark (today's
+     header icon) in the last stretch of that move, because the detailed
+     artwork reads muddy at actual nav-icon size (confirmed on a direct
+     trial) — so it only ever has to render large, while the nav bar still
+     ends up with exactly today's small simple mark.
+     `intro-active` is only present on <html> at all if the inline <head>
+     script decided to run the animation (skips reduced-motion / repeat
+     pageviews before first paint, so there's no hide-then-flash for the
+     common case). That same inline script also carries a safety timeout in
+     case this file never loads. */
   (function () {
     var html = document.documentElement;
     if (!html.classList.contains('intro-active')) return;
 
     var overlay = document.getElementById('introOverlay');
-    var lockup = document.getElementById('introLockup');
-    var brand = document.querySelector('.brand');
-    var mark = document.querySelector('.intro-mark');
-    var markBg = document.querySelector('.intro-mark-bg');
+    var markBig = document.getElementById('introMarkBig');
+    var markSmall = document.getElementById('introMarkSmall');
+    var textEl = document.getElementById('introText');
     var nameEl = document.querySelector('.intro-name');
     var subEl = document.querySelector('.intro-sub');
     var brandMark = document.querySelector('.brand-mark');
+    var brandText = document.querySelector('.brand-text');
     var brandName = document.querySelector('.brand-name');
     var brandSub = document.querySelector('.brand-sub');
 
@@ -57,56 +67,31 @@
       if (introSiteNav) introSiteNav.removeAttribute('inert');
     }
 
-    if (!overlay || !lockup || !brand || !mark || !nameEl || !subEl ||
-        !brandMark || !brandName || !brandSub) { finish(); return; }
+    if (!overlay || !markBig || !markSmall || !textEl || !nameEl || !subEl ||
+        !brandMark || !brandText || !brandName || !brandSub) { finish(); return; }
 
     try {
-      // Animate real width/height/font-size (not a CSS transform: scale()) all
-      // the way through. transform: scale() paints the lockup once at its
-      // resting size and then stretches that bitmap — fine for solid shapes,
-      // but it visibly softens thin hairline strokes and, in Safari especially,
-      // can leave the wordmark's text looking soft too. Resizing the real
-      // properties instead makes every browser re-render the vector mark and
-      // the text glyphs at each actual size, so it stays crisp start to finish.
-      var brandRect = brand.getBoundingClientRect();
-      var markTarget = brandMark.getBoundingClientRect().width;
+      var markTargetRect = brandMark.getBoundingClientRect();
+      var textTargetRect = brandText.getBoundingClientRect();
       var nameTarget = parseFloat(getComputedStyle(brandName).fontSize);
       var subTarget = parseFloat(getComputedStyle(brandSub).fontSize);
 
-      var markBase = mark.getBoundingClientRect().width;
-      var nameBase = parseFloat(getComputedStyle(nameEl).fontSize);
-      var subBase = parseFloat(getComputedStyle(subEl).fontSize);
+      // dock the small simple mark onto the header's mark spot right away —
+      // it stays invisible (opacity:0, see styles.css) and never moves; it
+      // only fades in later, already sitting exactly where it needs to be.
+      markSmall.style.left = markTargetRect.left + 'px';
+      markSmall.style.top = markTargetRect.top + 'px';
+      markSmall.style.width = markTargetRect.width + 'px';
+      markSmall.style.height = markTargetRect.height + 'px';
 
-      lockup.style.position = 'fixed';
-      lockup.style.left = brandRect.left + 'px';
-      lockup.style.top = brandRect.top + 'px';
-      var restRect = lockup.getBoundingClientRect();
-
-      // cap the scale so the enlarged lockup never overflows narrow (mobile) viewports
-      var bigScale = Math.min(2.6, (window.innerWidth * 0.88) / restRect.width);
-
-      mark.style.width = (markBase * bigScale) + 'px';
-      mark.style.height = (markBase * bigScale) + 'px';
-      nameEl.style.fontSize = (nameBase * bigScale) + 'px';
-      subEl.style.fontSize = (subBase * bigScale) + 'px';
-
-      // re-measure now that it's actually sized big, to center it for real
-      var bigRect = lockup.getBoundingClientRect();
-      lockup.style.left = ((window.innerWidth - bigRect.width) / 2) + 'px';
-      lockup.style.top = ((window.innerHeight - bigRect.height) / 2) + 'px';
-      lockup.style.opacity = '0';
-
-      // Fade the lockup in rather than having it snap into existence — needs a
-      // frame to actually paint the opacity:0 state before transitioning away
-      // from it, hence the double rAF.
+      // Fade the big mark + wordmark in together rather than having them
+      // snap into existence — needs a frame to actually paint the
+      // opacity:0 state before transitioning away from it, hence the
+      // double rAF.
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          lockup.style.transition = 'opacity 1.1s ease-out';
-          lockup.style.opacity = '1';
-          // large pale detailed-mark backdrop fades in alongside the lockup,
-          // then fades out again at the HOLD timeout below — it never takes
-          // part in the shrink-to-header move, only .intro-mark does.
-          if (markBg) markBg.classList.add('is-visible');
+          markBig.style.opacity = '1';
+          textEl.style.opacity = '1';
         });
       });
 
@@ -118,32 +103,66 @@
       var HOLD = 1600;
       var MOVE = 2300;
       var EASE = 'cubic-bezier(.65,0,.35,1)';
+      var CROSSFADE = 450; // last slice of MOVE: big mark dissolves into the small one
+      var PAUSE = 350;     // how long the fully-docked state holds before the scrim fades
+      var LEAVE_FADE = 650; // matches .intro-overlay's own opacity transition
 
       setTimeout(function () {
-        if (markBg) markBg.classList.remove('is-visible');
-        lockup.style.transition = 'left ' + MOVE + 'ms ' + EASE + ',top ' + MOVE + 'ms ' + EASE;
-        mark.style.transition = 'width ' + MOVE + 'ms ' + EASE + ',height ' + MOVE + 'ms ' + EASE;
+        // freeze each element's current rendered box as explicit pixels
+        // (swapping out the CSS that was centering it) before transitioning
+        // away from it — same "real properties, not transform" approach as
+        // the position/size move itself.
+        var bigRect = markBig.getBoundingClientRect();
+        markBig.style.transition = 'none';
+        markBig.style.transform = 'none';
+        markBig.style.left = bigRect.left + 'px';
+        markBig.style.top = bigRect.top + 'px';
+        markBig.style.width = bigRect.width + 'px';
+        markBig.style.height = bigRect.height + 'px';
+
+        var textRect = textEl.getBoundingClientRect();
+        textEl.style.transition = 'none';
+        textEl.style.position = 'fixed';
+        textEl.style.left = textRect.left + 'px';
+        textEl.style.top = textRect.top + 'px';
+        textEl.style.textAlign = 'left';
+        textEl.style.alignItems = 'flex-start';
+
+        void markBig.offsetWidth; // force reflow so the frozen values above apply before transitioning
+        void textEl.offsetWidth;
+
+        markBig.style.transition =
+          'left ' + MOVE + 'ms ' + EASE + ',top ' + MOVE + 'ms ' + EASE + ',' +
+          'width ' + MOVE + 'ms ' + EASE + ',height ' + MOVE + 'ms ' + EASE + ',' +
+          'opacity ' + CROSSFADE + 'ms ease ' + (MOVE - CROSSFADE) + 'ms';
+        markBig.style.left = markTargetRect.left + 'px';
+        markBig.style.top = markTargetRect.top + 'px';
+        markBig.style.width = markTargetRect.width + 'px';
+        markBig.style.height = markTargetRect.height + 'px';
+        markBig.style.opacity = '0';
+
+        markSmall.style.transition = 'opacity ' + CROSSFADE + 'ms ease ' + (MOVE - CROSSFADE) + 'ms';
+        markSmall.style.opacity = '1';
+
+        textEl.style.transition = 'left ' + MOVE + 'ms ' + EASE + ',top ' + MOVE + 'ms ' + EASE;
+        textEl.style.left = textTargetRect.left + 'px';
+        textEl.style.top = textTargetRect.top + 'px';
+
         nameEl.style.transition = 'font-size ' + MOVE + 'ms ' + EASE;
         subEl.style.transition = 'font-size ' + MOVE + 'ms ' + EASE;
-
-        lockup.style.left = brandRect.left + 'px';
-        lockup.style.top = brandRect.top + 'px';
-        mark.style.width = markTarget + 'px';
-        mark.style.height = markTarget + 'px';
         nameEl.style.fontSize = nameTarget + 'px';
         subEl.style.fontSize = subTarget + 'px';
       }, HOLD);
+
+      // let the fully-docked, header-matching result hold for a beat so the
+      // "big logo becomes the small one" move actually reads, THEN dissolve
+      // the scrim to hand off to the real header underneath (same position/
+      // size/colors by now, so the swap in finish() below is seamless).
       setTimeout(function () {
         if (overlay) overlay.classList.add('is-leaving');
-      }, HOLD + Math.round(MOVE * 0.61));
+      }, HOLD + MOVE + PAUSE);
 
-      lockup.addEventListener('transitionend', function onEnd(e) {
-        if (e.target !== lockup || e.propertyName !== 'left') return;
-        lockup.removeEventListener('transitionend', onEnd);
-        finish();
-      });
-      // belt-and-suspenders: transitionend can fail to fire (tab backgrounded, etc.)
-      setTimeout(finish, HOLD + MOVE + 400);
+      setTimeout(finish, HOLD + MOVE + PAUSE + LEAVE_FADE);
     } catch (e) {
       finish();
     }

@@ -398,49 +398,54 @@ html.intro-active .intro-overlay{display:flex}
 .intro-overlay.is-leaving{opacity:0}
 .intro-overlay[hidden]{display:none !important}
 
-/* Deliberately bigger/more spaced out than the header .brand it hands off to —
-   this lockup is the opening hero moment, not a header element merely scaled
-   up, so a wordmark sized to only look right at header-utility scale reads as
-   thin once it's the biggest thing on screen. script.js grows these values
-   further still for the opening hold, then animates the real width/height/
-   font-size (not a CSS transform: scale()) back down to the header's measured
-   size — deliberately not a transform-based FLIP, since scaling a raster of
-   this element blurred the thin mark and the wordmark text. */
-.intro-lockup{display:flex;align-items:center;gap:18px}
-.intro-mark{width:56px;height:56px;flex:none;color:var(--gold-deep)}
+/* 2026-11 redesign: the opening hold shows the new detailed mark big and
+   pale in the background with the wordmark centered on top of it — the
+   "大logo做底、字居中" composition the boss asked for. Three independently
+   animated pieces (no longer one flex "lockup" riding together):
+     .intro-mark-big   — the new detailed mark, huge, centered behind the text.
+     .intro-mark-small — today's small simple mark, invisible, already sitting
+                          exactly on the header's mark position/size.
+     .intro-text        — the wordmark, centered+big during the hold.
+   At the hold's end, .intro-mark-big and .intro-text each animate their own
+   real left/top/width/height/font-size (never transform:scale(), for the
+   same crispness reason as before) across to the header's measured .brand
+   position, while .intro-mark-big crossfades into .intro-mark-small in the
+   last stretch of that move — so the detailed mark is only ever asked to
+   render large (it reads muddy at nav-icon size, confirmed on a direct
+   trial), and the nav bar still ends up showing today's small simple mark,
+   pixel-identical to before. */
+.intro-mark-big{
+  position:absolute;left:50%;top:50%;
+  width:min(74vmin,640px);height:min(74vmin,640px);
+  transform:translate(-50%,-50%);
+  color:var(--gold-deep);opacity:0;
+  transition:opacity 1.1s ease-out;
+  pointer-events:none;
+}
+.intro-mark-small{
+  position:fixed;top:0;left:0;
+  width:56px;height:56px;flex:none;
+  color:var(--gold-deep);opacity:0;
+  transition:opacity .45s ease;
+  pointer-events:none;
+}
 /* the mark's stroke is drawn at a fixed width in its own 1254-unit coordinate
    space; without this it scales down with the SVG's box (down to a fraction of
    a screen pixel at icon sizes) and reads as a faint, blurry hairline instead
    of a crisp thin line. non-scaling-stroke keeps it a real, constant pixel
    width no matter how small or large the mark is drawn. */
-.intro-mark path{vector-effect:non-scaling-stroke;stroke-width:2}
-/* leadership-mark (2026-11 redesign) deliberately does NOT use
-   non-scaling-stroke: its linework is dense (layered mane strands close
-   together), so a flat constant-pixel stroke fattens and merges them at
-   this element's ~150px box. stroke-width is instead a fixed proportion
-   of the artwork's own viewBox (set on the <g> in the markup), so it
-   thins/thickens in step with the responsive clamp(96px,11vw,150px) box
-   instead of staying a flat pixel width. */
-.intro-text{display:flex;flex-direction:column;line-height:1.2}
-.intro-name{font-family:var(--serif-en);font-size:19px;letter-spacing:.2em;color:var(--brand-color)}
-.intro-sub{font-family:var(--serif-en);font-size:11.5px;letter-spacing:.3em;color:var(--muted);margin-top:5px}
-
-/* Detailed new mark, shown large and pale behind the lockup during the
-   opening hold only (2026-11). It reads muddy at the small nav-icon size
-   the header actually uses (confirmed on a direct trial), so it never
-   replaces .intro-mark — it just gets its own moment here, big and faint,
-   then script.js fades it out right as the hold ends so it's gone before
-   .intro-lockup starts shrinking into the header. End state is therefore
-   unchanged: still today's small simple mark in the nav bar. */
-.intro-mark-bg{
-  position:absolute;left:50%;top:50%;
-  width:min(62vmin,520px);height:min(62vmin,520px);
-  transform:translate(-50%,-50%);
-  color:var(--gold-deep);opacity:0;
-  transition:opacity .6s ease;
-  pointer-events:none;
+.intro-mark-small path{vector-effect:non-scaling-stroke;stroke-width:2}
+/* .intro-mark-big deliberately does NOT use non-scaling-stroke: its linework
+   is dense (layered mane strands close together), so a flat constant-pixel
+   stroke fattens and merges them at small sizes. stroke-width is instead a
+   fixed proportion of the artwork's own viewBox (set on the <g> in the
+   markup) — it only ever renders large here, so that's fine. */
+.intro-text{
+  display:flex;flex-direction:column;align-items:center;line-height:1.2;
+  text-align:center;opacity:0;transition:opacity 1.1s ease-out;
 }
-.intro-mark-bg.is-visible{opacity:.13}
+.intro-name{font-family:var(--serif-en);font-size:clamp(30px,7vw,58px);letter-spacing:.2em;color:var(--brand-color)}
+.intro-sub{font-family:var(--serif-en);font-size:clamp(12px,2.3vw,22px);letter-spacing:.3em;color:var(--muted);margin-top:.6em}
 
 html.intro-active .site-header{opacity:0}
 html.intro-active .hero-kicker,
