@@ -834,19 +834,18 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    all three identical card treatment lets the existing in-card role label
    (CHAIRMAN / CEO / SENIOR ECONOMIC ADVISOR) carry the seniority distinction
    instead, the same way it already does between Chairman and CEO. */
-/* 2 columns, not 3 — justified bio text needs enough words per line to
-   distribute space across (tested directly: a 3-up card only fits 2-3
-   words/line, so justify stretched a single gap to fill the whole line;
-   2-up gives it enough room to read naturally). The 3rd (odd) card spans
-   both columns on its own row below, width-capped and centered so it
-   isn't stretched wider than its siblings above it. */
-.people{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,32px)}
-/* scoped to the same ≥901px range the 2-column grid above is actually
-   active in (it collapses to 1fr at both narrower breakpoints below) —
-   unscoped, the 50% max-width also applied once .people was already a
-   single column, visually crushing the 3rd card down to half-width. */
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px)}
+/* MN only: a 3-up card only fits 2-3 words/line, and justified Cyrillic
+   bio text stretched that one gap to fill the whole line (confirmed
+   directly, screenshot) — Mongolian compound words run longer than the
+   JA/EN equivalents, which read fine justified at this same card width.
+   Rather than break the clean 3-across grid for every language (tried
+   that — 2-up-plus-a-centered-odd-one-out read as more awkward than it
+   solved, per direct feedback), MN alone stacks to a single full-width
+   column, and gets all the line length it needs. JA/EN keep the 3-up
+   grid, unchanged. */
 @media (min-width:901px){
-  .person:last-child{grid-column:1/-1;max-width:calc(50% - clamp(10px,1.5vw,16px));margin-inline:auto}
+  html[lang="mn"] .people{grid-template-columns:1fr;max-width:720px}
 }
 .person{border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(28px,3.5vw,44px)}
 /* role label and name both reserve a fixed 2-line box (line-height×2 via
