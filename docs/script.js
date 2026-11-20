@@ -70,7 +70,24 @@
     if (!overlay || !markBig || !markSmall || !textEl || !nameEl || !subEl ||
         !brandMark || !brandText || !brandName || !brandSub) { finish(); return; }
 
-    try {
+    // Every measurement below (text widths for the centered-look margin,
+    // the header's own target rects) reads real rendered text, so it has to
+    // wait for the self-hosted serif font to actually be loaded — measuring
+    // against the browser's temporary fallback-font metrics produced a
+    // real, visible jump the instant the real font swapped in moments
+    // later (reported directly: "还是会跳"). document.fonts.ready covers
+    // exactly that; where it's unavailable, fall back to running right away
+    // rather than blocking the intro entirely.
+    function run() {
+      try { runIntro(); } catch (e) { finish(); }
+    }
+    if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
+      document.fonts.ready.then(run, run);
+    } else {
+      run();
+    }
+
+    function runIntro() {
       var markTargetRect = brandMark.getBoundingClientRect();
       var textTargetRect = brandText.getBoundingClientRect();
       var nameTarget = parseFloat(getComputedStyle(brandName).fontSize);
@@ -187,8 +204,6 @@
       }, HOLD + MOVE + PAUSE);
 
       setTimeout(finish, HOLD + MOVE + PAUSE + LEAVE_FADE);
-    } catch (e) {
-      finish();
     }
   })();
 
