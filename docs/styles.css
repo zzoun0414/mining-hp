@@ -829,6 +829,23 @@ html.intro-done .hero-actions{transition-delay:1200ms}
    instead, the same way it already does between Chairman and CEO. */
 .people{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px)}
 .person{border:1px solid var(--line-soft);background:var(--person-grad);padding:clamp(28px,3.5vw,44px)}
+/* 2026-11: per-person pen-and-ink portrait illustrations. A straight photo
+   in this exact spot (tried earlier, reverted) read as a hard, literal
+   rectangle dropped onto an otherwise illustrated/editorial page — the
+   same "photo pasted onto a graphic-design layout" clash the whole site
+   avoids elsewhere (the horse mark, the leadership watermark, are all
+   linework, never a photo). These portraits are ink line-art on the same
+   warm paper tone as .person-grad (color-matched to it during export), so
+   instead of framing them like a photo — a border, a box-shadow, a hard
+   edge — they're left borderless and the bottom fades straight into the
+   card's own background via a mask. The effect: the portrait reads as
+   drawn on the same surface as the card, not inserted into it. */
+.person-photo{margin-bottom:20px}
+.person-photo img{
+  width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 72%,transparent 97%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 72%,transparent 97%);
+}
 /* role label and name both reserve a fixed 2-line box (line-height×2 via
    min-height) regardless of whether the text actually wraps to 1 or 2
    lines — some roles wrap at this card width and some don't (CHAIRMAN
@@ -1287,9 +1304,15 @@ html[lang="mn"] .nav-toggle{display:flex;z-index:110}
   .res-card:not(.res-card--feature) .res-body>.res-tag-row{grid-row:3}
   .res-card:not(.res-card--feature) .res-body>p{grid-row:4}
 }
-/* --- 経営体制の3カード: 役職ラベルの行高の差で氏名が 3px ずれていた --- */
+/* --- 経営体制の3カード: 役職ラベルの行高の差で氏名が 3px ずれていた ---
+   span 4, not 3: .person-photo is the first DOM child now, so the
+   subgridded rows are photo/role/name/points. The 3 portraits share an
+   identical 4:5 ratio, so their row is already equal-height on its own —
+   but keeping it inside the span still matters: without it a 4th child
+   spills into an unshared implicit row, which knocked role/name back out
+   of alignment the span rule exists to prevent. */
 @media (min-width:901px){
-  .person{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0;align-content:start}
+  .person{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:0;align-content:start}
 }
 /* --- 拠点: 住所の行数が違うと「Googleマップで見る」の高さがずれていた → 下端に揃える --- */
 .base-body{display:flex;flex-direction:column;flex:1}
