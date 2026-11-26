@@ -820,6 +820,11 @@ html.intro-done .hero-actions{transition-delay:1200ms}
   .section-head--leadership{flex-direction:column;align-items:flex-start;gap:20px}
   .leadership-mark-wrap{display:none}
 }
+/* --- 経営体制: 集合写真＋各メンバーの個人写真（2026-11 追加） --- */
+.leadership-photo{aspect-ratio:16/9;overflow:hidden;background:var(--img-backing);border-radius:2px;margin-bottom:clamp(32px,5vw,56px)}
+.leadership-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.person-photo{aspect-ratio:4/5;overflow:hidden;background:var(--img-backing);border-radius:2px;margin-bottom:24px}
+.person-photo img{width:100%;height:100%;object-fit:cover;display:block}
 /* 2026-11: Chairman/CEO/Senior Economic Advisor as 3 equal .person cards —
    previously the advisor sat in its own wider strip below with a photo
    neither of the other two had, so it read as the single biggest, most
@@ -1287,9 +1292,15 @@ html[lang="mn"] .nav-toggle{display:flex;z-index:110}
   .res-card:not(.res-card--feature) .res-body>.res-tag-row{grid-row:3}
   .res-card:not(.res-card--feature) .res-body>p{grid-row:4}
 }
-/* --- 経営体制の3カード: 役職ラベルの行高の差で氏名が 3px ずれていた --- */
+/* --- 経営体制の3カード: 役職ラベルの行高の差で氏名が 3px ずれていた ---
+   span 4, not 3: .person-photo is now the first child (DOM order), so the
+   subgridded rows are photo/role/name/points. Photo heights are already
+   equal in practice (same aspect-ratio, equal column width), but keeping
+   it inside the span means a 4th child doesn't spill into an unshared
+   implicit row — which would have knocked role/name back out of alignment
+   the same way the original fix was written to prevent. */
 @media (min-width:901px){
-  .person{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0;align-content:start}
+  .person{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:0;align-content:start}
 }
 /* --- 拠点: 住所の行数が違うと「Googleマップで見る」の高さがずれていた → 下端に揃える --- */
 .base-body{display:flex;flex-direction:column;flex:1}
